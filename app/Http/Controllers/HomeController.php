@@ -15,4 +15,9 @@ class HomeController extends Controller
     {
         return 'Terms';
     }
+
+    public function policy()
+    {
+        return 'Policy';
+    }
 }

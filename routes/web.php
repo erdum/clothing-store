@@ -30,6 +30,7 @@ Route::get('/product/{product_id}', [ProductController::class, 'index']);
 Route::get('/category/{category_name?}/{sub_category_name?}', [CategoryController::class, 'index']);
 Route::get('/orders/{order_id?}', [OrderController::class, 'index']);
 Route::get('/terms', [HomeController::class, 'terms']);
+Route::get('/policy', [HomeController::class, 'policy']);
 
 // Actions
 Route::get('/cart', [CartController::class, 'index']);
