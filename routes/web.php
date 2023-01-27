@@ -35,6 +35,6 @@ Route::get('/terms', [HomeController::class, 'terms']);
 Route::get('/cart', [CartController::class, 'index']);
 Route::post('/cart', [CartController::class, 'update']);
 Route::post('/checkout', [CheckoutController::class, 'checkout']);
-Route::post('/login/redirect', [LoginController::class, 'redirect']);
+Route::post('/login/redirect/{provider_name}', [LoginController::class, 'redirect']);
 Route::post('/login/callback', [LoginController::class, 'callback']);
 Route::post('/logout', [LoginController::class, 'logout']);
