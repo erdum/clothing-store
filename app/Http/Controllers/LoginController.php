@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
@@ -11,14 +12,17 @@ class LoginController extends Controller
         return 'Login';
     }
 
-    public function redirect()
+    public function redirect($provider_name)
     {
-        return 'Redirect';
+        session(['provider_name' => $provider_name]);
+        return Socialite::driver($provider_name)->redirect();
     }
 
     public function callback()
     {
-        return 'Callback';
+        $provider_name = session('provider_name');
+        $user = Socialite::driver($provider_name)->user();
+        return redirect('/');
     }
 
     public function logout()

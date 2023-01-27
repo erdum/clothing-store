@@ -37,4 +37,10 @@ return [
         'redirect' => 'http://localhost:8000/login/callback',
     ],
 
+    'facebook' => [
+        'client_id' => env('FACEBOOK_AUTH_ID'),
+        'client_secret' => env('FACEBOOK_AUTH_KEY'),
+        'redirect' => 'http://localhost:8000/login/callback',
+    ],
+
 ];
