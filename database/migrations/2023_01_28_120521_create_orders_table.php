@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('order_status_id')->constrained();
+            $table->foreignId('shipping_address_id')->constrained();
             $table->integer('sub_total');
             $table->integer('total');
             $table->integer('discount');
