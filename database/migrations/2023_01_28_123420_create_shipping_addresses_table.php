@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('city', 30);
             $table->text('address');
             $table->string('postal_code', 10);
-            $table->string('phone_number', 20);
+            $table->string('phone_number', 20)->unique();
             $table->timestamps();
         });
     }
