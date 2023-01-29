@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 use App\Models\Cart;
+use App\Models\Order;
+use App\Models\ShippingAddress;
 
 class User extends Authenticatable
 {
@@ -47,5 +49,15 @@ class User extends Authenticatable
     public function in_cart_item()
     {
         return $this->hasMany(Cart::class)->product();
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function shipping_address()
+    {
+        return $this->hasOne(ShippingAddress::class);
     }
 }
