@@ -1,0 +1,124 @@
+
+/* FEATURES */
+.feature-container{
+    height: 10vh;
+    width: 100%;
+    display: flex;
+    margin-top: 12vh;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 0;
+}
+.feature-container h2 a{
+    /* margin-top: 10px; */
+    font-size: 28px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #0e97f9;
+}
+.line{
+    margin-top: 6px;
+    width: 80%;
+    height: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0e97f9;
+    border-radius: 10px;
+}
+.line span{
+    background: #FDF9EE;
+    width: 110px;
+    height: 20px;
+    text-align: center;
+}
+.women-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+.men-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+.kid-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+.home-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+.swiper {
+    width: 90%;
+    height: 65vh;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.main h3{
+    font-size: 20px;
+    font-weight: 600;
+    color: #0e97f9;
+    text-align: center;
+}
+.main p{
+    color: rgb(115, 106, 106);
+    font-size: 16px;
+    text-align: center;
+}
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    border-radius: 20px;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    text-align: left;
+}
+.swiper-button-prev,.swiper-button-next{
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+    color: #0e97f9;
+    font-weight: 900;
+}
+.swiper-slide img {
+    overflow: hidden;
+    width: 100%;
+    height: 90%;
+    border-radius: 20px 20px 0 0;
+    object-fit: cover;
+}
+.swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
+    bottom: -25px;
+    left: 0;
+    width: 100%;
+}
+
+

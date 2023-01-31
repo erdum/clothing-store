@@ -1,0 +1,17 @@
+Description page
+Javascript implementation in cart function and items increasing function
+checckout page advancement
+
+Minor Task if you can tomorrow or day after it:
+centered hamburger to right hamburger and putting cart and user in list on mobile devices
+
+Tomorrow Main:
+All subpages and description page and checkout page complete Tomorrow task
+Making a single Css file for every Category and other subpages and link everyone to one subfiles
+
+Tomorrow Sub-Task:
+Finding out possible solutions to solve the problems of Javascript
+
+Day after Tomorrow:
+Cart diplay issue in mobile devices
+
