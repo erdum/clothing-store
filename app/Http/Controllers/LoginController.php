@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\View;
 
 class LoginController extends Controller
 {
     public function index()
     {
-        return 'Login';
+        return View::make('login', [
+            'google_link' => route('third_party_login', ['provider_name' => 'google']),
+            'facebook_link' => route('third_party_login', ['provider_name' => 'facebook']),
+        ]);
     }
 
     public function redirect($provider_name)
