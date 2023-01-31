@@ -92,27 +92,6 @@
                 <i class="fa fa-shopping-bag" id="cart"></i>
                 <div class="popup" id="popup">
                     <div class="elem_container" id="elem_container">
-                        <div class="element">
-                            <div class="img_des">
-                                <img src="./images/men-carousel/Men_Fragrance_1_10.jpg" alt="">
-                                <div class="des">
-                                    <h3>Product 1</h3>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                                </div>
-                            </div>
-                            <div class="quantity_pr">
-                                <div class="quantity">
-                                    <button class="quantity_btn" id="minus">-</button>
-                                    <div class="quantity_value" id="item-value">1</div>
-                                    <button class="quantity_btn" id="plus">+</button>
-                                </div>
-                                <div class="price"><span>
-                                        <pre>Price:  $ </pre>
-                                    </span>
-                                    <p id="initial-price">45.00</p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div class="total">
                         <button class="checkout-btn"><a href="./checkout.html">Checkout</a></button>
@@ -120,7 +99,7 @@
                             <h3>
                                 <pre>Total: $ </pre>
                             </h3>
-                            <p id="total-price">120</p>
+                            <p id="total-price">{{$cart_total ?? 0}}</p>
                         </div>
                     </div>
                 </div>

@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return View::make('layouts.app');
+        return View::make('layouts.master');
     }
 
     public function terms()
