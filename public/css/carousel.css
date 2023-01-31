@@ -4,12 +4,12 @@
     height: 10vh;
     width: 100%;
     display: flex;
-    margin-top: 12vh;
+    margin-top: 3vh;
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
     padding: 10px;
-    margin-bottom: 0;
+    margin-bottom: 3vh;
 }
 .feature-container h2 a{
     /* margin-top: 10px; */
@@ -40,6 +40,7 @@
     align-items: center;
     height: 80vh;
 }
+
 .men-container{
     display: flex;
     justify-content: center;
@@ -80,6 +81,8 @@
     text-align: center;
 }
 .swiper-slide {
+    height: 400px;
+    overflow-y: hidden;
     text-align: center;
     font-size: 18px;
     background: #fff;
@@ -93,27 +96,35 @@
     -ms-flex-pack: center;
     -webkit-justify-content: center;
     justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;
+    -webkit-box-align: flex-start;
+    -ms-flex-align: flex-start;
+    -webkit-align-items: flex-start;
+    align-items: flex-start;
     text-align: left;
 }
 .swiper-button-prev,.swiper-button-next{
     background: transparent;
     border: none;
     display: flex;
-    align-items:center;
+    align-items:flex-start;
     justify-content: space-between;
     color: #0e97f9;
     font-weight: 900;
+    position: absolute;
+    top: 40%;
 }
-.swiper-slide img {
+.swiper-slide a img {
     overflow: hidden;
     width: 100%;
-    height: 90%;
+    height: 335px;
     border-radius: 20px 20px 0 0;
     object-fit: cover;
+}
+.swiper-slide a .more{
+    height: 65px;
+}
+.swiper-slide a .fea-img{
+    height: 250px;
 }
 .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
     bottom: -25px;
@@ -122,3 +133,24 @@
 }
 
 
+@media (max-width:786px) {
+    .feature-container{
+        margin-top: 0;
+    }
+    .women-container{
+        height: 60vh;
+    }
+    .men-container{
+        height: 60vh;
+    }
+    .kid-container{
+        height: 60vh;
+    }
+    .home-container{
+        height: 60vh;
+    }
+    /* .swiper{
+        height: 100%;
+    } */
+
+}

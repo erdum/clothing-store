@@ -56,6 +56,12 @@
     width: 100%;
     text-align: center;
 }
+.copyright a{
+    color: #fff;
+}
+.copyright a p:hover{
+    color: #0e97f9;
+}
 
 @media (max-width:700px){
 

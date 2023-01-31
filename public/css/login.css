@@ -15,7 +15,7 @@ body{
     justify-content: center;
     align-items: center;
 }
-body a > i{
+.back{
     position: fixed;
     background: #00acee;
     color: #fff;
@@ -66,18 +66,23 @@ button{
     cursor: pointer;
 
 }
-.signin-btn{
-    background-color: #0077be;
-    color: #fff;
-}
-.twitter-btn{
-    background-color: #00acee;
-    color: #fff;
-}
 a{
     text-decoration: none;
     color: #0077be;
 }
+.signin-btn{
+    background-color: #0077be;
+    color: #fff;
+}
+.twitter-btn, .twitter-btn a{
+    background-color: #00acee;
+    color: #fff;
+}
+.gmail-btn, .gmail-btn a{
+    background-color: #ffd30c;
+    color: red;
+}
+
 hr{
     margin-top: 30px;
     width: 100%;

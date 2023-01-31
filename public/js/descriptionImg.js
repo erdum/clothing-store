@@ -22,6 +22,7 @@ fourth.addEventListener("click", ()=>{
 })
 
 
+<<<<<<< HEAD
 // Wishlist Color Change:
 const redColor = document.getElementById("wishlist");
 redColor.addEventListener("click", ()=>{
@@ -33,6 +34,19 @@ redColor.addEventListener("click", ()=>{
         document.getElementById("wish").style.color = "rgb(200, 114, 126)";
     }
 })
+=======
+// // Wishlist Color Change:
+// const redColor = document.getElementById("wishlist");
+// redColor.addEventListener("click", ()=>{
+//     let wish = document.getElementById("wish").style.color;
+//     if (wish == "red"){
+//         document.getElementById("wish").style.color = "white";
+//     }
+//     else{
+//         document.getElementById("wish").style.color = "red";
+//     }
+// })
+>>>>>>> c5625a5ef8a83e1148affaacb6715febbb76450b
 
 
 // Cart button Change:

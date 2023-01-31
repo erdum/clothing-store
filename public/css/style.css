@@ -98,7 +98,7 @@ body {
     text-align: center;
     height: 80vh;
     width: 100%;
-    margin: 10vh 0;
+    margin:0;
     position: relative;
 }
 
@@ -195,4 +195,10 @@ body {
     position: absolute;
     bottom: 6px;
     right: 25px;
+}
+
+@media(max-width:768px) {
+    #featured{
+        height: 60vh;
+    }
 }
