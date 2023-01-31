@@ -18,7 +18,7 @@ class Product extends Model
 
     public function sub_category()
     {
-        return $this->belongsTo(SubCategory::class);
+        return $this->hasOne(SubCategory::class);
     }
 
     public function sizes()
@@ -38,7 +38,7 @@ class Product extends Model
 
     public function orders()
     {
-        return $this->hasMany(OrderItem::class);
+        return $this->hasMany(OrderItem::class)->order();
     }
 
     public function in_carts()
