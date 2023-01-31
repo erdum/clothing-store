@@ -15,12 +15,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- FavIcon Link -->
     <link rel="shortcut icon" href="./images/favicon/favicon-32x32.png" type="image/x-icon">
-    <title>@yield('title', 'title missing') - Apparel UB365Inn</title>
+    <title>@yield('title', 'page title missing')</title>
     <!-- CSS LINKS -->
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/carousel.css">
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/footer.css">
+    @stack('stylesheets')
 </head>
 
 <body>
@@ -74,6 +75,7 @@
                                 <li><a href="mats.html">Mats</a></li>
                             </ul>
                         </li>
+                        <li><a href="./categories.html">Explore More.</a></li>
                     </ul>
                 </li>
                 <li><a href="./feature.html">Featured</a></li>
@@ -89,20 +91,51 @@
         <div class="user-cart">
             <label for="menu-bar"><i class="fa-solid fa-bars"></i></label>
             <div class="cart" id="cart">
-                <i class="fa fa-shopping-bag" id="cart"></i>
-                <div class="popup" id="popup">
-                    <div class="elem_container" id="elem_container">
-                    </div>
-                    <div class="total">
-                        <button class="checkout-btn"><a href="./checkout.html">Checkout</a></button>
-                        <div class="total_container">
-                            <h3>
-                                <pre>Total: $ </pre>
-                            </h3>
-                            <p id="total-price">{{$cart_total ?? 0}}</p>
+                @auth
+                    <i class="fa fa-shopping-bag" id="cart"></i>
+                        <div class="popup" id="popup">
+                            <div class="elem_container" id="elem_container">
+                                @foreach ($cart_items as $cart_item)
+                                <div class="element">
+                                    <div class="img_des">
+                                        <img src="./images/men-carousel/Men_Fragrance_1_10.jpg" alt="">
+                                        <div class="des">
+                                            <h3>Product 1</h3>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                        </div>
+                                    </div>
+                                    <div class="quantity_pr">
+                                        <div class="quantity">
+                                            <button class="quantity_btn" id="minus">-</button>
+                                            <div class="quantity_value" id="item-value">1</div>
+                                            <button class="quantity_btn" id="plus">+</button>
+                                        </div>
+                                        <div class="price"><span>
+                                                <pre>Price:  $ </pre>
+                                            </span>
+                                            <p id="initial-price">45.00</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                            <div class="total">
+                                <button class="checkout-btn"><a href="./checkout.html">Checkout</a></button>
+                                <div class="total_container">
+                                    <h3>
+                                        <pre>Total: $ </pre>
+                                    </h3>
+                                    <p id="total-price">{{ $cart_amount ?? 0 }}</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                @endauth
+
+                @guest
+                    <a href="/login">
+                        <i class="fa fa-shopping-bag" id="cart"></i>
+                    </a>
+                @endguest
             </div>
             <div>
                 <a href="login.html">
@@ -111,9 +144,8 @@
             </div>
         </div>
     </header>
-    <!--HERO CAROUSEL AUTOMATIC-->
-    
-    @yield('content', 'main content missing')
+
+    @yield('content')
 
     <!-- FOOTER -->
     <footer class="section-p1">
@@ -156,7 +188,9 @@
             </div>
         </div>
         <div class="copyright">
-            <p>&copy; 2023- Studio Hammad. &#8482;</p>
+            <a href="">
+                <p>&copy; 2023- Studio Hammad. &#8482;</p>
+            </a>
         </div>
     </footer>
     <script src="./js/itemvalue.js"></script>
@@ -190,6 +224,7 @@
     });
 
     </script>
+    @stack('scripts')
 </body>
 
 </html>
