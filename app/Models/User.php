@@ -50,7 +50,7 @@ class User extends Authenticatable
 
     public function in_cart_items()
     {
-        return $this->hasMany(Cart::class)->product();
+        return $this->hasMany(Cart::class);
     }
 
     public function orders()
