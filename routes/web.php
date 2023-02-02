@@ -25,7 +25,7 @@ use App\Http\Controllers\OrderController;
 // Public Routes & Views
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/category/{name?}/{sub_name?}', [CategoryController::class, 'index'])->name('category');
-Route::get('/product/{product_id}', [ProductController::class, 'index'])->name('product');
+Route::get('/product/{id}', [ProductController::class, 'index'])->name('product');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::get('/login/redirect/{provider_name}', [LoginController::class, 'redirect'])->name('third_party_login');
@@ -37,7 +37,7 @@ Route::get('/policy', [HomeController::class, 'policy'])->name('policy');
 
 // Private Routes & Views
 Route::middleware('auth')->group(function () {
-    Route::get('/orders/{order_id?}', [OrderController::class, 'index'])->name('order');
+    Route::get('/orders/{id?}', [OrderController::class, 'index'])->name('order');
 
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
     Route::post('/checkout', [CheckoutController::class, 'checkout']);
