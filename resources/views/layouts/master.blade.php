@@ -95,29 +95,29 @@
                     <i class="fa fa-shopping-bag" id="cart"></i>
                         <div class="popup" id="popup">
                             <div class="elem_container" id="elem_container">
-                                {{-- @foreach ($cart_items as $cart_item) --}}
+                                @foreach (Auth::user()->in_cart_items as $cart_item)
                                 <div class="element">
                                     <div class="img_des">
                                         <img src="./images/men-carousel/Men_Fragrance_1_10.jpg" alt="">
                                         <div class="des">
-                                            <h3>Product 1</h3>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                            <h3>{{ $cart_item->product->name }}</h3>
+                                            <p>{{ $cart_item->product->description }}</p>
                                         </div>
                                     </div>
                                     <div class="quantity_pr">
                                         <div class="quantity">
                                             <button class="quantity_btn" id="minus">-</button>
-                                            <div class="quantity_value" id="item-value">1</div>
+                                            <div class="quantity_value" id="item-value">{{ $cart_item->product->quantity }}</div>
                                             <button class="quantity_btn" id="plus">+</button>
                                         </div>
                                         <div class="price"><span>
                                                 <pre>Price:  $ </pre>
                                             </span>
-                                            <p id="initial-price">45.00</p>
+                                            <p id="initial-price">{{ $cart_item->product->unit_price }}</p>
                                         </div>
                                     </div>
                                 </div>
-                                {{-- @endforeach --}}
+                                @endforeach
                             </div>
                             <div class="total">
                                 <button class="checkout-btn"><a href="{{ route('checkout') }}">Checkout</a></button>
@@ -125,7 +125,7 @@
                                     <h3>
                                         <pre>Total: $ </pre>
                                     </h3>
-                                    <p id="total-price">{{ $cart_amount ?? 0 }}</p>
+                                    <p id="total-price">{{ Auth::user()->in_cart_items()->withSum('product', 'total')->product_sum_total ?? 0 }}</p>
                                 </div>
                             </div>
                         </div>
