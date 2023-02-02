@@ -11,25 +11,25 @@
    crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- FavIcon Link -->
     <link rel="shortcut icon" href="./images/favicon/favicon-32x32.png" type="image/x-icon">
-    <title>LOGIN: To be a part!</title>
+    <title>Login - Signup | Apparel UB365Inn</title>
     <link rel="stylesheet" href="./css/login.css">
 </head>
 
 <body>
-    <a href="./index.html"><i class="fa-solid fa-arrow-left back"></i></a>
+    <a href="{{ route('home') }}"><i class="fa-solid fa-arrow-left back"></i></a>
 
     <div class="sign-in-form">
         <img src="./images/icon3.png">
         <h1>Log In</h1>
         <form>
-            <input type="email" class="input-box" placeholder="Your Email">
+<!--             <input type="email" class="input-box" placeholder="Your Email">
             <input type="password" class="input-box" placeholder="Your Password">
             <p><span><input type="checkbox" class="checkbox"></span> Save Password for Future Login</p>
             <button type="button" class="signin-btn">Log In</button>
             <hr>
-            <p class="or">OR</p>
-            <button type="button" class="gmail-btn"><a href="{{ $google_link }}"><i class="fa-solid fa-envelope"></i> Login with Gmail</a></button>
-            <button type="button" class="twitter-btn"><a href="{{ $facebook_link }}"><i class="fa-brands fa-facebook"></i> Login with Facebook</a></button>
+            <p class="or">OR</p> -->
+            <button type="button" class="gmail-btn"><a href="{{ route('third_party_login', ['provider_name' => 'google']) }}"><i class="fa-solid fa-envelope"></i> Login with Gmail</a></button>
+            <button type="button" class="twitter-btn"><a href="{{ route('third_party_login', ['provider_name' => 'facebook']) }}"><i class="fa-brands fa-facebook"></i> Login with Facebook</a></button>
             
         </form>
     </div>
