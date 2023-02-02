@@ -22,20 +22,28 @@ use App\Http\Controllers\OrderController;
 |
 */
 
-// Views
-Route::get('/', [HomeController::class, 'index']);
+// Public Routes & Views
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/category/{category_name?}/{sub_category_name?}', [CategoryController::class, 'index'])->name('category');
+Route::get('/product/{product_id}', [ProductController::class, 'index'])->name('product');
+
 Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::get('/checkout', [CheckoutController::class, 'index']);
-Route::get('/product/{product_id}', [ProductController::class, 'index']);
-Route::get('/category/{category_name?}/{sub_category_name?}', [CategoryController::class, 'index']);
-Route::get('/orders/{order_id?}', [OrderController::class, 'index']);
+Route::get('/login/redirect/{provider_name}', [LoginController::class, 'redirect'])->name('third_party_login');
+Route::get('/login/callback', [LoginController::class, 'callback']);
+
 Route::get('/terms', [HomeController::class, 'terms'])->name('terms');
 Route::get('/policy', [HomeController::class, 'policy'])->name('policy');
 
-// Actions
-Route::get('/cart', [CartController::class, 'index']);
-Route::post('/cart', [CartController::class, 'update']);
-Route::post('/checkout', [CheckoutController::class, 'checkout']);
-Route::get('/login/redirect/{provider_name}', [LoginController::class, 'redirect'])->name('third_party_login');
-Route::get('/login/callback', [LoginController::class, 'callback']);
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+// Private Routes & Views
+Route::middleware('auth')->group(function () {
+    Route::get('/orders/{order_id?}', [OrderController::class, 'index'])->name('order');
+
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+    Route::post('/checkout', [CheckoutController::class, 'checkout']);
+    
+    Route::get('/cart', [CartController::class, 'index'])->name('cart');
+    Route::post('/cart', [CartController::class, 'update']);
+    
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+});
