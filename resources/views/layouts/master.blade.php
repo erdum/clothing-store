@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- FavIcon Link -->
     <link rel="shortcut icon" href="./images/favicon/favicon-32x32.png" type="image/x-icon">
-    <title>@yield('title', 'page title missing')</title>
+    <title>@yield('title', 'page title missing') - UB365Inn</title>
     <!-- CSS LINKS -->
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/carousel.css">
@@ -27,12 +27,12 @@
 <body>
     <!-- HEADER -->
     <header>
-        <a href="./index.html" class="logo"><img src="./images/logo.png" alt=""></a>
+        <a href="{{ route('home') }}" class="logo"><img src="./images/logo.png" alt=""></a>
         <input type="checkbox" id="menu-bar">
         <nav class="navbar">
             <ul>
                 <li class="ex">
-                    <a href="./cart.html"><i class="fa fa-shopping-bag bag"></i></a>
+                    <a href="{{ route('cart') }}"><i class="fa fa-shopping-bag bag"></i></a>
                     <input type="text" class="search-bar" placeholder="Search">
                     <i class="fa fa-search search"></i>
                     <a href="login.html">
@@ -40,7 +40,7 @@
                     </a>
                     </div>
                 </li>
-                <li><a href="./index.html">Home</a></li>
+                <li><a href="{{ route('home') }}">Home</a></li>
                 <li><a href="#">Categories +</a>
                     <ul>
                         <li><a href="./men.html">Men +</a>
@@ -95,7 +95,7 @@
                     <i class="fa fa-shopping-bag" id="cart"></i>
                         <div class="popup" id="popup">
                             <div class="elem_container" id="elem_container">
-                                @foreach ($cart_items as $cart_item)
+                                {{-- @foreach ($cart_items as $cart_item) --}}
                                 <div class="element">
                                     <div class="img_des">
                                         <img src="./images/men-carousel/Men_Fragrance_1_10.jpg" alt="">
@@ -117,10 +117,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                @endforeach
+                                {{-- @endforeach --}}
                             </div>
                             <div class="total">
-                                <button class="checkout-btn"><a href="./checkout.html">Checkout</a></button>
+                                <button class="checkout-btn"><a href="{{ route('checkout') }}">Checkout</a></button>
                                 <div class="total_container">
                                     <h3>
                                         <pre>Total: $ </pre>
@@ -132,14 +132,14 @@
                 @endauth
 
                 @guest
-                    <a href="/login">
+                    <a href="{{ route('login') }}">
                         <i class="fa fa-shopping-bag" id="cart"></i>
                     </a>
                 @endguest
             </div>
             <div>
-                <a href="login.html">
-                    <img src="./images/user.jpg" alt="" id="user">
+                <a href="{{ route('order') }}">
+                    <img src="{{ Auth::user()->avatar ?? './images/user.jpg' }}" alt="user profile avatar" id="user">
                 </a>
             </div>
         </div>
