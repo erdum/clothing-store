@@ -5,15 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class LoginController extends Controller
 {
     public function index()
     {
-        return View::make('login', [
-            'google_link' => route('third_party_login', ['provider_name' => 'google']),
-            'facebook_link' => route('third_party_login', ['provider_name' => 'facebook']),
-        ]);
+        return View::make('login');
     }
 
     public function redirect($provider_name)
@@ -25,12 +24,22 @@ class LoginController extends Controller
     public function callback()
     {
         $provider_name = session('provider_name');
-        $user = Socialite::driver($provider_name)->user();
-        return redirect('/');
+        $user_data = Socialite::driver($provider_name)->user();
+
+        $user = User::updateOrCreate(['email' => $user_data->email], [
+            'name' => $user_data->name,
+            'provider_id' => $user_data->id,
+            'avatar' => $user_data->avatar,
+        ]);
+
+        Auth::login($user);
+
+        return redirect()->intended('home');
     }
 
     public function logout()
     {
-        return 'Logout';
+        Auth::logout();
+        return redirect()->route('home');
     }
 }
