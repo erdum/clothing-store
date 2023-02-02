@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- FavIcon Link -->
     <link rel="shortcut icon" href="./images/favicon/favicon-32x32.png" type="image/x-icon">
-    <title>@yield('title', 'page title missing') - UB365Inn</title>
+    <title>@yield('title', 'page title missing') - Apparel UB365Inn</title>
     <!-- CSS LINKS -->
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/carousel.css">
@@ -43,39 +43,19 @@
                 <li><a href="{{ route('home') }}">Home</a></li>
                 <li><a href="#">Categories +</a>
                     <ul>
-                        <li><a href="./men.html">Men +</a>
-                            <ul>
-                                <li><a href="./kurta.html">Kurta</a></li>
-                                <li><a href="./jeans.html">Jeans</a></li>
-                                <li><a href="./shirts.html">T-shirts</a></li>
-                                <li><a href="./formal.html">Formal</a></li>
-                                <li><a href="./unstitched_m.html">Unstitched</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="women.html">Women +</a>
-                            <ul>
-                                <li><a href="./kids.html">Kurti's</a> </li>
-                                <li><a href="./unstitched_w.html">Unstitched</a> </li>
-                                <li><a href="./branded.html">Branded</a></li>
-                                <li><a href="./casual.html">Casual</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="./kids.html">Kids +</a>
-                            <ul>
-                                <li><a href="casualw.html">Casual</a></li>
-                                <li><a href="kids_shoes.html">Shoes</a></li>
-                                <li><a href="party.html">Party Wear</a></li>
-                                <li><a href="kid_kurta.html">Kurta</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="./home.html">Lifestyle +</a>
-                            <ul>
-                                <li><a href="towels.html">Towels</a></li>
-                                <li><a href="bags.html">Bags</a></li>
-                                <li><a href="mats.html">Mats</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="./categories.html">Explore More.</a></li>
+                        @foreach (App\Models\Category::all() as $category)
+                            <li><a href="{{ route('category', ['name' => $category->name]) }}">{{ ucfirst($category->name) }} +</a>
+                                <ul>
+                                    @foreach ($category->sub as $sub_category)
+                                        <li><a href="{{ route('category', [
+                                                'name' => $category->name,
+                                                'sub_name' => $sub_category->name
+                                            ]) }}">{{ ucfirst($sub_category->name) }}</a></li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                        @endforeach
+                            <!-- <li><a href="./categories.html">Explore More.</a></li> -->
                     </ul>
                 </li>
                 <li><a href="./feature.html">Featured</a></li>
