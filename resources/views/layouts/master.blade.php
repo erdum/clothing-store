@@ -17,11 +17,12 @@
     <link rel="shortcut icon" href="./images/favicon/favicon-32x32.png" type="image/x-icon">
     <title>@yield('title', 'page title missing') - Apparel UB365Inn</title>
     <!-- CSS LINKS -->
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/carousel.css">
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/footer.css">
-    @stack('stylesheets')
+    @section('stylesheets')
+        <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="./css/carousel.css">
+    @show
 </head>
 
 <body>
@@ -204,7 +205,8 @@
     });
 
     </script>
-    @stack('scripts')
+    @section('scripts')
+    @show
 </body>
 
 </html>
