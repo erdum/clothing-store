@@ -19,8 +19,8 @@
     <!-- CSS LINKS -->
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     @section('stylesheets')
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('css/carousel.css') }}">
     @show
 </head>
