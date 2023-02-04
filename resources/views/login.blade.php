@@ -10,16 +10,16 @@
    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
    crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- FavIcon Link -->
-    <link rel="shortcut icon" href="./images/favicon/favicon-32x32.png" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('images/favicon/favicon-32x32.png') }}" type="image/x-icon">
     <title>Login - Signup | Apparel UB365Inn</title>
-    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 </head>
 
 <body>
     <a href="{{ route('home') }}"><i class="fa-solid fa-arrow-left back"></i></a>
 
     <div class="sign-in-form">
-        <img src="./images/icon3.png">
+        <img src="{{ asset('images/icon3.png') }}">
         <h1>Log In</h1>
         <form>
 <!--             <input type="email" class="input-box" placeholder="Your Email">

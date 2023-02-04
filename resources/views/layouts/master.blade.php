@@ -14,21 +14,21 @@
     <!-- Font Awesme Icon Link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- FavIcon Link -->
-    <link rel="shortcut icon" href="./images/favicon/favicon-32x32.png" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('images/favicon/favicon-32x32.png') }}" type="image/x-icon">
     <title>@yield('title', 'page title missing') - Apparel UB365Inn</title>
     <!-- CSS LINKS -->
-    <link rel="stylesheet" href="./css/header.css">
-    <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
     @section('stylesheets')
-        <link rel="stylesheet" href="./css/style.css">
-        <link rel="stylesheet" href="./css/carousel.css">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/carousel.css') }}">
     @show
 </head>
 
 <body>
     <!-- HEADER -->
     <header>
-        <a href="{{ route('home') }}" class="logo"><img src="./images/logo.png" alt=""></a>
+        <a href="{{ route('home') }}" class="logo"><img src="{{ asset('images/logo.png') }}" alt=""></a>
         <input type="checkbox" id="menu-bar">
         <nav class="navbar">
             <ul>
@@ -37,7 +37,7 @@
                     <input type="text" class="search-bar" placeholder="Search">
                     <i class="fa fa-search search"></i>
                     <a href="login.html">
-                        <img src="./images/user.jpg" alt="">
+                        <img src="{{ asset('images/user.jpg') }}" alt="">
                     </a>
                     </div>
                 </li>
@@ -79,7 +79,7 @@
                                 @foreach (Auth::user()->in_cart_items as $cart_item)
                                 <div class="element">
                                     <div class="img_des">
-                                        <img src="./images/men-carousel/Men_Fragrance_1_10.jpg" alt="">
+                                        <img src="{{ asset($cart_item->product->images[0]->url) }}" alt="">
                                         <div class="des">
                                             <h3>{{ $cart_item->product->name }}</h3>
                                             <p>{{ $cart_item->product->description }}</p>
@@ -120,7 +120,7 @@
             </div>
             <div>
                 <a href="{{ route('order') }}">
-                    <img src="{{ Auth::user()->avatar ?? './images/user.jpg' }}" alt="user profile avatar" id="user">
+                    <img src="{{ Auth::user()->avatar ?? asset('images/user.jpg') }}" alt="user profile avatar" id="user">
                 </a>
             </div>
         </div>
@@ -165,7 +165,7 @@
         <div class="col inst">
             <div class="row">
                 <h4>Payment Methods</h4>
-                <img src="./images/pay.png" alt="">
+                <img src="{{ asset('images/pay.png') }}" alt="">
             </div>
         </div>
         <div class="copyright">
@@ -174,9 +174,9 @@
             </a>
         </div>
     </footer>
-    <script src="./js/itemvalue.js"></script>
-    <script src="./js/cart.js"></script>
-    <script src="./js/script.js"></script>
+    <script src="{{ asset('js/itemvalue.js') }}"></script>
+    <script src="{{ asset('js/cart.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script>
     let perView = 1;
