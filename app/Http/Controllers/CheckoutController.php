@@ -10,7 +10,10 @@ class CheckoutController extends Controller
     public function index()
     {
         return View::make('checkout.index', [
-
+            'user' => null,
+            'sub_total' => 0,
+            'delivery_charges' => 0,
+            'total' => 0,
         ]);
     }
 
