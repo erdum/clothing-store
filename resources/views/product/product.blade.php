@@ -43,7 +43,7 @@
                     <p id="left">{{ $product->quantity }} Left</p>
                 @endif
                 <div class="buttons">
-                    <a href="checkout.html"><button id="wishlist"><i class="fa-solid fa-money-check-dollar" id="wish"></i> Checkout</button></a>
+                    <a href="{{ route('checkout') }}"><button id="wishlist"><i class="fa-solid fa-money-check-dollar" id="wish"></i> Checkout</button></a>
                         <!-- <button id="wishlist"><i class="fa-solid fa-heart" id="wish"> </i> </button> -->
                         <button id="cart-btn"><i class="fa-solid fa-shopping-bag" id="cartIcon"></i> <span id="cartText"> Add to Cart</span></button>
                 </div>
