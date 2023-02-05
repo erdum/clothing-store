@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('name', 30);
             $table->text('description');
             $table->integer('unit_price');
+            $table->integer('discount');
             $table->integer('quantity');
             $table->timestamps();
         });
