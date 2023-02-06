@@ -18,8 +18,6 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('product_id')->constrained();
             $table->integer('quantity');
-            $table->integer('unit_price');
-            $table->integer('total');
             $table->timestamps();
         });
     }
