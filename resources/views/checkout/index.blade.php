@@ -15,35 +15,36 @@
             </div>
             <div class="main">
                 <form action="{{ route('post_checkout') }}" method="POST">
+                    @csrf
                     <div class="details">
-                        <label for="first-name">Name</label>
-                        <input type="text" value="{{ $user->name ?? '' }}">
+                        <label for="first-name">Name @error('name') ({{ $message }}) @enderror</label>
+                        <input class="@error('name') invalid @enderror" name="name" type="text" value="{{ $user->name ?? '' }}">
                     </div>
                     <div class="details">
-                        <label for="address">Country</label>
-                        <input type="text" value="{{ $user->shipping_address->country ?? '' }}">
+                        <label for="address">Country @error('country') ({{ $message }}) @enderror</label>
+                        <input class="@error('country') invalid @enderror" name="country" type="text" value="{{ $user->shipping_address->country ?? '' }}">
                     </div>
                     <div class="details">
-                        <label for="city">City</label>
-                        <input type="text" value="{{ $user->shipping_address->city ?? '' }}">
+                        <label for="city">City @error('city') ({{ $message }}) @enderror</label>
+                        <input class="@error('city') invalid @enderror" name="city" type="text" value="{{ $user->shipping_address->city ?? '' }}">
                     </div>
                     <div class="details">
-                        <label for="address">Address</label>
-                        <input type="text" value="{{ $user->shipping_address->address ?? '' }}">
+                        <label for="address">Address @error('address') ({{ $message }}) @enderror</label>
+                        <input class="@error('address') invalid @enderror" name="address" type="text" value="{{ $user->shipping_address->address ?? '' }}">
                     </div>
                     <div class="details">
-                        <label for="zip">Postal Code</label>
-                        <input type="text" value="{{ $user->shipping_address->postal_code ?? '' }}">
+                        <label for="zip">Postal Code @error('postal_code') ({{ $message }}) @enderror</label>
+                        <input class="@error('postal_code') invalid @enderror" name="postal_code" type="text" value="{{ $user->shipping_address->postal_code ?? '' }}">
                     </div>
                     <h3>Contact Information</h3>
                     <div class="contact-info">
                         <div class="details">
-                            <label for="email">Email Address</label>
-                            <input type="email" value="{{ $user->email ?? '' }}">
+                            <label for="email">Email Address @error('email') ({{ $message }}) @enderror</label>
+                            <input class="@error('email') invalid @enderror" name="email" type="email" value="{{ $user->email ?? '' }}">
                         </div>
                         <div class="details">
-                            <label for="number">Phone Number</label>
-                            <input type="text" value="{{ $user->shipping_address->phone_number ?? '' }}">
+                            <label for="number">Phone Number @error('phone_number') ({{ $message }}) @enderror</label>
+                            <input class="@error('phone_number') invalid @enderror" name="phone_number" type="text" value="{{ $user->shipping_address->phone_number ?? '' }}">
                         </div>
                         <div class="details">
                             <button type="submit">Proceed</button>

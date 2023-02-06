@@ -182,6 +182,10 @@ body {
     display: flex;
     padding: 3px;
 }
+
+.invalid {
+    border: 1px solid red !important;
+}
 @media (max-width:768px){
     .container{
         flex-wrap: wrap;
