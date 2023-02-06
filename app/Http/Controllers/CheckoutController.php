@@ -35,6 +35,7 @@ class CheckoutController extends Controller
             'name' => 'max:30',
             'country' => 'required|max:30',
             'city' => 'required|max:30',
+            'state' => 'required|max:30',
             'address' => 'required',
             'postal_code' => 'required|max:10',
             'email' => 'email',
@@ -44,6 +45,7 @@ class CheckoutController extends Controller
         $user->shipping_address()->updateOrCreate(['user_id' => $user->id], [
             'country' => $request->country,
             'city' => $request->city,
+            'state' => $request->state,
             'address' => $request->address,
             'postal_code' => $request->postal_code,
             'phone_number' => $request->phone_number,

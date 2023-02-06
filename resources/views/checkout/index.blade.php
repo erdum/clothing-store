@@ -29,6 +29,10 @@
                         <input class="@error('city') invalid @enderror" name="city" type="text" value="{{ $user->shipping_address->city ?? '' }}">
                     </div>
                     <div class="details">
+                        <label for="state">State @error('state') ({{ $message }}) @enderror</label>
+                        <input class="@error('state') invalid @enderror" name="state" type="text" value="{{ $user->shipping_address->state ?? '' }}">
+                    </div>
+                    <div class="details">
                         <label for="address">Address @error('address') ({{ $message }}) @enderror</label>
                         <input class="@error('address') invalid @enderror" name="address" type="text" value="{{ $user->shipping_address->address ?? '' }}">
                     </div>

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->string('country', 30);
             $table->string('city', 30);
+            $table->string('state', 30);
             $table->text('address');
             $table->string('postal_code', 10);
             $table->string('phone_number', 20)->unique();
