@@ -39,7 +39,6 @@
                     <a href="login.html">
                         <img src="{{ asset('images/user.jpg') }}" alt="">
                     </a>
-                    </div>
                 </li>
                 <li><a href="{{ route('home') }}">Home</a></li>
                 <li><a href="#">Categories +</a>

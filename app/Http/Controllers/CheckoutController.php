@@ -9,8 +9,10 @@ class CheckoutController extends Controller
 {
     public function index()
     {
+        $user = Auth::user();
+
         return View::make('checkout.index', [
-            'user' => null,
+            'user' => $user,
             'sub_total' => 0,
             'delivery_charges' => 0,
             'total' => 0,
