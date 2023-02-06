@@ -10,7 +10,9 @@ class CheckoutController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $sub_total = $user->in_cart_items()->withSum('product', 'total')->product_sum_total;
+        $sub_total = $user->in_cart_items->sum(function ($item) {
+            return ($item->quantity * $item->product->unit_price);
+        });
         $delivery_charges = 300;
         $total = $sub_total + $delivery_charges;
 

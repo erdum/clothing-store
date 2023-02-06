@@ -105,7 +105,15 @@
                                     <h3>
                                         <pre>Total: $ </pre>
                                     </h3>
-                                    <p id="total-price">{{ Auth::user()->in_cart_items()->withSum('product', 'total')->product_sum_total ?? 0 }}</p>
+                                    <p id="total-price">
+                                        {{
+                                            Auth::user()
+                                            ->in_cart_items
+                                            ->sum(function ($item) {
+                                                return ($item->quantity * $item->product->unit_price);
+                                            });
+                                        }}
+                                    </p>
                                 </div>
                             </div>
                         </div>
