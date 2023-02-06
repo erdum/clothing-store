@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Auth;
+
+use App\Models\User;
 
 class CheckoutController extends Controller
 {
@@ -24,8 +27,28 @@ class CheckoutController extends Controller
         ]);
     }
 
-    public function checkout()
+    public function checkout(Request $request)
     {
-        return 'Checkout';
+        $user = Auth::user();
+
+        $validated = $request->validate([
+            'name' => 'max:30',
+            'country' => 'required|max:30',
+            'city' => 'required|max:30',
+            'address' => 'required',
+            'postal_code' => 'required|max:10',
+            'email' => 'email',
+            'phone_number' => 'required|max:20',
+        ]);
+
+        $user->shipping_address()->updateOrCreate(['user_id' => $user->id], [
+            'country' => $request->country,
+            'city' => $request->city,
+            'address' => $request->address,
+            'postal_code' => $request->postal_code,
+            'phone_number' => $request->phone_number,
+        ]);
+
+        return redirect('/pay');
     }
 }
