@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/orders/{id?}', [OrderController::class, 'index'])->name('order');
 
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
-    Route::post('/checkout', [CheckoutController::class, 'checkout']);
+    Route::post('/checkout', [CheckoutController::class, 'checkout'])->name('post_checkout');
     
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
     Route::post('/cart', [CartController::class, 'update']);
