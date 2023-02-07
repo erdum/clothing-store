@@ -5,6 +5,7 @@
     background-color: #064b7d !important;
     justify-content: space-around;
     padding-top: 30px;
+    padding: 0 1rem;
 }
 .section-p1 .col{
     /* background-color: #064b7d; */
@@ -23,7 +24,7 @@
 }
 .section-p1 p{
     font-size: 13px;
-    margin: 0 0 8px 6px;
+/*    margin: 0 0 8px 6px;*/
 }
 .section-p1 a{
     font-size: 13px;
