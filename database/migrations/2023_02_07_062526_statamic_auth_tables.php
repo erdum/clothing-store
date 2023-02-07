@@ -17,7 +17,6 @@ class StatamicAuthTables extends Migration
             $table->boolean('super')->default(false);
             $table->json('preferences')->nullable();
             $table->timestamp('last_login')->nullable();
-            $table->string('password')->nullable()->change();
         });
 
         Schema::create('role_user', function (Blueprint $table) {
@@ -48,7 +47,6 @@ class StatamicAuthTables extends Migration
              $table->dropColumn('super');
              $table->dropColumn('preferences');
              $table->dropColumn('last_login');
-             $table->string('password')->nullable(false)->change();
          });
 
          Schema::dropIfExists('role_user');
