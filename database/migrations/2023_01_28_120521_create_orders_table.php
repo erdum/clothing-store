@@ -24,7 +24,7 @@ return new class extends Migration
             $table->integer('tax');
             $table->integer('delivery_charges');
             $table->string('payment_method', 30);
-            $table->string('payment_id')
+            $table->string('payment_id');
             $table->string('shipping_method', 30);
             $table->string('shipping_eta', 10);
             $table->text('tracking_id')->nullable();
