@@ -6,13 +6,11 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
-        "doctrine/dbal": "^3.5",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/socialite": "^5.6",
-        "laravel/tinker": "^2.7",
-        "statamic/cms": "^3.4"
+        "laravel/tinker": "^2.7"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -36,13 +34,9 @@
         }
     },
     "scripts": {
-        "pre-update-cmd": [
-            "Statamic\\Console\\Composer\\Scripts::preUpdateCmd"
-        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi",
-            "@php artisan statamic:install --ansi"
+            "@php artisan package:discover --ansi"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
@@ -64,8 +58,7 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "allow-plugins": {
-            "pestphp/pest-plugin": true,
-            "pixelfear/composer-dist-plugin": true
+            "pestphp/pest-plugin": true
         }
     },
     "minimum-stability": "stable",
