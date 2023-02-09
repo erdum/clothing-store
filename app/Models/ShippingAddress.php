@@ -15,6 +15,7 @@ class ShippingAddress extends Model
         'user_id',
         'country',
         'city',
+        'state',
         'address',
         'postal_code',
         'phone_number',

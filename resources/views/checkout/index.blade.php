@@ -47,7 +47,7 @@
                             <input class="@error('email') invalid @enderror" name="email" type="email" value="{{ $user->email ?? '' }}">
                         </div>
                         <div class="details">
-                            <label for="number">Phone Number @error('phone_number') ({{ $message }}) @enderror</label>
+                            <label for="phone_number">Phone Number @error('phone_number') ({{ $message }}) @enderror</label>
                             <input class="@error('phone_number') invalid @enderror" name="phone_number" type="text" value="{{ $user->shipping_address->phone_number ?? '' }}">
                         </div>
                         <div class="details">
