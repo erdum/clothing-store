@@ -51,7 +51,7 @@
                             <input class="@error('phone_number') invalid @enderror" name="phone_number" type="text" value="{{ $user->shipping_address->phone_number ?? '' }}">
                         </div>
                         <div class="details">
-                            <button type="submit">Proceed</button>
+                            <button type="submit">Confirm Shipping Details</button>
                         </div>
                     </div>
                 </div>
