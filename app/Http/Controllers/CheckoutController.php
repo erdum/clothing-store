@@ -16,7 +16,7 @@ class CheckoutController extends Controller
         $sub_total = $user->in_cart_items->sum(function ($item) {
             return ($item->quantity * $item->product->unit_price);
         });
-        $delivery_charges = 300;
+        $delivery_charges = env('DELIVERY_CHARGES');
         $total = $sub_total + $delivery_charges;
 
         return View::make('checkout.index', [
