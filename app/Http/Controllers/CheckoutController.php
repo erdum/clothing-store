@@ -51,6 +51,11 @@ class CheckoutController extends Controller
             'phone_number' => $request->phone_number,
         ]);
 
-        return redirect('/pay');
+        return View::make('checkout.checkout', [
+            'action_url' => env('VERIFONE_CHECKOUT_URL'),
+            'sid' => env('VERIFONE_MERCHANT_ID'),
+            'user' => $user,
+            'products' => $user->in_cart_items,
+        ]);
     }
 }
