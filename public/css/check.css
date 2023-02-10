@@ -105,6 +105,8 @@ body {
 .details{
     display: flex;
     flex-direction: column;
+    margin-bottom: 10px;
+    margin-top: 5px;
 }
 .details button{
     height: 35px;
@@ -147,12 +149,12 @@ body {
     align-items: center;
     padding: 5px;
     /* border:  1px solid white; */
-    background-color: #ffffff;
+    background-color: #dbdbdb;
     border-radius: 20px;
     margin-bottom: 8px;
 }
 .info-main:hover{
-    background-color: #fffffff1;
+    background-color: #dbdbdbd7;
 }
 .info-main img{
     width: 120px;
@@ -170,7 +172,7 @@ body {
 }
 .price-sec{
     /* border: 1px solid #fff; */
-    background-color: #ffffff;
+    background-color: #dbdbdb;
     border-radius: 20px;
     margin: 5px 0 0 0;
     padding: 5px;
@@ -180,11 +182,8 @@ body {
 }
 .final{
     display: flex;
-    padding: 3px;
-}
-
-.invalid {
-    border: 1px solid red !important;
+    padding: 5px;
+    margin-bottom: 5px;
 }
 @media (max-width:768px){
     .container{
