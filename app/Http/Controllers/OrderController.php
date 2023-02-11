@@ -14,11 +14,11 @@ class OrderController extends Controller
         if ($request->id) {
             $order = $user->orders->find($request->id);
 
-            return View::make('order.order', []);
+            return View::make('order.order', ['order' => $order]);
         }
 
         $orders = $user->orders;
-        
+
         return View::make('order.index', ['orders' => $orders]);
     }
 }
