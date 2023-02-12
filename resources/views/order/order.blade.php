@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'My Order #' $order->id)
+@section('title', 'My Order #' . $order->id)
 
 @section('stylesheets')
     <link rel="stylesheet" href="{{ asset('css/clientDes.css') }}">
