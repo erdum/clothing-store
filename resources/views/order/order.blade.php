@@ -47,63 +47,36 @@
         </div>
         <div class="product-info">
             <h4>Products</h4>
-            <div class="des-product">
-                <div class="main-des des">
-                    <h5>Product Information:</h5>
-                    <div class="products-des">
-                        <img src="./images/girls-carousel/Girls_Pret_3_4.jpg" alt="product img">
-                        <div class="item-des">
-                            <h5>Girls Uniform Tshirt Well designed</h5>
-                            <p>Product Code# <span>AJQ41232334</span></p>
+            @foreach ($order->items as $item)
+                <div class="des-product">
+                    <div class="main-des des">
+                        <h5>Product Information:</h5>
+                        <div class="products-des">
+                            <img src="{{ asset($item->product->images[0]->url) }}" alt="{{ $item->product->name }}">
+                            <div class="item-des">
+                                <h5>{{ $item->product->description }}</h5>
+                                <p>Product Code# <span>{{ $item->product->id }}</span></p>
+                            </div>
                         </div>
                     </div>
+                    <hr>
+                    <div class="price-des des">
+                        <h5>Price:</h5>
+                        <p>Rs: <span class="pr">{{ $item->product->unit_price }}</span></p>
+                    </div>
+                    <hr>
+                    <div class="quant des">
+                        <h5>Quantity:</h5>
+                        <p>{{ $item->quantity }}</p>
+                    </div>
+                    <hr>
+                    <div class="subtotal des">
+                        <h5>Subtotal</h5>
+                        <p>Rs: <span class="pr">{{ $item->quantity * $item->product->unit_price }}</span></p>
+                    </div>
                 </div>
-                <hr>
-                <div class="price-des des">
-                    <h5>Price:</h5>
-                    <p>Rs: <span class="pr">450</span></p>
-                </div>
-                <hr>
-                <div class="quant des">
-                    <h5>Quantity:</h5>
-                    <p>1</p>
-                </div>
-                <hr>
-                <div class="subtotal des">
-                    <h5>Subtotal</h5>
-                    <p>Rs: <span class="pr">450</span></p>
-                </div>
-            </div>
+            @endforeach
         </div>
-        <!-- <div class="summary">
-            <h4>Summary</h4>
-            <div class="summary-box">
-                <div class="pay-method method">
-                    <p>Payment Method</p>
-                    <p>Cash on delivery</p>
-                </div>
-                <div class="ship-method method">
-                    <p>Shipment Method</p>
-                    <p>Cash on delivery</p>
-                </div>
-                <div class="tracking-method method">
-                    <p>Tracking Id</p>
-                    <p><span id="track-num">Aj9874375987</span></p>
-                </div>
-                <div class="sub-total method">
-                    <p>Subtotal:</p>
-                    <p>Rs: <span id="sub-pr">9590</span></p>
-                </div>
-                <div class="shipping-cost method">
-                    <p>Shipping Cost</p>
-                    <p>Rs: <span id="ship-pr">350</span></p>
-                </div>
-                <div class="total-pr method">
-                    <p>Total</p>
-                    <p>Rs: <span id="sum-pr">9940</span></p>
-                </div>
-            </div>
-        </div> -->
     </div>
 @endsection
 
