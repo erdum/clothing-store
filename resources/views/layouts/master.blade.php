@@ -90,7 +90,7 @@
                                             <button class="quantity_btn" id="plus">+</button>
                                         </div>
                                         <div class="price"><span>
-                                                <pre>Price:  $ </pre>
+                                                <pre>Price: </pre>
                                             </span>
                                             <p id="initial-price">{{ $cart_item->product->unit_price }}</p>
                                         </div>
