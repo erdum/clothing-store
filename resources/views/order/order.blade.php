@@ -81,9 +81,8 @@
 @endsection
 
 @section('scripts')
-    <script>
-        const print = document.querySelector(".printing");
-        print.addEventListener("click", () => {
+    <script defer>
+        const print = document.querySelector(".printing").addEventListener("click", () => {
             window.print();
         })
     </script>

@@ -58,7 +58,6 @@
             </form>
         </div>
         <div class="info">
-            <!-- <h2>Products Detail</h2> -->
             @foreach ($user->in_cart_items as $item)
                 <div class="info-main">
                     <img src="{{ asset($item->product->images[0]->url) }}" alt="{{ $item->product->name }}">

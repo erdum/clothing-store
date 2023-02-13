@@ -22,12 +22,11 @@
         <img src="{{ asset('images/icon3.png') }}">
         <h1>Log In</h1>
         <form>
-<!--             <input type="email" class="input-box" placeholder="Your Email">
-            <input type="password" class="input-box" placeholder="Your Password">
-            <p><span><input type="checkbox" class="checkbox"></span> Save Password for Future Login</p>
+            <input name="email" type="email" class="input-box" placeholder="Your Email">
+            <input name="password" type="password" class="input-box" placeholder="Your Password">
             <button type="button" class="signin-btn">Log In</button>
             <hr>
-            <p class="or">OR</p> -->
+            <p class="or">OR</p>
             <button type="button" class="gmail-btn"><a href="{{ route('third_party_login', ['provider_name' => 'google']) }}"><i class="fa-solid fa-envelope"></i> Login with Gmail</a></button>
             <button type="button" class="twitter-btn"><a href="{{ route('third_party_login', ['provider_name' => 'facebook']) }}"><i class="fa-brands fa-facebook"></i> Login with Facebook</a></button>
             

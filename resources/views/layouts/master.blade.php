@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- FavIcon Link -->
     <link rel="shortcut icon" href="{{ asset('images/favicon/favicon-32x32.png') }}" type="image/x-icon">
-    <title>@yield('title', 'page title missing') | Apparel UB365Inn</title>
+    <title>@yield('title', 'Clothing Store') | Apparel UB365Inn</title>
     <!-- CSS LINKS -->
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
@@ -36,8 +36,8 @@
                     <a href="{{ route('cart') }}"><i class="fa fa-shopping-bag bag"></i></a>
                     <input type="text" class="search-bar" placeholder="Search">
                     <i class="fa fa-search search"></i>
-                    <a href="login.html">
-                        <img src="{{ asset('images/user.jpg') }}" alt="">
+                    <a href="{{ route('login') }}">
+                        <img src="{{ Auth::user()->avatar ?? asset('images/user.jpg') }}" alt="user profile avatar">
                     </a>
                 </li>
                 <li><a href="{{ route('home') }}">Home</a></li>
@@ -55,15 +55,14 @@
                                 </ul>
                             </li>
                         @endforeach
-                            <!-- <li><a href="./categories.html">Explore More.</a></li> -->
                     </ul>
                 </li>
-                <li><a href="./feature.html">Featured</a></li>
+                <li><a href="#">Featured</a></li>
                 <li><a href="#">Sales +</a>
                     <ul>
-                        <li><a href="flat.html">Flat Sale</a></li>
-                        <li><a href="season_off.html">Season Off Sale</a></li>
-                        <li><a href="winter.html">Winter Sale</a></li>
+                        <li><a href="#">Flat Sale</a></li>
+                        <li><a href="#">Season Off Sale</a></li>
+                        <li><a href="#">Winter Sale</a></li>
                     </ul>
                 </li>
             </ul>
@@ -138,7 +137,6 @@
     <!-- FOOTER -->
     <footer class="section-p1">
         <div class="col">
-            <!-- <img src="./img//log.png" alt="" class="logo"> -->
             <h4>Contact</h4>
             <p><strong>Address: </strong> 281 Prince Road, Street 32, Alabama</p>
             <p><strong>Phone: </strong> +1 254 312 0542 </p>
@@ -163,7 +161,7 @@
         </div>
         <div class="col">
             <h4>Account</h4>
-            <a href="login.html">Sign In</a>
+            <a href="{{ route('login') }}">Sign In</a>
             <a href="#">View Cart</a>
             <a href="#">My Wishlist</a>
             <a href="#">Track Order</a>
@@ -181,11 +179,11 @@
             </a>
         </div>
     </footer>
-    <script src="{{ asset('js/itemvalue.js') }}"></script>
-    <script src="{{ asset('js/cart.js') }}"></script>
-    <script src="{{ asset('js/script.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-    <script>
+    <script defer src="{{ asset('js/itemvalue.js') }}"></script>
+    <script defer src="{{ asset('js/cart.js') }}"></script>
+    <script defer src="{{ asset('js/script.js') }}"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script defer>
     let perView = 1;
     if (window.innerWidth > 600 && window.innerWidth < 980) {
         perView = 2;

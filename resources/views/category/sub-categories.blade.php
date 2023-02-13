@@ -25,9 +25,7 @@
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star-half-stroke"></i>
                             </div>
-                            <!-- <h4 class="price">78</h4> -->
                         </div>
-                        <!-- <a href="#" class="addToCart"><i class="fa-solid fa-cart-shopping" class="addToCart"></i>Add to Cart</a> -->
                     </div>
                 </a>
             @endforeach

@@ -66,5 +66,5 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('js/descriptionImg') }}"></script>
+    <script defer src="{{ asset('js/descriptionImg') }}"></script>
 @endsection
