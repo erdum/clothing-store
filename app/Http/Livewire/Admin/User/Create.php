@@ -10,7 +10,6 @@ class Create extends Component
 {
     use WithFileUploads;
 
-    public $avatar;
     
     protected $rules = [
         
@@ -28,12 +27,7 @@ class Create extends Component
 
         $this->dispatchBrowserEvent('show-message', ['type' => 'success', 'message' => __('CreatedMessage', ['name' => __('User') ])]);
         
-        if($this->getPropertyValue('avatar') and is_object($this->avatar)) {
-            $this->avatar = $this->getPropertyValue('avatar')->store('test');
-        }
-
         User::create([
-            'avatar' => $this->avatar,
             'user_id' => auth()->id(),
         ]);
 
