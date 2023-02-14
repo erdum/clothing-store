@@ -2,7 +2,7 @@
     <td class="">{{ $user->name }}</td>
     <td class="">{{ $user->email }}</td>
     <td class="">{{ $user->password }}</td>
-    <td class="">{{ $user->avatar }}</td>
+    <td><img class="img-fluid  rounded-circle " width="50" height="50" src="{{ asset($user->avatar) }}" alt=""></td>
     
     @if(getCrudConfig('User')->delete or getCrudConfig('User')->update)
         <td>
