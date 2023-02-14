@@ -12,7 +12,7 @@ class CategoryController extends Controller
 {
     public function index($name = null, $sub_name = null)
     {
-        if (!empty($name, $sub_name)) {
+        if (!empty($name) && !empty($sub_name)) {
             $sub_category = Category::find($name)->sub->find($sub_name);
 
             return View::make('product.listing', [
