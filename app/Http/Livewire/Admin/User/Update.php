@@ -25,7 +25,7 @@ class Update extends Component
 
     public function updated($input)
     {
-        // $this->validateOnly($input);
+        $this->validateOnly($input);
     }
 
     public function update()

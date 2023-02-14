@@ -11,7 +11,7 @@ class UserComponent implements CRUDComponent
     // Manage actions in crud
     public $create = true;
     public $delete = false;
-    public $update = true;
+    public $update = false;
 
     // If you will set it true it will automatically
     // add `user_id` to create and update action
@@ -46,7 +46,7 @@ class UserComponent implements CRUDComponent
     // "password", "number", "email", "select", "date", "datetime", "time"
     public function inputs()
     {
-        return ['avatar' => 'file'];
+        return [];
     }
 
     // Validation in update and create actions
@@ -59,6 +59,6 @@ class UserComponent implements CRUDComponent
     // Where files will store for inputs
     public function storePaths()
     {
-        return ['avatar' => 'test'];
+        return [];
     }
 }
