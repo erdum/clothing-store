@@ -3,7 +3,7 @@
 @section('title', $product->name . ' | ' . $sub_category_name)
 
 @section('stylesheets')
-<link rel="stylesheet" href="{{ asset('css/description.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/site/css/description.css') }}">
 @endsection
 
 @section('content')
@@ -66,5 +66,5 @@
 @endsection
 
 @section('scripts')
-    <script defer src="{{ asset('js/descriptionImg') }}"></script>
+    <script defer src="{{ asset('assets/site/js/descriptionImg') }}"></script>
 @endsection

@@ -3,7 +3,7 @@
 @section('title', 'My Order #' . $order->id)
 
 @section('stylesheets')
-    <link rel="stylesheet" href="{{ asset('css/clientDes.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/site/css/clientDes.css') }}">
 @endsection
 
 @section('content')

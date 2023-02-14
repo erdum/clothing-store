@@ -12,23 +12,23 @@
     <!-- Google Font's Link -->
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
     <!-- Font Awesme Icon Link -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/assets/site/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- FavIcon Link -->
-    <link rel="shortcut icon" href="{{ asset('images/favicon/favicon-32x32.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('assets/site/images/favicon/favicon-32x32.png') }}" type="image/x-icon">
     <title>@yield('title', 'Clothing Store') | Apparel UB365Inn</title>
     <!-- CSS LINKS -->
-    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/site/css/header.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/site/css/footer.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/site/css/style.css') }}">
     @section('stylesheets')
-        <link rel="stylesheet" href="{{ asset('css/carousel.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/site/css/carousel.css') }}">
     @show
 </head>
 
 <body>
     <!-- HEADER -->
     <header>
-        <a href="{{ route('home') }}" class="logo"><img src="{{ asset('images/logo.png') }}" alt=""></a>
+        <a href="{{ route('home') }}" class="logo"><img src="{{ asset('assets/site/images/logo.png') }}" alt=""></a>
         <input type="checkbox" id="menu-bar">
         <nav class="navbar">
             <ul>
@@ -37,7 +37,7 @@
                     <input type="text" class="search-bar" placeholder="Search">
                     <i class="fa fa-search search"></i>
                     <a href="{{ route('login') }}">
-                        <img src="{{ Auth::user()->avatar ?? asset('images/user.jpg') }}" alt="user profile avatar">
+                        <img src="{{ Auth::user()->avatar ?? asset('assets/site/images/user.jpg') }}" alt="user profile avatar">
                     </a>
                 </li>
                 <li><a href="{{ route('home') }}">Home</a></li>
@@ -126,7 +126,7 @@
             </div>
             <div>
                 <a href="{{ route('order') }}">
-                    <img src="{{ Auth::user()->avatar ?? asset('images/user.jpg') }}" alt="user profile avatar" id="user">
+                    <img src="{{ Auth::user()->avatar ?? asset('assets/site/images/user.jpg') }}" alt="user profile avatar" id="user">
                 </a>
             </div>
         </div>
@@ -170,7 +170,7 @@
         <div class="col inst">
             <div class="row">
                 <h4>Payment Methods</h4>
-                <img src="{{ asset('images/pay.png') }}" alt="">
+                <img src="{{ asset('assets/site/images/pay.png') }}" alt="">
             </div>
         </div>
         <div class="copyright">
@@ -179,9 +179,9 @@
             </a>
         </div>
     </footer>
-    <script defer src="{{ asset('js/itemvalue.js') }}"></script>
-    <script defer src="{{ asset('js/cart.js') }}"></script>
-    <script defer src="{{ asset('js/script.js') }}"></script>
+    <script defer src="{{ asset('assets/site/js/itemvalue.js') }}"></script>
+    <script defer src="{{ asset('assets/site/js/cart.js') }}"></script>
+    <script defer src="{{ asset('assets/site/js/script.js') }}"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script defer>
     let perView = 1;

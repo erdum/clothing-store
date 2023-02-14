@@ -1,0 +1,12 @@
+dropdown issue resolved.
+login page completed with Gmail and Facebook Btn
+descrition page wishlist btn removed
+
+
+
+
+
+
+
+
+

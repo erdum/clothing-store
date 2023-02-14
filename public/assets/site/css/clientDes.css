@@ -1,0 +1,248 @@
+/* font import */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,500&display=swap');
+
+/* universal */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Fira Sans Condensed', sans-serif;
+}
+
+/* ScrollBAR */
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #FDF9EE;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #0e97f9;
+    border-radius: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* ICONS */
+i {
+    color: #0e97f9;
+    font-weight: 600;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
+/* body */
+body {
+    background: #FDF9EE;
+    color: #727272;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+}
+span{
+    color: #0e97f9;
+}
+i{
+    color: #0e97f9;
+}
+.container{
+    display: flex;
+    justify-content:center;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 100%;
+    margin-top:10vh;
+}
+.order-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 5vh;
+    width: 100%;
+    padding: 10px;
+}
+.printing{
+    color: #000;
+    cursor: pointer;
+    margin: 5px 0 0 10px;
+}
+h4{
+    color: #757575;
+    margin-bottom: 8px;
+    font-size: 20px;
+}
+h5{
+    color: #000;
+}
+.addresses{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    height: 40%;
+    padding: 10px;
+    
+    
+}
+.addresses #general{
+    width: 60px;
+    height: 4vh;
+    background: #0e97f9;
+    color: #fff;
+    border-radius: 5px 5px 0 0;
+    text-align: center;
+    padding-top: 5px;
+}
+#general:hover{
+    background-color: #0e97f9ab ;
+    cursor: pointer;
+}
+.container-box{
+    display: flex;
+    flex-direction: column;
+    height: 30vh;
+    line-height: 25px;
+    border: 1px solid #0e97f9;
+    padding: 10px 30px;
+
+}
+.container-address{
+    display: flex;
+}
+.add-main{
+    width: 37%;
+}
+
+.product-info{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 3vh;
+    padding: 10px;
+
+}
+.des-product{
+    width: 100%;
+    display: flex;
+    height: 25vh;
+    border: 1px solid #0e97f9;
+    /* border: 2px solid red; */
+    padding: 10px;
+
+}
+.des{
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    padding: 5px;
+}
+.products-des{
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+
+}
+.products-des img{
+    width: 70px;
+    height: 70px;
+    margin: 0 5px 0 5px;
+}
+.products-des .item-des{
+    margin: 0 auto 0 5px;
+}
+
+.price-des, .quant{
+    display: flex;
+    height: 100%;
+
+}
+.price-des h5, .quant h5, .subtotal h5{
+    margin-bottom: 35px;
+}
+.summary{
+    display:flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    /* justify-content: center;
+    align-items: center; */
+}
+.summary-box{
+    display:flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid #0e97f9;
+    /* height: 30vh; */
+    background-color: #FDF9EE;
+    padding: 10px 30px;
+
+}
+
+.method{
+    display: flex;
+    border-bottom: 2px solid gray;
+    line-height: 38px;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+}
+.total-pr{
+    font-weight: bolder;
+}
+@media (max-width:699px) {
+    .container-address{
+        flex-wrap: wrap;
+
+    }
+    .printing{
+        margin-top: 15px;
+    }
+    .container-box{
+        width: 100%;
+        height: auto;
+        line-height: 20px;
+        padding: 10px;
+
+    }
+    .add-main{
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .des-product{
+        flex-wrap: wrap;
+        height: auto;
+        /* padding:10px; */
+
+    }
+    .addresses{
+        padding: 0;
+    }
+    .product-info{
+        padding: 0;
+    }
+    .des{
+        width: 100%;
+        margin-bottom: 10px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .summary{
+        padding: 0;
+    }
+    .summary-box{
+        padding: 10px;
+    }
+    
+}

@@ -3,7 +3,7 @@
 @section('title', $sub_category->name)
 
 @section('stylesheets')
-    <link rel="stylesheet" href="{{ asset('css/products.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/site/css/products.css') }}">
 @endsection
 
 @section('content')
