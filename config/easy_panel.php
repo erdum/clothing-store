@@ -40,5 +40,5 @@ return [
     'pagination_count' => 20,
 
     // Lazy validation for Livewire components
-    'lazy_mode' => true,
+    'lazy_mode' => false,
 ];
