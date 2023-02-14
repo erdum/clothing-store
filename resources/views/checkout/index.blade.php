@@ -3,7 +3,7 @@
 @section('title', 'Checkout')
 
 @section('stylesheets')
-    <link rel="stylesheet" href="{{ asset('css/check.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/site/css/check.css') }}">
 @endsection
 
 @section('content')
