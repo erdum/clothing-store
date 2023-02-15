@@ -69,7 +69,7 @@ class CategoryComponent implements CRUDComponent
     public function storePaths()
     {
         return [
-            'cover_image' => 'public/categories-images'
+            'cover_image' => 'photos/categories-images'
         ];
     }
 }

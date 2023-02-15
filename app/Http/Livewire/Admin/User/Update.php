@@ -12,7 +12,6 @@ class Update extends Component
 
     public $user;
 
-    public $avatar;
     
     protected $rules = [
         
@@ -20,7 +19,7 @@ class Update extends Component
 
     public function mount(User $User){
         $this->user = $User;
-        $this->avatar = $this->user->avatar;        
+        
     }
 
     public function updated($input)
@@ -35,12 +34,7 @@ class Update extends Component
 
         $this->dispatchBrowserEvent('show-message', ['type' => 'success', 'message' => __('UpdatedMessage', ['name' => __('User') ]) ]);
         
-        if($this->getPropertyValue('avatar') and is_object($this->avatar)) {
-            $this->avatar = $this->getPropertyValue('avatar')->store('test');
-        }
-
         $this->user->update([
-            'avatar' => $this->avatar,
             'user_id' => auth()->id(),
         ]);
     }

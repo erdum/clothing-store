@@ -42,7 +42,7 @@ class Update extends Component
         $this->dispatchBrowserEvent('show-message', ['type' => 'success', 'message' => __('UpdatedMessage', ['name' => __('Category') ]) ]);
         
         if($this->getPropertyValue('cover_image') and is_object($this->cover_image)) {
-            $this->cover_image = $this->getPropertyValue('cover_image')->store('public/categories-images');
+            $this->cover_image = $this->getPropertyValue('cover_image')->store('photos/categories-images');
         }
 
         $this->category->update([

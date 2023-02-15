@@ -79,5 +79,7 @@
     "Image": "Image",
     "Cover_image": "Cover_image",
     "Category": "Category",
-    "Categories": "Categories"
+    "Categories": "Categories",
+    "SubCategory": "SubCategory",
+    "SubCategories": "SubCategories"
 }

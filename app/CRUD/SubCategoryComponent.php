@@ -4,9 +4,9 @@ namespace App\CRUD;
 
 use EasyPanel\Contracts\CRUDComponent;
 use EasyPanel\Parsers\Fields\Field;
-use App\Models\User;
+use App\Models\SubCategory;
 
-class UserComponent implements CRUDComponent
+class SubCategoryComponent implements CRUDComponent
 {
     // Manage actions in crud
     public $create = true;
@@ -19,7 +19,7 @@ class UserComponent implements CRUDComponent
 
     public function getModel()
     {
-        return User::class;
+        return SubCategory::class;
     }
 
     // which kind of data should be showed in list page
@@ -27,8 +27,8 @@ class UserComponent implements CRUDComponent
     {
         return [
             'name',
-            'email',
-            'avatar' => Field::title('Avatar')
+            'extra_text',
+            'cover_image' => Field::title('Image')
                 ->asImage()
                 ->roundedImage()
         ];
@@ -37,7 +37,9 @@ class UserComponent implements CRUDComponent
     // Searchable fields, if you dont want search feature, remove it
     public function searchable()
     {
-        return ['name', 'email'];
+        return [
+            'name'
+        ];
     }
 
     // Write every fields in your db which you want to have a input
@@ -45,19 +47,29 @@ class UserComponent implements CRUDComponent
     // "password", "number", "email", "select", "date", "datetime", "time"
     public function inputs()
     {
-        return [];
+        return [
+            'name' => 'text',
+            'extra_text' => 'text',
+            'cover_image' => 'file'
+        ];
     }
 
     // Validation in update and create actions
     // It uses Laravel validation system
     public function validationRules()
     {
-        return [];
+        return [
+            'name' => 'required',
+            'extra_text' => 'required',
+            'cover_image' => 'required'
+        ];
     }
 
     // Where files will store for inputs
     public function storePaths()
     {
-        return [];
+        return [
+            'cover_image' => 'photos/sub-categories-images'
+        ];
     }
 }

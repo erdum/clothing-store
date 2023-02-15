@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Category;
+namespace App\Http\Livewire\Admin\SubCategory;
 
-use App\Models\Category;
+use App\Models\SubCategory;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -30,13 +30,13 @@ class Create extends Component
         if($this->getRules())
             $this->validate();
 
-        $this->dispatchBrowserEvent('show-message', ['type' => 'success', 'message' => __('CreatedMessage', ['name' => __('Category') ])]);
+        $this->dispatchBrowserEvent('show-message', ['type' => 'success', 'message' => __('CreatedMessage', ['name' => __('SubCategory') ])]);
         
         if($this->getPropertyValue('cover_image') and is_object($this->cover_image)) {
-            $this->cover_image = $this->getPropertyValue('cover_image')->store('photos/categories-images');
+            $this->cover_image = $this->getPropertyValue('cover_image')->store('photos/sub-categories-images');
         }
 
-        Category::create([
+        SubCategory::create([
             'name' => $this->name,
             'extra_text' => $this->extra_text,
             'cover_image' => $this->cover_image,
@@ -48,7 +48,7 @@ class Create extends Component
 
     public function render()
     {
-        return view('livewire.admin.category.create')
-            ->layout('admin::layouts.app', ['title' => __('CreateTitle', ['name' => __('Category') ])]);
+        return view('livewire.admin.subcategory.create')
+            ->layout('admin::layouts.app', ['title' => __('CreateTitle', ['name' => __('SubCategory') ])]);
     }
 }
