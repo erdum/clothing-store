@@ -17,20 +17,25 @@ body{
 }
 .back{
     position: fixed;
-    background: #00acee;
-    color: #fff;
-    width: 40px ;
-    height: 40px ;
-    top: 4px;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.4rem;
+    aspect-ratio: 1/1;
     border-radius: 50%;
-    font-size: 24px;
-    text-align: center;
-    padding-top:10px;
-    right: 10px;
+    background-color: #0e97f9a3;
+    color: white;
+    font-size: 1.4rem;
+}
+.back:hover {
+    cursor: pointer;
 }
 .sign-in-form{
     width: 300px;
-    height: 70%;
+    min-height: 500px;
+    height: 55%;
     box-shadow: 0 0 3px 0 rgba(0,0,0,0.3);
     background: #0e97f9a3;
     padding: 20px;
@@ -47,42 +52,37 @@ body{
     border-radius: 20px;
     padding:10px;
     margin: 10px 0;
-    width: 90%;
+    width: 100%;
     border: 2px solid #0077be;
     outline: none;
 }
 .input-box::placeholder{
     color: #0077be;
 }
-button{
-    color: #fff;
-    width: 100%;
-    border-radius: 20px;
-    padding: 10px;
-    font-size: 15px;
-    margin: 10px 0;
-    border: none;
-    outline: none;
-    cursor: pointer;
-
-}
 a{
     text-decoration: none;
     color: #0077be;
 }
-.signin-btn{
-    background-color: #0077be;
-    color: #fff;
+.form-btn {
+    padding: 0.5rem 1.2em;
+    border-radius: 1.4rem;
+    display: block;
+    margin-top: 1.5rem;
+    font-size: 1.1rem;
+    background-color: white;
+    color: #0077be;
+    border: 1px solid transparent;
+    transition: ease-in-out 0.08s all;
 }
-.twitter-btn, .twitter-btn a{
-    background-color: #00acee;
-    color: #fff;
+.form-btn:hover {
+    border-color: #0077be;
+    background-color: #0e97f9a3;
+    color: white;
+    cursor: pointer;
 }
-.gmail-btn, .gmail-btn a{
-    background-color: #ffd30c;
-    color: red;
+.login-btn {
+    width: 100%;
 }
-
 hr{
     margin-top: 30px;
     width: 100%;

@@ -6,9 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <!-- Font Awesme Icon Link -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/assets/site/css/all.min.css"
-   integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-   crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- FavIcon Link -->
     <link rel="shortcut icon" href="{{ asset('assets/site/images/favicon/favicon-32x32.png') }}" type="image/x-icon">
     <title>Login - Signup | Apparel UB365Inn</title>
@@ -16,7 +14,7 @@
 </head>
 
 <body>
-    <a href="{{ route('home') }}"><i class="fa-solid fa-arrow-left back"></i></a>
+    <a href="{{ route('home') }}" class="back"><i class="fa-solid fa-arrow-left"></i></a>
 
     <div class="sign-in-form">
         <img src="{{ asset('assets/site/images/icon3.png') }}">
@@ -24,11 +22,11 @@
         <form>
             <input name="email" type="email" class="input-box" placeholder="Your Email">
             <input name="password" type="password" class="input-box" placeholder="Your Password">
-            <button type="button" class="signin-btn">Log In</button>
+            <button type="button" class="form-btn login-btn">Log In</button>
             <hr>
             <p class="or">OR</p>
-            <button type="button" class="gmail-btn"><a href="{{ route('third_party_login', ['provider_name' => 'google']) }}"><i class="fa-solid fa-envelope"></i> Login with Gmail</a></button>
-            <button type="button" class="twitter-btn"><a href="{{ route('third_party_login', ['provider_name' => 'facebook']) }}"><i class="fa-brands fa-facebook"></i> Login with Facebook</a></button>
+            <a href="{{ route('third_party_login', ['provider_name' => 'google']) }}" class="form-btn"><i class="fa-brands fa-google"></i> Login with Google</a>
+            <a href="{{ route('third_party_login', ['provider_name' => 'facebook']) }}" class="form-btn"><i class="fa-brands fa-facebook"></i> Login with Facebook</a>
             
         </form>
     </div>
