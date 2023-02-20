@@ -90,11 +90,11 @@ header .navbar ul li a{
     color: #0e97f9;
     display: block;
 }
-header .navbar ul li a:hover{
+/*header .navbar ul li a:hover{
     border-radius: 10px;
     background: #0e97f9;
     color: #fff;
-}
+}*/
 header .navbar ul li ul{
     position: absolute;
     left: 0;
@@ -146,6 +146,9 @@ header label{
     justify-content: flex-start;
     align-items: center;
     position: relative;
+}
+.menu-btn {
+    display: none;
 }
 /* Cart */
 .user-cart{
@@ -310,9 +313,12 @@ header label{
     #cart{
         display: none;
     }
+    .menu-btn {
+        display: block;
+    }
     .ex{
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
         height: 5vh;
     }
@@ -322,26 +328,6 @@ header label{
         border: 1px solid #0e97f9;
         border-radius: 50%;
         margin-left: auto;
-    }
-    .ex input{
-        height: 30px;
-        width: 120px;
-        margin-left:auto;
-    }
-    .ex .search{
-        margin-right: auto;
-        background-color: #0e97f9;
-        width: 30px;
-        height: 30px;
-        color: #fff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 50%;
-    }
-    .ex .bag{
-        margin-right: auto;
-        margin-left: 7px;
     }
     header{
         padding: 20px;

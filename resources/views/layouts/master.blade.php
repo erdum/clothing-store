@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- FavIcon Link -->
     <link rel="shortcut icon" href="{{ asset('assets/site/images/favicon/favicon-32x32.png') }}" type="image/x-icon">
-    <title>@yield('title', 'Clothing Store') | Apparel UB365Inn</title>
+    <title>@yield('title', 'Clothing Store') | Apparel UBInn365</title>
     <!-- CSS LINKS -->
     <link rel="stylesheet" href="{{ asset('assets/site/css/header.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/site/css/footer.css') }}">
@@ -28,14 +28,13 @@
 <body>
     <!-- HEADER -->
     <header>
-        <a href="{{ route('home') }}" class="logo"><img src="{{ asset('assets/site/images/logo.png') }}" alt=""></a>
-        <input type="checkbox" id="menu-bar">
+        <a href="{{ route('home') }}" class="logo"><img src="{{ asset('assets/site/images/logo.png') }}" alt="Apparel UBInn365 logo"></a>
         <nav class="navbar">
             <ul>
                 <li class="ex">
                     <a href="{{ route('cart') }}"><i class="fa fa-shopping-bag bag"></i></a>
-                    <input type="text" class="search-bar" placeholder="Search">
-                    <i class="fa fa-search search"></i>
+                    <!-- <input type="text" class="search-bar" placeholder="Search">
+                    <i class="fa fa-search search"></i> -->
                     <a href="{{ route('login') }}">
                         <img src="{{ Auth::user()->avatar ?? asset('assets/site/images/user.jpg') }}" alt="user profile avatar">
                     </a>
@@ -68,7 +67,7 @@
             </ul>
         </nav>
         <div class="user-cart">
-            <label for="menu-bar"><i class="fa-solid fa-bars"></i></label>
+            <i class="fa-solid fa-bars menu-btn" onclick="handleMenuClick();"></i>
             <div class="cart" id="cart">
                 @auth
                     <i class="fa fa-shopping-bag" id="cart"></i>
