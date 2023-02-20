@@ -9,9 +9,9 @@ use App\Models\User;
 class UserComponent implements CRUDComponent
 {
     // Manage actions in crud
-    public $create = true;
-    public $delete = true;
-    public $update = true;
+    public $create = false;
+    public $delete = false;
+    public $update = false;
 
     // If you will set it true it will automatically
     // add `user_id` to create and update action
