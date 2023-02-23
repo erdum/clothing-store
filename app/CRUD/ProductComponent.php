@@ -4,9 +4,10 @@ namespace App\CRUD;
 
 use EasyPanel\Contracts\CRUDComponent;
 use EasyPanel\Parsers\Fields\Field;
-use App\Models\Category;
+use App\Models\Product;
+use App\Models\Sub;
 
-class CategoryComponent implements CRUDComponent
+class ProductComponent implements CRUDComponent
 {
     // Manage actions in crud
     public $create = true;
@@ -17,19 +18,33 @@ class CategoryComponent implements CRUDComponent
     // add `user_id` to create and update action
     public $with_user_id = true;
 
+    private function sub_categories()
+    {
+        $sub_categories = ['0' => 'Select'];
+
+        foreach (Sub::all() as $category)
+        {
+            $sub_categories[$category->id] = $category->name;
+        }
+
+        return $sub_categories;
+    }
+
     public function getModel()
     {
-        return Category::class;
+        return Product::class;
     }
 
     // which kind of data should be showed in list page
     public function fields()
     {
         return [
+            'sub_category_id' => Field::title('Sub Category'),
             'name',
-            'extra_text',
-            'cover_image' => Field::title('Image')
-                ->asImage()
+            'description',
+            'unit_price',
+            'discount',
+            'quantity'
         ];
     }
 
@@ -37,7 +52,8 @@ class CategoryComponent implements CRUDComponent
     public function searchable()
     {
         return [
-            'name'
+            'name',
+            'description'
         ];
     }
 
@@ -47,9 +63,12 @@ class CategoryComponent implements CRUDComponent
     public function inputs()
     {
         return [
+            'sub_category_id' => ['select' => $this->sub_categories()],
             'name' => 'text',
-            'extra_text' => 'text',
-            'cover_image' => 'file'
+            'description' => 'text',
+            'unit_price' => 'number',
+            'discount' => 'number',
+            'quantity' => 'number'
         ];
     }
 
@@ -58,17 +77,18 @@ class CategoryComponent implements CRUDComponent
     public function validationRules()
     {
         return [
+            'sub_category_id' => 'required',
             'name' => 'required',
-            'extra_text' => 'required',
-            'cover_image' => 'required'
+            'description' => 'required',
+            'unit_price' => 'required',
+            'discount' => 'required',
+            'quantity' => 'required'
         ];
     }
 
     // Where files will store for inputs
     public function storePaths()
     {
-        return [
-            'cover_image' => 'photos/categories-images'
-        ];
+        return [];
     }
 }

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\SubCategory;
+use App\Models\Sub;
 use App\Models\ProductSize;
 use App\Models\ProductColor;
 use App\Models\ProductImage;
@@ -16,9 +16,18 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'sub_category_id',
+        'name',
+        'description',
+        'unit_price',
+        'discount',
+        'quantity'
+    ];
+
     public function sub_category()
     {
-        return $this->hasOne(SubCategory::class);
+        return $this->hasOne(Sub::class);
     }
 
     public function sizes()

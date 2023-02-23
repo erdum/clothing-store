@@ -87,5 +87,16 @@
     "Category": "Category",
     "Categories": "Categories",
     "SubCategory": "SubCategory",
-    "SubCategories": "SubCategories"
+    "SubCategories": "SubCategories",
+    "Sub": "Sub",
+    "Subs": "Subs",
+    "Category_id": "Category_id",
+    "Sub Category": "Sub Category",
+    "Description": "Description",
+    "Unit_price": "Unit_price",
+    "Discount": "Discount",
+    "Quantity": "Quantity",
+    "Sub_category_id": "Sub_category_id",
+    "Product": "Product",
+    "Products": "Products"
 }

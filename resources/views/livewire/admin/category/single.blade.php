@@ -1,7 +1,7 @@
 <tr x-data="{ modalIsOpen : false }">
     <td class="">{{ $category->name }}</td>
     <td class="">{{ $category->extra_text }}</td>
-    <td><img class="img-fluid  rounded-circle " width="50" height="50" src="{{ asset($category->cover_image) }}" alt=""></td>
+    <td><img class="img-fluid " width="50" height="50" src="{{ asset($category->cover_image) }}" alt=""></td>
     
     @if(getCrudConfig('Category')->delete or getCrudConfig('Category')->update)
         <td>

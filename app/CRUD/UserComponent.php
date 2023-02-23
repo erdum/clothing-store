@@ -28,6 +28,7 @@ class UserComponent implements CRUDComponent
         return [
             'name',
             'email',
+            'password',
             'avatar' => Field::title('Avatar')
                 ->asImage()
                 ->roundedImage()
