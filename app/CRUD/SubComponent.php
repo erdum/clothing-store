@@ -39,7 +39,7 @@ class SubComponent implements CRUDComponent
     public function fields()
     {
         return [
-            'category_id' => Field::title('Category'),
+            'category.name' => Field::title('Category'),
             'name',
             'extra_text',
             'cover_image' => Field::title('Image')

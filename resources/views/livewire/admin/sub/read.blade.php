@@ -38,7 +38,7 @@
                 <table class="table table-hover table-striped">
                     <thead>
                         <tr>
-                            <th scope="col" style='cursor: pointer' wire:click="sort('category_id')"> <i class='fa @if($sortType == 'desc' and $sortColumn == 'category_id') fa-sort-amount-down ml-2 @elseif($sortType == 'asc' and $sortColumn == 'category_id') fa-sort-amount-up ml-2 @endif'></i> {{ __('Category') }} </th>
+                            <th scope="col"> {{ __('Category') }} </th>
                             <th scope="col" style='cursor: pointer' wire:click="sort('name')"> <i class='fa @if($sortType == 'desc' and $sortColumn == 'name') fa-sort-amount-down ml-2 @elseif($sortType == 'asc' and $sortColumn == 'name') fa-sort-amount-up ml-2 @endif'></i> {{ __('Name') }} </th>
                             <th scope="col" style='cursor: pointer' wire:click="sort('extra_text')"> <i class='fa @if($sortType == 'desc' and $sortColumn == 'extra_text') fa-sort-amount-down ml-2 @elseif($sortType == 'asc' and $sortColumn == 'extra_text') fa-sort-amount-up ml-2 @endif'></i> {{ __('Extra_text') }} </th>
                             <th scope="col" style='cursor: pointer' wire:click="sort('cover_image')"> <i class='fa @if($sortType == 'desc' and $sortColumn == 'cover_image') fa-sort-amount-down ml-2 @elseif($sortType == 'asc' and $sortColumn == 'cover_image') fa-sort-amount-up ml-2 @endif'></i> {{ __('Image') }} </th>

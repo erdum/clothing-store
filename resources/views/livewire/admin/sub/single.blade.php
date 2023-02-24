@@ -1,5 +1,5 @@
 <tr x-data="{ modalIsOpen : false }">
-    <td class="">{{ $sub->category_id }}</td>
+    <td class="">{{ $sub->category->name }}</td>
     <td class="">{{ $sub->name }}</td>
     <td class="">{{ $sub->extra_text }}</td>
     <td><img class="img-fluid " width="50" height="50" src="{{ asset($sub->cover_image) }}" alt=""></td>
