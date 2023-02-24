@@ -99,5 +99,16 @@
     "Sub_category_id": "Sub_category_id",
     "Product": "Product",
     "Products": "Products",
-    "Sub_id": "Sub_id"
+    "Sub_id": "Sub_id",
+    "Cover Image": "Cover Image",
+    "Product Name": "Product Name",
+    "Product_id": "Product_id",
+    "Url": "Url",
+    "ProductImage": "ProductImage",
+    "ProductImages": "ProductImages",
+    "Id": "Id",
+    "ProductSize": "ProductSize",
+    "ProductSizes": "ProductSizes",
+    "ProductColor": "ProductColor",
+    "ProductColors": "ProductColors"
 }

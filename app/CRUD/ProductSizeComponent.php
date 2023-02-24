@@ -4,10 +4,10 @@ namespace App\CRUD;
 
 use EasyPanel\Contracts\CRUDComponent;
 use EasyPanel\Parsers\Fields\Field;
+use App\Models\ProductSize;
 use App\Models\Product;
-use App\Models\Sub;
 
-class ProductComponent implements CRUDComponent
+class ProductSizeComponent implements CRUDComponent
 {
     // Manage actions in crud
     public $create = true;
@@ -18,34 +18,29 @@ class ProductComponent implements CRUDComponent
     // add `user_id` to create and update action
     public $with_user_id = true;
 
-    private function sub_categories()
+    private function products()
     {
-        $sub_categories = ['0' => 'Select'];
+        $products = ['0' => 'Select'];
 
-        foreach (Sub::all() as $category)
+        foreach (Product::all() as $product)
         {
-            $sub_categories[$category->id] = $category->name;
+            $products[$product->id] = $product->name;
         }
 
-        return $sub_categories;
+        return $products;
     }
 
     public function getModel()
     {
-        return Product::class;
+        return ProductSize::class;
     }
 
     // which kind of data should be showed in list page
     public function fields()
     {
         return [
-            'id',
-            'sub.name' => Field::title('Sub Category'),
-            'name',
-            'description',
-            'unit_price',
-            'discount',
-            'quantity',
+            'product.name',
+            'name'
         ];
     }
 
@@ -53,8 +48,8 @@ class ProductComponent implements CRUDComponent
     public function searchable()
     {
         return [
-            'name',
-            'description'
+            'product.name',
+            'name'
         ];
     }
 
@@ -64,12 +59,8 @@ class ProductComponent implements CRUDComponent
     public function inputs()
     {
         return [
-            'sub_id' => ['select' => $this->sub_categories()],
-            'name' => 'text',
-            'description' => 'text',
-            'unit_price' => 'number',
-            'discount' => 'number',
-            'quantity' => 'number'
+            'product_id' => ['select' => $this->products()],
+            'name' => 'text'
         ];
     }
 
@@ -78,12 +69,8 @@ class ProductComponent implements CRUDComponent
     public function validationRules()
     {
         return [
-            'sub_id' => 'required',
-            'name' => 'required',
-            'description' => 'required',
-            'unit_price' => 'required',
-            'discount' => 'required',
-            'quantity' => 'required'
+            'product_id' => 'required',
+            'name' => 'required'
         ];
     }
 
