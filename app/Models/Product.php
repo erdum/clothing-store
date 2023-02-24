@@ -17,7 +17,7 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
-        'sub_category_id',
+        'sub_id',
         'name',
         'description',
         'unit_price',
@@ -25,9 +25,9 @@ class Product extends Model
         'quantity'
     ];
 
-    public function sub_category()
+    public function sub()
     {
-        return $this->hasOne(Sub::class);
+        return $this->belongsTo(Sub::class);
     }
 
     public function sizes()
