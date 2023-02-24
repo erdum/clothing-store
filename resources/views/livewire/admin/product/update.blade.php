@@ -14,15 +14,15 @@
 
         <div class="card-body">
 
-                        <!-- Sub_category_id Input -->
+                        <!-- Sub_id Input -->
             <div class='form-group'>
-                <label for='input-sub_category_id' class='col-sm-2 control-label '> {{ __('Sub_category_id') }}</label>
-                <select id='input-sub_category_id' wire:model='sub_category_id' class="form-control  @error('sub_category_id') is-invalid @enderror">
-                    @foreach(getCrudConfig('Product')->inputs()['sub_category_id']['select'] as $key => $value)
+                <label for='input-sub_id' class='col-sm-2 control-label '> {{ __('Sub_id') }}</label>
+                <select id='input-sub_id' wire:model='sub_id' class="form-control  @error('sub_id') is-invalid @enderror">
+                    @foreach(getCrudConfig('Product')->inputs()['sub_id']['select'] as $key => $value)
                         <option value='{{ $key }}'>{{ $value }}</option>
                     @endforeach
                 </select>
-                @error('sub_category_id') <div class='invalid-feedback'>{{ $message }}</div> @enderror
+                @error('sub_id') <div class='invalid-feedback'>{{ $message }}</div> @enderror
             </div>
             <!-- Name Input -->
             <div class='form-group'>

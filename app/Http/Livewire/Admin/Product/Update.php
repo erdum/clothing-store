@@ -12,7 +12,7 @@ class Update extends Component
 
     public $product;
 
-    public $sub_category_id;
+    public $sub_id;
     public $name;
     public $description;
     public $unit_price;
@@ -20,7 +20,7 @@ class Update extends Component
     public $quantity;
     
     protected $rules = [
-        'sub_category_id' => 'required',
+        'sub_id' => 'required',
         'name' => 'required',
         'description' => 'required',
         'unit_price' => 'required',
@@ -30,7 +30,7 @@ class Update extends Component
 
     public function mount(Product $Product){
         $this->product = $Product;
-        $this->sub_category_id = $this->product->sub_category_id;
+        $this->sub_id = $this->product->sub_id;
         $this->name = $this->product->name;
         $this->description = $this->product->description;
         $this->unit_price = $this->product->unit_price;
@@ -51,7 +51,7 @@ class Update extends Component
         $this->dispatchBrowserEvent('show-message', ['type' => 'success', 'message' => __('UpdatedMessage', ['name' => __('Product') ]) ]);
         
         $this->product->update([
-            'sub_category_id' => $this->sub_category_id,
+            'sub_id' => $this->sub_id,
             'name' => $this->name,
             'description' => $this->description,
             'unit_price' => $this->unit_price,

@@ -1,5 +1,5 @@
 <tr x-data="{ modalIsOpen : false }">
-    <td class="">{{ $product->sub_category_id }}</td>
+    <td class="">{{ $product->sub->name }}</td>
     <td class="">{{ $product->name }}</td>
     <td class="">{{ $product->description }}</td>
     <td class="">{{ $product->unit_price }}</td>

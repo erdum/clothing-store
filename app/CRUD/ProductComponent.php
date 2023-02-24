@@ -39,7 +39,7 @@ class ProductComponent implements CRUDComponent
     public function fields()
     {
         return [
-            'sub_category_id' => Field::title('Sub Category'),
+            'sub.name' => Field::title('Sub Category'),
             'name',
             'description',
             'unit_price',
@@ -63,7 +63,7 @@ class ProductComponent implements CRUDComponent
     public function inputs()
     {
         return [
-            'sub_category_id' => ['select' => $this->sub_categories()],
+            'sub_id' => ['select' => $this->sub_categories()],
             'name' => 'text',
             'description' => 'text',
             'unit_price' => 'number',
@@ -77,7 +77,7 @@ class ProductComponent implements CRUDComponent
     public function validationRules()
     {
         return [
-            'sub_category_id' => 'required',
+            'sub_id' => 'required',
             'name' => 'required',
             'description' => 'required',
             'unit_price' => 'required',

@@ -38,7 +38,7 @@
                 <table class="table table-hover table-striped">
                     <thead>
                         <tr>
-                            <th scope="col" style='cursor: pointer' wire:click="sort('sub_category_id')"> <i class='fa @if($sortType == 'desc' and $sortColumn == 'sub_category_id') fa-sort-amount-down ml-2 @elseif($sortType == 'asc' and $sortColumn == 'sub_category_id') fa-sort-amount-up ml-2 @endif'></i> {{ __('Sub Category') }} </th>
+                            <th scope="col"> {{ __('Sub Category') }} </th>
                             <th scope="col" style='cursor: pointer' wire:click="sort('name')"> <i class='fa @if($sortType == 'desc' and $sortColumn == 'name') fa-sort-amount-down ml-2 @elseif($sortType == 'asc' and $sortColumn == 'name') fa-sort-amount-up ml-2 @endif'></i> {{ __('Name') }} </th>
                             <th scope="col" style='cursor: pointer' wire:click="sort('description')"> <i class='fa @if($sortType == 'desc' and $sortColumn == 'description') fa-sort-amount-down ml-2 @elseif($sortType == 'asc' and $sortColumn == 'description') fa-sort-amount-up ml-2 @endif'></i> {{ __('Description') }} </th>
                             <th scope="col" style='cursor: pointer' wire:click="sort('unit_price')"> <i class='fa @if($sortType == 'desc' and $sortColumn == 'unit_price') fa-sort-amount-down ml-2 @elseif($sortType == 'asc' and $sortColumn == 'unit_price') fa-sort-amount-up ml-2 @endif'></i> {{ __('Unit_price') }} </th>

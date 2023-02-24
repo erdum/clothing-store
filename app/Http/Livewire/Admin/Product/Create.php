@@ -10,7 +10,7 @@ class Create extends Component
 {
     use WithFileUploads;
 
-    public $sub_category_id;
+    public $sub_id;
     public $name;
     public $description;
     public $unit_price;
@@ -18,7 +18,7 @@ class Create extends Component
     public $quantity;
     
     protected $rules = [
-        'sub_category_id' => 'required',
+        'sub_id' => 'required',
         'name' => 'required',
         'description' => 'required',
         'unit_price' => 'required',
@@ -39,7 +39,7 @@ class Create extends Component
         $this->dispatchBrowserEvent('show-message', ['type' => 'success', 'message' => __('CreatedMessage', ['name' => __('Product') ])]);
         
         Product::create([
-            'sub_category_id' => $this->sub_category_id,
+            'sub_id' => $this->sub_id,
             'name' => $this->name,
             'description' => $this->description,
             'unit_price' => $this->unit_price,
