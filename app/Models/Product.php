@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Sub;
 use App\Models\ProductSize;
 use App\Models\ProductColor;
-use App\Models\ProductImage;
+use App\Models\Image;
 use App\Models\OrderItem;
 use App\Models\Cart;
 
@@ -42,7 +42,7 @@ class Product extends Model
 
     public function images()
     {
-        return $this->hasMany(ProductImage::class);
+        return $this->hasMany(Image::class);
     }
 
     public function orders()

@@ -4,10 +4,10 @@ namespace App\CRUD;
 
 use EasyPanel\Contracts\CRUDComponent;
 use EasyPanel\Parsers\Fields\Field;
-use App\Models\ProductImage;
+use App\Models\Image;
 use App\Models\Product;
 
-class ProductImageComponent implements CRUDComponent
+class ImageComponent implements CRUDComponent
 {
     // Manage actions in crud
     public $create = true;
@@ -32,7 +32,7 @@ class ProductImageComponent implements CRUDComponent
 
     public function getModel()
     {
-        return ProductImage::class;
+        return Image::class;
     }
 
     // which kind of data should be showed in list page

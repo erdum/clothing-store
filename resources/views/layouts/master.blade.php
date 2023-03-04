@@ -208,6 +208,11 @@
         },
     });
 
+    const handleMenuClick = () => {
+        const menu = document.querySelector(".navbar");
+        console.log(menu);
+    };
+
     </script>
     @section('scripts')
     @show

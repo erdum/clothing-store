@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Livewire\Admin\ProductImage;
+namespace App\Http\Livewire\Admin\Image;
 
-use App\Models\ProductImage;
+use App\Models\Image;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -17,12 +17,12 @@ class Read extends Component
 
     protected $queryString = ['search'];
 
-    protected $listeners = ['productimageDeleted'];
+    protected $listeners = ['imageDeleted'];
 
     public $sortType;
     public $sortColumn;
 
-    public function productimageDeleted(){
+    public function imageDeleted(){
         // Nothing ..
     }
 
@@ -36,9 +36,9 @@ class Read extends Component
 
     public function render()
     {
-        $data = ProductImage::query();
+        $data = Image::query();
 
-        $instance = getCrudConfig('productimage');
+        $instance = getCrudConfig('image');
         if($instance->searchable()){
             $array = (array) $instance->searchable();
             $data->where(function (Builder $query) use ($array){
@@ -63,8 +63,8 @@ class Read extends Component
 
         $data = $data->paginate(config('easy_panel.pagination_count', 15));
 
-        return view('livewire.admin.productimage.read', [
-            'productimages' => $data
-        ])->layout('admin::layouts.app', ['title' => __(\Str::plural('ProductImage')) ]);
+        return view('livewire.admin.image.read', [
+            'images' => $data
+        ])->layout('admin::layouts.app', ['title' => __(\Str::plural('Image')) ]);
     }
 }
