@@ -109,5 +109,17 @@
     "Size": "Size",
     "Sizes": "Sizes",
     "Color": "Color",
-    "Colors": "Colors"
+    "Colors": "Colors",
+    "User_id": "User_id",
+    "Sub_total": "Sub_total",
+    "Total": "Total",
+    "Tax": "Tax",
+    "Delivery_charges": "Delivery_charges",
+    "Payment_method": "Payment_method",
+    "Payment_id": "Payment_id",
+    "Shipping_method": "Shipping_method",
+    "Shipping_eta": "Shipping_eta",
+    "Tracking_id": "Tracking_id",
+    "Order": "Order",
+    "Orders": "Orders"
 }
