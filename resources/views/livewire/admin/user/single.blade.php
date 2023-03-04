@@ -7,13 +7,13 @@
     @if(getCrudConfig('User')->delete or getCrudConfig('User')->update)
         <td>
 
-            @if(getCrudConfig('User')->update && hasPermission(getRouteName().'.user.update', 0, 0, $user))
+            @if(getCrudConfig('User')->update && hasPermission(getRouteName().'.user.update', 1, 0, $user))
                 <a href="@route(getRouteName().'.user.update', $user->id)" class="btn text-primary mt-1">
                     <i class="icon-pencil"></i>
                 </a>
             @endif
 
-            @if(getCrudConfig('User')->delete && hasPermission(getRouteName().'.user.delete', 0, 0, $user))
+            @if(getCrudConfig('User')->delete && hasPermission(getRouteName().'.user.delete', 1, 0, $user))
                 <button @click.prevent="modalIsOpen = true" class="btn text-danger mt-1">
                     <i class="icon-trash"></i>
                 </button>
