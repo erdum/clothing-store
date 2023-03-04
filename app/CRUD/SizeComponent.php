@@ -4,10 +4,10 @@ namespace App\CRUD;
 
 use EasyPanel\Contracts\CRUDComponent;
 use EasyPanel\Parsers\Fields\Field;
-use App\Models\Image;
+use App\Models\Size;
 use App\Models\Product;
 
-class ImageComponent implements CRUDComponent
+class SizeComponent implements CRUDComponent
 {
     // Manage actions in crud
     public $create = true;
@@ -32,7 +32,7 @@ class ImageComponent implements CRUDComponent
 
     public function getModel()
     {
-        return Image::class;
+        return Size::class;
     }
 
     // which kind of data should be showed in list page
@@ -40,8 +40,7 @@ class ImageComponent implements CRUDComponent
     {
         return [
             'product.name',
-            'url' => Field::title('Image')
-                ->asImage()
+            'name'
         ];
     }
 
@@ -49,7 +48,8 @@ class ImageComponent implements CRUDComponent
     public function searchable()
     {
         return [
-            'product.name'
+            'product.name',
+            'name'
         ];
     }
 
@@ -60,7 +60,7 @@ class ImageComponent implements CRUDComponent
     {
         return [
             'product_id' => ['select' => $this->products()],
-            'url' => 'file'
+            'name' => 'text'
         ];
     }
 
@@ -70,15 +70,13 @@ class ImageComponent implements CRUDComponent
     {
         return [
             'product_id' => 'required',
-            'url' => 'required'
+            'name' => 'required'
         ];
     }
 
     // Where files will store for inputs
     public function storePaths()
     {
-        return [
-            'url' => 'photos/products'
-        ];
+        return [];
     }
 }

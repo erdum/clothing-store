@@ -2,22 +2,22 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header p-0">
-                <h3 class="card-title">{{ __('ListTitle', ['name' => __(\Illuminate\Support\Str::plural('Category')) ]) }}</h3>
+                <h3 class="card-title">{{ __('ListTitle', ['name' => __(\Illuminate\Support\Str::plural('Size')) ]) }}</h3>
 
                 <div class="px-2 mt-4">
 
                     <ul class="breadcrumb mt-3 py-3 px-4 rounded">
                         <li class="breadcrumb-item"><a href="@route(getRouteName().'.home')" class="text-decoration-none">{{ __('Dashboard') }}</a></li>
-                        <li class="breadcrumb-item active">{{ __(\Illuminate\Support\Str::plural('Category')) }}</li>
+                        <li class="breadcrumb-item active">{{ __(\Illuminate\Support\Str::plural('Size')) }}</li>
                     </ul>
 
                     <div class="row justify-content-between mt-4 mb-4">
-                        @if(getCrudConfig('Category')->create && hasPermission(getRouteName().'.category.create', 1, 0))
+                        @if(getCrudConfig('Size')->create && hasPermission(getRouteName().'.size.create', 1, 0))
                         <div class="col-md-4 right-0">
-                            <a href="@route(getRouteName().'.category.create')" class="btn btn-success">{{ __('CreateTitle', ['name' => __('Category') ]) }}</a>
+                            <a href="@route(getRouteName().'.size.create')" class="btn btn-success">{{ __('CreateTitle', ['name' => __('Size') ]) }}</a>
                         </div>
                         @endif
-                        @if(getCrudConfig('Category')->searchable())
+                        @if(getCrudConfig('Size')->searchable())
                         <div class="col-md-4">
                             <div class="input-group">
                                 <input type="text" class="form-control" @if(config('easy_panel.lazy_mode')) wire:model.lazy="search" @else wire:model="search" @endif placeholder="{{ __('Search') }}" value="{{ request('search') }}">
@@ -38,24 +38,23 @@
                 <table class="table table-hover table-striped">
                     <thead>
                         <tr>
+                            <th scope="col"> {{ __('Product Name') }} </th>
                             <th scope="col" style='cursor: pointer' wire:click="sort('name')"> <i class='fa @if($sortType == 'desc' and $sortColumn == 'name') fa-sort-amount-down ml-2 @elseif($sortType == 'asc' and $sortColumn == 'name') fa-sort-amount-up ml-2 @endif'></i> {{ __('Name') }} </th>
-                            <th scope="col" style='cursor: pointer' wire:click="sort('extra_text')"> <i class='fa @if($sortType == 'desc' and $sortColumn == 'extra_text') fa-sort-amount-down ml-2 @elseif($sortType == 'asc' and $sortColumn == 'extra_text') fa-sort-amount-up ml-2 @endif'></i> {{ __('Extra_text') }} </th>
-                            <th scope="col" style='cursor: pointer' wire:click="sort('cover_image')"> <i class='fa @if($sortType == 'desc' and $sortColumn == 'cover_image') fa-sort-amount-down ml-2 @elseif($sortType == 'asc' and $sortColumn == 'cover_image') fa-sort-amount-up ml-2 @endif'></i> {{ __('Image') }} </th>
                             
-                            @if(getCrudConfig('Category')->delete or getCrudConfig('Category')->update)
+                            @if(getCrudConfig('Size')->delete or getCrudConfig('Size')->update)
                                 <th scope="col">{{ __('Action') }}</th>
                             @endif
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($categorys as $category)
-                            @livewire('admin.category.single', [$category], key($category->id))
+                        @foreach($sizes as $size)
+                            @livewire('admin.size.single', [$size], key($size->id))
                         @endforeach
                     </tbody>
                 </table>
             </div>
             <div class="m-auto pt-3 pr-3">
-                {{ $categorys->appends(request()->query())->links() }}
+                {{ $sizes->appends(request()->query())->links() }}
             </div>
 
             <div wire:loading wire:target="nextPage,gotoPage,previousPage" class="loader-page"></div>

@@ -12,7 +12,7 @@
                     </ul>
 
                     <div class="row justify-content-between mt-4 mb-4">
-                        @if(getCrudConfig('Image')->create && hasPermission(getRouteName().'.image.create', 0, 0))
+                        @if(getCrudConfig('Image')->create && hasPermission(getRouteName().'.image.create', 1, 0))
                         <div class="col-md-4 right-0">
                             <a href="@route(getRouteName().'.image.create')" class="btn btn-success">{{ __('CreateTitle', ['name' => __('Image') ]) }}</a>
                         </div>
@@ -39,7 +39,7 @@
                     <thead>
                         <tr>
                             <th scope="col"> {{ __('Product Name') }} </th>
-                            <th scope="col" style='cursor: pointer' wire:click="sort('ulr')"> <i class='fa @if($sortType == 'desc' and $sortColumn == 'ulr') fa-sort-amount-down ml-2 @elseif($sortType == 'asc' and $sortColumn == 'ulr') fa-sort-amount-up ml-2 @endif'></i> {{ __('Image') }} </th>
+                            <th scope="col" style='cursor: pointer' wire:click="sort('url')"> <i class='fa @if($sortType == 'desc' and $sortColumn == 'url') fa-sort-amount-down ml-2 @elseif($sortType == 'asc' and $sortColumn == 'url') fa-sort-amount-up ml-2 @endif'></i> {{ __('Image') }} </th>
                             
                             @if(getCrudConfig('Image')->delete or getCrudConfig('Image')->update)
                                 <th scope="col">{{ __('Action') }}</th>

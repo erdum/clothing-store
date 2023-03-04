@@ -111,5 +111,9 @@
     "ProductSizes": "ProductSizes",
     "ProductColor": "ProductColor",
     "ProductColors": "ProductColors",
-    "Images": "Images"
+    "Images": "Images",
+    "Size": "Size",
+    "Sizes": "Sizes",
+    "Color": "Color",
+    "Colors": "Colors"
 }
