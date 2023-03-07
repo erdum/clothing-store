@@ -24,7 +24,7 @@ use App\Http\Controllers\OrderController;
 
 // Public Routes & Views
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/category/{name?}/{sub_name?}', [CategoryController::class, 'index'])->name('category');
+Route::get('/{name?}/{sub_name?}', [CategoryController::class, 'index'])->name('category');
 Route::get('/product/{id}', [ProductController::class, 'index'])->name('product');
 Route::get('/featured', [ProductController::class, 'index'])->name('featured');
 
