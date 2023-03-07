@@ -93,7 +93,7 @@
                     </div>
                     <div class="space-y-6 border-t border-gray-200 py-6 px-4">
                         <div class="flow-root">
-                            <a href="#" class="-m-2 block p-2 font-medium text-gray-900">Sign up / Login</a>
+                            <a href="{{ route('login') }}" class="-m-2 block p-2 font-medium text-gray-900">Sign up / Sign in</a>
                         </div>
                     </div>
                     <div class="border-t border-gray-200 py-6 px-4">
@@ -182,7 +182,7 @@
                         </div>
                         <div class="ml-auto flex items-center">
                             <div class="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                                <a href="{{ route('login') }}" class="text-sm font-medium text-gray-700 hover:text-gray-800">Sign up / Login</a>
+                                <a href="{{ route('login') }}" class="text-sm font-medium text-gray-700 hover:text-gray-800">Sign up / Sign in</a>
                                 <span class="h-6 w-px bg-gray-200 block" aria-hidden="true"></span>
                             </div>
                             <div class="hidden lg:ml-6 lg:flex">
