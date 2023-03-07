@@ -29,6 +29,8 @@ Route::get('/featured', [ProductController::class, 'index'])->name('featured');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'post'])->name('login_post');
+Route::get('/signup', [LoginController::class, 'signup'])->name('signup');
+Route::post('/signup', [LoginController::class, 'signup_post'])->name('signup_post');
 Route::get('/login/redirect/{provider_name}', [LoginController::class, 'redirect'])->name('third_party_login');
 Route::get('/login/callback', [LoginController::class, 'callback']);
 
