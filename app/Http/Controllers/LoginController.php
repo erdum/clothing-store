@@ -15,6 +15,21 @@ class LoginController extends Controller
         return View::make('login');
     }
 
+    public function signup()
+    {
+        return null;
+    }
+
+    public function post(Request $request)
+    {
+        return redirect('/');
+    }
+
+    public function signup_post()
+    {
+        return null;
+    }
+
     public function redirect($provider_name)
     {
         session(['provider_name' => $provider_name]);
