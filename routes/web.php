@@ -24,7 +24,6 @@ use App\Http\Controllers\OrderController;
 
 // Public Routes & Views
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/{name?}/{sub_name?}', [CategoryController::class, 'index'])->name('category');
 Route::get('/product/{id}', [ProductController::class, 'index'])->name('product');
 Route::get('/featured', [ProductController::class, 'index'])->name('featured');
 
@@ -35,6 +34,8 @@ Route::get('/login/callback', [LoginController::class, 'callback']);
 Route::get('/contactus', [HomeController::class, 'terms'])->name('contact-us');
 Route::get('/terms', [HomeController::class, 'terms'])->name('terms');
 Route::get('/policy', [HomeController::class, 'policy'])->name('policy');
+
+Route::get('/{name?}/{sub_name?}', [CategoryController::class, 'index'])->name('category');
 
 
 // Private Routes & Views
