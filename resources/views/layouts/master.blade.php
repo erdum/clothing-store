@@ -49,12 +49,17 @@
                             </div>
                         </div>
                         <!-- 'Women' tab panel, show/hide based on tab state. -->
-                        @foreach (App\Models\Category::all() as $category)
-                            <div class="space-y-10 px-4 pt-10 pb-8 mobile-sidebar-panel tab-{{ $category->name }} @if(!request()->is('category/' . $category->name . '/*') hidden @endif" aria-labelledby="tabs-1-tab-1" role="tabpanel" tabindex="0">
+                        @foreach (App\Models\Category::all() as $key => $category)
+
+                            @if ($key == 0 || request()->is($category->name . '/*'))
+                            <div class="space-y-10 px-4 pt-10 pb-8 mobile-sidebar-panel tab-{{ $category->name }}" aria-labelledby="tabs-1-tab-1" role="tabpanel" tabindex="0">
+                            @else
+                            <div class="space-y-10 px-4 pt-10 pb-8 mobile-sidebar-panel tab-{{ $category->name }} hidden" aria-labelledby="tabs-1-tab-1" role="tabpanel" tabindex="0">
+                            @endif
                                 <div class="grid grid-cols-2 gap-x-4">
                                     <div class="group relative text-sm">
                                         <div class="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
-                                            <img src="{{ $category->cover_image ?? 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg' }}" alt="{{ $category->name }}" class="object-cover object-center">
+                                            <img src="{{ asset($category->cover_image) ?? 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg' }}" alt="{{ $category->name }}" class="object-cover object-center">
                                         </div>
                                         <a class="mt-6 block font-medium text-gray-900">
                                             <span class="absolute inset-0 z-10" aria-hidden="true"></span>
@@ -115,7 +120,7 @@
                         </button>
                         <!-- Logo -->
                         <div class="ml-4 flex lg:ml-0">
-                            <a href="#">
+                            <a href="{{ route('home') }}">
                                 <span class="sr-only">Your Company</span>
                                 <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="">
                             </a>
@@ -142,7 +147,7 @@
                                                         <div class="col-start-2 grid grid-cols-2 gap-x-8">
                                                             <div class="group relative text-base sm:text-sm">
                                                                 <div class="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
-                                                                    <img src="{{ $category->cover_image ?? 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg' }}" alt="{{ $category->name }}" class="object-cover object-center">
+                                                                    <img src="{{ asset($category->cover_image) ?? 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg' }}" alt="{{ $category->name }}" class="object-cover object-center">
                                                                 </div>
                                                                 <a href="{{ $category->name }}" class="mt-6 block font-medium text-gray-900">
                                                                     <span class="absolute inset-0 z-10" aria-hidden="true"></span>
@@ -180,7 +185,7 @@
                                 <a href="{{ route('login') }}" class="text-sm font-medium text-gray-700 hover:text-gray-800">Sign up / Login</a>
                                 <span class="h-6 w-px bg-gray-200 block" aria-hidden="true"></span>
                             </div>
-                            <div class="hidden lg:ml-8 lg:flex">
+                            <div class="hidden lg:ml-6 lg:flex">
                                 <a href="#" class="flex items-center text-gray-700 hover:text-gray-800">
                                     <img src="{{ asset('assets/site/images/pakistan.png') }}" alt="Pakistan Flag" class="block h-auto w-8 flex-shrink-0">
                                     <span class="ml-3 block text-sm font-medium">PKR</span>
@@ -188,14 +193,14 @@
                                 </a>
                             </div>
                             <!-- Search -->
-                            <div class="flex lg:ml-6">
+                            <!-- <div class="flex lg:ml-6">
                                 <a href="#" class="p-2 text-gray-400 hover:text-gray-500">
                                     <span class="sr-only">Search</span>
                                     <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                                     </svg>
                                 </a>
-                            </div>
+                            </div> -->
                             <!-- Cart -->
                             <div class="ml-4 flow-root lg:ml-6">
                                 <a href="#" class="group -m-2 flex items-center p-2">
