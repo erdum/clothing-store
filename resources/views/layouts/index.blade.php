@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('title', $category->name)
+
 @section('content')
 <div class="bg-white">
     @foreach ($categories as $category)
