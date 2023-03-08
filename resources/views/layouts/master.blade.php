@@ -8,7 +8,7 @@
     <!-- FavIcon Link -->
     <link rel="shortcut icon" href="{{ asset('assets/site/images/favicon/favicon-32x32.png') }}" type="image/x-icon">
     <title>@yield('title', 'Clothing Store') | Apparel UBInn365</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=aspect-ratio"></script>
     <style type="text/css">
     .flyout-btn:hover .flyout {
         display: block;
@@ -158,7 +158,7 @@
                                                                 <div class="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
                                                                     <img src="{{ asset($category->cover_image) ?? 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg' }}" alt="{{ $category->name }}" class="object-cover object-center">
                                                                 </div>
-                                                                <a href="{{ $category->name }}" class="mt-6 block font-medium text-gray-900">
+                                                                <a href="{{ route('home', ['category' => $category->name]) }}" class="mt-6 block font-medium text-gray-900">
                                                                     <span class="absolute inset-0 z-10" aria-hidden="true"></span>
                                                                     New Arrivals
                                                                 </a>
@@ -242,31 +242,12 @@
                 </nav>
             </header>
         </div>
+        <!-- Sidebar Cart -->
         <div class="relative z-10" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
-            <!--
-    Background backdrop, show/hide based on slide-over state.
-
-    Entering: "ease-in-out duration-500"
-      From: "opacity-0"
-      To: "opacity-100"
-    Leaving: "ease-in-out duration-500"
-      From: "opacity-100"
-      To: "opacity-0"
-  -->
             <div id="sidebar-cart-overlay" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity hidden"></div>
             <div class="fixed top-0 bottom-0 overflow-hidden">
                 <div class="absolute inset-0 overflow-hidden">
                     <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
-                        <!--
-          Slide-over panel, show/hide based on slide-over state.
-
-          Entering: "transform transition ease-in-out duration-500 sm:duration-700"
-            From: "translate-x-full"
-            To: "translate-x-0"
-          Leaving: "transform transition ease-in-out duration-500 sm:duration-700"
-            From: "translate-x-0"
-            To: "translate-x-full"
-        -->
                         <div id="sidebar-cart" class="pointer-events-auto w-screen max-w-md translate-x-full transform transition ease-in-out duration-500">
                             <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
                                 <div class="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
@@ -322,11 +303,11 @@
                                         @if (Auth::check())
                                         <p>$
                                             {{
-                                                Auth::user()
-                                                ->in_cart_items
-                                                ->sum(function ($item) {
-                                                return ($item->quantity * $item->product->unit_price);
-                                                });
+                                            Auth::user()
+                                            ->in_cart_items
+                                            ->sum(function ($item) {
+                                            return ($item->quantity * $item->product->unit_price);
+                                            });
                                             }}
                                         </p>
                                         @else
@@ -354,6 +335,31 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-white">
+            <div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+                <h2 class="text-2xl font-bold tracking-tight text-gray-900">Customers also purchased</h2>
+                <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+                    <div class="group relative">
+                        <div class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
+                            <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" alt="Front of men&#039;s Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+                        </div>
+                        <div class="mt-4 flex justify-between">
+                            <div>
+                                <h3 class="text-sm text-gray-700">
+                                    <a href="#">
+                                        <span aria-hidden="true" class="absolute inset-0"></span>
+                                        Basic Tee
+                                    </a>
+                                </h3>
+                                <p class="mt-1 text-sm text-gray-500">Black</p>
+                            </div>
+                            <p class="text-sm font-medium text-gray-900">$35</p>
+                        </div>
+                    </div>
+                    <!-- More products... -->
                 </div>
             </div>
         </div>
