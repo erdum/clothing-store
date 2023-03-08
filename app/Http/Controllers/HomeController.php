@@ -20,14 +20,11 @@ class HomeController extends Controller
         //     ]);
         // }
 
-        // if (!empty($name)) {
-        //     $category = Category::find($name);
-
-        //     return View::make('category.sub-categories', [
-        //         'category' => $category,
-        //         'sub_categories' => $category->sub,
-        //     ]);
-        // }
+        if (!empty($category)) {
+            return View::make('layouts.categories', [
+                'category' => Category::where('name', $category)->first()
+            ]);
+        }
 
         return View::make('layouts.index', ['categories' => Category::all()]);
     }
