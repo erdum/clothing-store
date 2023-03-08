@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Sub;
-use App\Models\ProductSize;
-use App\Models\ProductColor;
+use App\Models\Size;
+use App\Models\Color;
 use App\Models\Image;
 use App\Models\OrderItem;
 use App\Models\Cart;
@@ -32,12 +32,12 @@ class Product extends Model
 
     public function sizes()
     {
-        return $this->hasMany(ProductSize::class);
+        return $this->hasMany(Size::class);
     }
 
     public function colors()
     {
-        return $this->hasMany(ProductColor::class);
+        return $this->hasMany(Color::class);
     }
 
     public function images()
