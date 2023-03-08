@@ -17,7 +17,7 @@ class LoginController extends Controller
 
     public function signup()
     {
-        return null;
+        return View::make('signup');
     }
 
     public function post(Request $request)
