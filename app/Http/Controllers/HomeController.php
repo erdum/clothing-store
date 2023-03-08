@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 
+use App\Models\Category;
+
 class HomeController extends Controller
 {
     public function index($category = null, $sub_category = null)
@@ -26,8 +28,8 @@ class HomeController extends Controller
         //         'sub_categories' => $category->sub,
         //     ]);
         // }
-        
-        return View::make('layouts.master');
+
+        return View::make('layouts.index', ['categories' => Category::all()]);
     }
 
     public function terms()
