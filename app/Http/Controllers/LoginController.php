@@ -22,12 +22,40 @@ class LoginController extends Controller
 
     public function post(Request $request)
     {
-        return redirect('/');
+        $validated = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        if (Auth::attempt($validated)) {
+            return redirect()->intended();
+        }
+
+        return back()->withErrors($validated)->withInput();
+
     }
 
-    public function signup_post()
+    public function signup_post(Request $request)
     {
-        return null;
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:users|email',
+            'password' => 'required'
+        ]);
+
+        if ($validated->fails()) {
+            return back()->withErrors($validated)->withInput();
+        }
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password
+        ]);
+
+        Auth::login($user);
+        
+        return redirect()->intended();
     }
 
     public function redirect($provider_name)
