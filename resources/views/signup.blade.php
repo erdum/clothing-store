@@ -51,7 +51,7 @@
       </div>
 
       <div>
-        <button type="submit" class="group relative flex w-full justify-center rounded-md bg-indigo-600 py-3 md:py-2 px-3 text-sm font-semibold text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-colors````">
+        <button type="submit" class="group relative flex w-full justify-center rounded-md bg-indigo-600 py-3 md:py-2 px-3 text-sm font-semibold text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-colors">
           <span class="absolute inset-y-0 left-0 flex items-center pl-3">
             <svg class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path fill-rule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clip-rule="evenodd" />
@@ -60,11 +60,11 @@
           Sign up
         </button>
         <span class="block h-px w-full bg-gray-300 my-6"></span>
-        <a href="{{ route('third_party_login', ['provider_name' => 'google']) }}" class="border border-gray-300 my-3 group relative flex w-full justify-center rounded-md bg-white py-3 md:py-2 px-3 text-sm font-semibold text-gray-400 shadow-sm hover:bg-gray-400 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-colors````">
+        <a href="{{ route('third_party_login', ['provider_name' => 'google']) }}" class="border border-gray-300 my-3 group relative flex w-full justify-center rounded-md bg-white py-3 md:py-2 px-3 text-sm font-semibold text-gray-400 shadow-sm hover:bg-gray-400 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-colors">
             <img class="w-5 mr-2" src="{{ asset('assets/site/images/google.svg') }}">
             Google
         </a>
-        <a href="{{ route('third_party_login', ['provider_name' => 'facebook']) }}" class="border border-gray-300 my-3 group relative flex w-full justify-center rounded-md bg-white py-3 md:py-2 px-3 text-sm font-semibold text-gray-400 shadow-sm hover:bg-gray-400 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-colors````">
+        <a href="{{ route('third_party_login', ['provider_name' => 'facebook']) }}" class="border border-gray-300 my-3 group relative flex w-full justify-center rounded-md bg-white py-3 md:py-2 px-3 text-sm font-semibold text-gray-400 shadow-sm hover:bg-gray-400 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-colors">
             <img class="w-5 mr-2" src="{{ asset('assets/site/images/facebook.svg') }}">
             Facebook
         </a>
