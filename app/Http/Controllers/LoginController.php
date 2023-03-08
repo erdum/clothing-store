@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
 class LoginController extends Controller
@@ -37,7 +39,7 @@ class LoginController extends Controller
 
     public function signup_post(Request $request)
     {
-        $validated = $request->validate([
+        $validated = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|unique:users|email',
             'password' => 'required'
@@ -50,7 +52,7 @@ class LoginController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => $request->password
+            'password' => Hash::make($request->password)
         ]);
 
         Auth::login($user);
