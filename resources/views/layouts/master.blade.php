@@ -179,7 +179,11 @@
                             </div>
                             <div class="ml-auto flex items-center">
                                 <div class="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+                                    @if (Auth::check())
+                                    <a href="{{ route('logout') }}" class="text-sm font-medium text-gray-700 hover:text-gray-800">Logout</a>
+                                    @else
                                     <a href="{{ route('login') }}" class="text-sm font-medium text-gray-700 hover:text-gray-800">Sign in</a>
+                                    @endif
                                     <span class="h-6 w-px bg-gray-200 block" aria-hidden="true"></span>
                                 </div>
                                 <div class="hidden lg:ml-6 lg:flex">
@@ -212,6 +216,14 @@
                                         <span class="sr-only">items in cart, view bag</span>
                                     </button>
                                 </div>
+                                @if (Auth::check())
+                                <div class="hidden lg:ml-6 lg:flex">
+                                    <a href="#" class="flex items-center text-gray-700 hover:text-gray-800">
+                                        <img src="{{ asset('assets/site/images/user.jpg') }}" alt="Pakistan Flag" class="block h-auto w-8 flex-shrink-0 rounded-full">
+                                        <span class="ml-3 block text-sm font-medium">{{ Auth::user()->name }}</span>
+                                    </a>
+                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -260,7 +272,7 @@
                                     <div class="mt-8">
                                         <div class="flow-root">
                                             <ul role="list" class="-my-6 divide-y divide-gray-200">
-                                                @if (Auth::check())
+                                                @if (Auth::check() && Auth::user()->in_cart_items()->exists())
                                                 @foreach (Auth::user()->in_cart_items() as $item)
                                                 <li class="flex py-6">
                                                     <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
@@ -311,7 +323,7 @@
                                     </div>
                                     <p class="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                                     <div class="mt-6">
-                                        @if (Auth::check() && count(Auth::user()->in_cart_items()->exists()))
+                                        @if (Auth::check() && Auth::user()->in_cart_items()->exists())
                                         <a class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">Checkout</a>
                                         @else
                                         <a class="cursor-not-allowed flex items-center justify-center rounded-md border border-transparent bg-gray-400 px-6 py-3 text-base font-medium text-white shadow-sm">Checkout</a>
