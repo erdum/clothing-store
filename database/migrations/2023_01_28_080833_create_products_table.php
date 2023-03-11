@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('sub_id')->constrained();
             $table->string('name', 30);
             $table->text('description');
+            $table->text('details')->nullable();
             $table->integer('unit_price');
             $table->integer('discount');
             $table->integer('quantity');
