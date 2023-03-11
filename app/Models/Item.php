@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Order;
 use App\Models\Product;
 
-class OrderItem extends Model
+class Item extends Model
 {
     use HasFactory;
 
