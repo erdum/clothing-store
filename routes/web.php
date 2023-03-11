@@ -29,8 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
     Route::post('/checkout', [CheckoutController::class, 'checkout'])->name('post_checkout');
     
-    Route::get('/cart', [CartController::class, 'index'])->name('cart');
-    Route::post('/cart', [CartController::class, 'update']);
+    Route::post('/cart', [CartController::class, 'update'])->name('cart');
     
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
