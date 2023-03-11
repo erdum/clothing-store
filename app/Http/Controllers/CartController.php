@@ -31,5 +31,18 @@ class CartController extends Controller
 
             return response()->json(['message' => 'success'], 200);
         }
+
+        if ($request->action == 'remove') {
+
+            $request->validate(['product_id' => 'required']);
+            
+            $item = Cart::find($request->product_id);
+
+            if (empty($item)) {
+                return response()->json(['message' => 'missing parameter product_id required for removing item.'], 400);
+            }
+
+            $item->delete();
+        }
     }
 }
