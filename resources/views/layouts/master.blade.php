@@ -265,7 +265,7 @@
                                     </div>
                                     <div class="mt-8">
                                         <div class="flow-root">
-                                            <ul role="list" class="-my-6 divide-y divide-gray-200">
+                                            <ul id="cart-wrapper" role="list" class="-my-6 divide-y divide-gray-200">
                                                 @if (Auth::check() && Auth::user()->in_cart_items()->exists())
                                                 @foreach (Auth::user()->in_cart_items as $item)
                                                 <li class="flex py-6">
@@ -285,7 +285,7 @@
                                                         <div class="flex flex-1 items-end justify-between text-sm">
                                                             <p class="text-gray-500">Qty {{ $item->product->quantity }}</p>
                                                             <div class="flex">
-                                                                <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
+                                                                <button id="{{ $item->id }}" type="button" class="font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -343,52 +343,60 @@
         @yield('content')
         <script>
         const openMobileMenu = () => {
-            const mobileSideMenu = document.getElementById('mobile-sidebar-menu');
-            const mobileSideMenuOverlay = document.getElementById('mobile-sidebar-menu-overlay');
-            mobileSideMenu.classList.remove('-translate-x-full');
-            mobileSideMenuOverlay.classList.remove('hidden');
-            mobileSideMenu.classList.add('translate-x-0');
+            const mobileSideMenu = document.getElementById("mobile-sidebar-menu");
+            const mobileSideMenuOverlay = document.getElementById("mobile-sidebar-menu-overlay");
+            mobileSideMenu.classList.remove("-translate-x-full");
+            mobileSideMenuOverlay.classList.remove("hidden");
+            mobileSideMenu.classList.add("translate-x-0");
         };
 
         const closeMobileMenu = () => {
-            const mobileSideMenu = document.getElementById('mobile-sidebar-menu');
-            const mobileSideMenuOverlay = document.getElementById('mobile-sidebar-menu-overlay');
-            mobileSideMenu.classList.add('-translate-x-full');
-            mobileSideMenuOverlay.classList.add('hidden');
-            mobileSideMenu.classList.remove('translate-x-0');
+            const mobileSideMenu = document.getElementById("mobile-sidebar-menu");
+            const mobileSideMenuOverlay = document.getElementById("mobile-sidebar-menu-overlay");
+            mobileSideMenu.classList.add("-translate-x-full");
+            mobileSideMenuOverlay.classList.add("hidden");
+            mobileSideMenu.classList.remove("translate-x-0");
         };
 
         const openSidebarCart = () => {
-            const sidebarCart = document.getElementById('sidebar-cart');
-            const sidebarCartOverlay = document.getElementById('sidebar-cart-overlay');
-            sidebarCart.classList.remove('translate-x-full');
-            sidebarCartOverlay.classList.remove('hidden');
-            sidebarCart.classList.add('translate-x-0');
+            const sidebarCart = document.getElementById("sidebar-cart");
+            const sidebarCartOverlay = document.getElementById("sidebar-cart-overlay");
+            sidebarCart.classList.remove("translate-x-full");
+            sidebarCartOverlay.classList.remove("hidden");
+            sidebarCart.classList.add("translate-x-0");
         };
 
         const closeSidebarCart = () => {
-            const sidebarCart = document.getElementById('sidebar-cart');
-            const sidebarCartOverlay = document.getElementById('sidebar-cart-overlay');
-            sidebarCart.classList.remove('translate-x-0');
-            sidebarCart.classList.add('translate-x-full');
-            sidebarCartOverlay.classList.add('hidden');
+            const sidebarCart = document.getElementById("sidebar-cart");
+            const sidebarCartOverlay = document.getElementById("sidebar-cart-overlay");
+            sidebarCart.classList.remove("translate-x-0");
+            sidebarCart.classList.add("translate-x-full");
+            sidebarCartOverlay.classList.add("hidden");
         };
 
         const handleTabClick = ({ target: { id } }) => {
-            document.querySelectorAll('.mobile-sidebar-panel').forEach(panel => panel.classList.add('hidden'));
-            const key = id.split('-')[0];
-            document.querySelector(`.tab-${key}`).classList.remove('hidden');
+            document.querySelectorAll(".mobile-sidebar-panel").forEach(panel => panel.classList.add("hidden"));
+            const key = id.split("-")[0];
+            document.querySelector(`.tab-${key}`).classList.remove("hidden");
         };
 
-        document.getElementById('mobile-menu-btn').addEventListener('click', openMobileMenu);
-        document.getElementById('mobile-sidebar-menu-overlay').addEventListener('click', closeMobileMenu);
-        document.getElementById('mobile-menu-btn-close').addEventListener('click', closeMobileMenu);
+        const removeItemFromCart = async (itemId) => {
+            console.log(itemId, "implement removeItemFromCart");
+        };
 
-        document.getElementById('sidebar-cart-btn').addEventListener('click', openSidebarCart);
-        document.getElementById('sidebar-cart-close-btn').addEventListener('click', closeSidebarCart);
-        document.getElementById('sidebar-cart-overlay').addEventListener('click', closeSidebarCart);
+        document.getElementById("mobile-menu-btn").addEventListener("click", openMobileMenu);
+        document.getElementById("mobile-sidebar-menu-overlay").addEventListener("click", closeMobileMenu);
+        document.getElementById("mobile-menu-btn-close").addEventListener("click", closeMobileMenu);
 
-        document.getElementById('mobile-sidebar-tabs').addEventListener('click', handleTabClick);
+        document.getElementById("sidebar-cart-btn").addEventListener("click", openSidebarCart);
+        document.getElementById("sidebar-cart-close-btn").addEventListener("click", closeSidebarCart);
+        document.getElementById("sidebar-cart-overlay").addEventListener("click", closeSidebarCart);
+
+        document.getElementById("mobile-sidebar-tabs").addEventListener("click", handleTabClick);
+        
+        document.getElementById("cart-wrapper").addEventListener("click", ({ target }) => {
+            if (target.nodeName == "BUTTON") removeItemFromCart(target.id);
+        });
 
         </script>
         @yield('scripts')
