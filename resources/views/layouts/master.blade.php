@@ -15,8 +15,7 @@
         opacity: 100%;
     }
     </style>
-    @section('stylesheets')
-    @show
+    @yield('stylesheets')
 </head>
 
 <body>
@@ -392,8 +391,7 @@
         document.getElementById('mobile-sidebar-tabs').addEventListener('click', handleTabClick);
 
         </script>
-        @section('scripts')
-        @show
+        @yield('scripts')
 </body>
 
 </html>
