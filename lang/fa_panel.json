@@ -127,5 +127,7 @@
     "Shipping_eta": "Shipping_eta",
     "Tracking_id": "Tracking_id",
     "Order": "Order",
-    "Orders": "Orders"
+    "Orders": "Orders",
+    "OrderStatus": "OrderStatus",
+    "OrderStatuses": "OrderStatuses"
 }
