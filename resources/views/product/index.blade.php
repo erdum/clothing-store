@@ -3,27 +3,6 @@
 @section('title', $product->name)
 
 @section('content')
-<!--
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    theme: {
-      extend: {
-        gridTemplateRows: {
-          '[auto,auto,1fr]': 'auto auto 1fr',
-        },
-      },
-    },
-    plugins: [
-      // ...
-      require('@tailwindcss/aspect-ratio'),
-    ],
-  }
-  ```
--->
 <div class="bg-white">
     <div class="pt-6">
         <nav aria-label="Breadcrumb">
@@ -51,20 +30,17 @@
         </nav>
         <!-- Image gallery -->
         <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
-            <div class="aspect-w-3 aspect-h-4 hidden overflow-hidden rounded-lg lg:block">
-                <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg" alt="Two each of gray, white, and black shirts laying flat." class="h-full w-full object-cover object-center">
-            </div>
-            <div class="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
-                <div class="aspect-w-3 aspect-h-2 overflow-hidden rounded-lg">
-                    <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg" alt="Model wearing plain black basic tee." class="h-full w-full object-cover object-center">
-                </div>
-                <div class="aspect-w-3 aspect-h-2 overflow-hidden rounded-lg">
-                    <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg" alt="Model wearing plain gray basic tee." class="h-full w-full object-cover object-center">
-                </div>
-            </div>
+            @foreach ($product->images as $index => $image)
+            @if ($index == 0)
             <div class="aspect-w-4 aspect-h-5 sm:overflow-hidden sm:rounded-lg lg:aspect-w-3 lg:aspect-h-4">
-                <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg" alt="Model wearing plain white basic tee." class="h-full w-full object-cover object-center">
+                <img src="{{ asset($image->url) }}" alt="{{ $product->name }}" class="h-full w-full object-cover object-center">
             </div>
+            @else
+            <div class="aspect-w-3 aspect-h-4 hidden overflow-hidden rounded-lg lg:block">
+                <img src="{{ asset($image->url) }}" alt="{{ $product->name }}" class="h-full w-full object-cover object-center">
+            </div>
+            @endif
+            @endforeach
         </div>
         <!-- Product info -->
         <div class="mx-auto max-w-2xl px-4 pt-10 pb-16 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pt-16 lg:pb-24">
@@ -101,45 +77,33 @@
                         <a href="#" class="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">117 reviews</a>
                     </div>
                 </div> -->
-                <form class="mt-10">
+                <form id="{{ $product->id }}" class="mt-10">
                     <!-- Colors -->
-                    <div>
+                    <div id="colors-container">
                         <h3 class="text-sm font-medium text-gray-900">Color</h3>
                         <fieldset class="mt-4">
                             <legend class="sr-only">Choose a color</legend>
                             <div class="flex items-center space-x-3">
-                                <!--
-                  Active and Checked: "ring ring-offset-1"
-                  Not Active and Checked: "ring-2"
-                -->
-                                <label class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none ring-gray-400">
-                                    <input type="radio" name="color-choice" value="White" class="sr-only" aria-labelledby="color-choice-0-label">
+                                @foreach ($product->colors as $index => $color)
+                                @if ($index == 0)
+                                <label class="ring ring-offset-1 relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none ring-gray-400">
+                                    <input checked type="radio" name="color-choice" value="{{ $color->id }}" class="sr-only" aria-labelledby="color-choice-0-label">
                                     <span id="color-choice-0-label" class="sr-only"> White </span>
-                                    <span aria-hidden="true" class="h-8 w-8 bg-white rounded-full border border-black border-opacity-10"></span>
+                                    <span aria-hidden="true" class="h-8 w-8 bg-[{{ $color->name }}] rounded-full border border-black border-opacity-10"></span>
                                 </label>
-                                <!--
-                  Active and Checked: "ring ring-offset-1"
-                  Not Active and Checked: "ring-2"
-                -->
+                                @else
                                 <label class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none ring-gray-400">
-                                    <input type="radio" name="color-choice" value="Gray" class="sr-only" aria-labelledby="color-choice-1-label">
+                                    <input type="radio" name="color-choice" value="{{ $color->id }}" class="sr-only" aria-labelledby="color-choice-1-label">
                                     <span id="color-choice-1-label" class="sr-only"> Gray </span>
-                                    <span aria-hidden="true" class="h-8 w-8 bg-gray-200 rounded-full border border-black border-opacity-10"></span>
+                                    <span aria-hidden="true" class="h-8 w-8 bg-[{{ $color->name }}] rounded-full border border-black border-opacity-10"></span>
                                 </label>
-                                <!--
-                  Active and Checked: "ring ring-offset-1"
-                  Not Active and Checked: "ring-2"
-                -->
-                                <label class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none ring-gray-900">
-                                    <input type="radio" name="color-choice" value="Black" class="sr-only" aria-labelledby="color-choice-2-label">
-                                    <span id="color-choice-2-label" class="sr-only"> Black </span>
-                                    <span aria-hidden="true" class="h-8 w-8 bg-gray-900 rounded-full border border-black border-opacity-10"></span>
-                                </label>
+                                @endif
+                                @endforeach
                             </div>
                         </fieldset>
                     </div>
                     <!-- Sizes -->
-                    <div class="mt-10">
+                    <div id="sizes-container" class="mt-10">
                         <div class="flex items-center justify-between">
                             <h3 class="text-sm font-medium text-gray-900">Size</h3>
                             <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">Size guide</a>
@@ -147,90 +111,28 @@
                         <fieldset class="mt-4">
                             <legend class="sr-only">Choose a size</legend>
                             <div class="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
-                                <!-- Active: "ring-2 ring-indigo-500" -->
-                                <label class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-not-allowed bg-gray-50 text-gray-200">
-                                    <input type="radio" name="size-choice" value="XXS" disabled class="sr-only" aria-labelledby="size-choice-0-label">
-                                    <span id="size-choice-0-label">XXS</span>
-                                    <span aria-hidden="true" class="pointer-events-none absolute -inset-px rounded-md border-2 border-gray-200">
-                                        <svg class="absolute inset-0 h-full w-full stroke-2 text-gray-200" viewBox="0 0 100 100" preserveAspectRatio="none" stroke="currentColor">
-                                            <line x1="0" y1="100" x2="100" y2="0" vector-effect="non-scaling-stroke" />
-                                        </svg>
-                                    </span>
-                                </label>
-                                <!-- Active: "ring-2 ring-indigo-500" -->
-                                <label class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm">
-                                    <input type="radio" name="size-choice" value="XS" class="sr-only" aria-labelledby="size-choice-1-label">
-                                    <span id="size-choice-1-label">XS</span>
-                                    <!--
-                    Active: "border", Not Active: "border-2"
-                    Checked: "border-indigo-500", Not Checked: "border-transparent"
-                  -->
+                                @foreach ($product->sizes as $index => $size)
+                                @if ($index == 0)
+                                <label class="border-2 border-indigo-500 group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer text-gray-900 shadow-sm">
+                                    <input checked type="radio" name="size-choice" value="{{ $size->id }}" class="sr-only" aria-labelledby="size-choice-1-label">
+                                    <span id="size-choice-1-label">{{ $size->name }}</span>
                                     <span class="pointer-events-none absolute -inset-px rounded-md" aria-hidden="true"></span>
                                 </label>
-                                <!-- Active: "ring-2 ring-indigo-500" -->
-                                <label class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm">
-                                    <input type="radio" name="size-choice" value="S" class="sr-only" aria-labelledby="size-choice-2-label">
-                                    <span id="size-choice-2-label">S</span>
-                                    <!--
-                    Active: "border", Not Active: "border-2"
-                    Checked: "border-indigo-500", Not Checked: "border-transparent"
-                  -->
+                                @else
+                                <label class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm group-active:border-2">
+                                    <input type="radio" name="size-choice" value="{{ $size->id }}" class="sr-only" aria-labelledby="size-choice-1-label">
+                                    <span id="size-choice-1-label">{{ $size->name }}</span>
                                     <span class="pointer-events-none absolute -inset-px rounded-md" aria-hidden="true"></span>
                                 </label>
-                                <!-- Active: "ring-2 ring-indigo-500" -->
-                                <label class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm">
-                                    <input type="radio" name="size-choice" value="M" class="sr-only" aria-labelledby="size-choice-3-label">
-                                    <span id="size-choice-3-label">M</span>
-                                    <!--
-                    Active: "border", Not Active: "border-2"
-                    Checked: "border-indigo-500", Not Checked: "border-transparent"
-                  -->
-                                    <span class="pointer-events-none absolute -inset-px rounded-md" aria-hidden="true"></span>
-                                </label>
-                                <!-- Active: "ring-2 ring-indigo-500" -->
-                                <label class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm">
-                                    <input type="radio" name="size-choice" value="L" class="sr-only" aria-labelledby="size-choice-4-label">
-                                    <span id="size-choice-4-label">L</span>
-                                    <!--
-                    Active: "border", Not Active: "border-2"
-                    Checked: "border-indigo-500", Not Checked: "border-transparent"
-                  -->
-                                    <span class="pointer-events-none absolute -inset-px rounded-md" aria-hidden="true"></span>
-                                </label>
-                                <!-- Active: "ring-2 ring-indigo-500" -->
-                                <label class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm">
-                                    <input type="radio" name="size-choice" value="XL" class="sr-only" aria-labelledby="size-choice-5-label">
-                                    <span id="size-choice-5-label">XL</span>
-                                    <!--
-                    Active: "border", Not Active: "border-2"
-                    Checked: "border-indigo-500", Not Checked: "border-transparent"
-                  -->
-                                    <span class="pointer-events-none absolute -inset-px rounded-md" aria-hidden="true"></span>
-                                </label>
-                                <!-- Active: "ring-2 ring-indigo-500" -->
-                                <label class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm">
-                                    <input type="radio" name="size-choice" value="2XL" class="sr-only" aria-labelledby="size-choice-6-label">
-                                    <span id="size-choice-6-label">2XL</span>
-                                    <!--
-                    Active: "border", Not Active: "border-2"
-                    Checked: "border-indigo-500", Not Checked: "border-transparent"
-                  -->
-                                    <span class="pointer-events-none absolute -inset-px rounded-md" aria-hidden="true"></span>
-                                </label>
-                                <!-- Active: "ring-2 ring-indigo-500" -->
-                                <label class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm">
-                                    <input type="radio" name="size-choice" value="3XL" class="sr-only" aria-labelledby="size-choice-7-label">
-                                    <span id="size-choice-7-label">3XL</span>
-                                    <!--
-                    Active: "border", Not Active: "border-2"
-                    Checked: "border-indigo-500", Not Checked: "border-transparent"
-                  -->
-                                    <span class="pointer-events-none absolute -inset-px rounded-md" aria-hidden="true"></span>
-                                </label>
+                                @endif
+                                @endforeach
                             </div>
                         </fieldset>
                     </div>
-                    <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Add to bag</button>
+                    <button id="add-to-cart-btn" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Add to cart
+                        <svg class="h-6 w-6 ml-2 flex-shrink-0 text-white group-hover:text-gray-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"></path>
+                        </svg></button>
                 </form>
             </div>
             <div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pt-6 lg:pb-16 lg:pr-8">
@@ -238,7 +140,7 @@
                 <div>
                     <h3 class="sr-only">Description</h3>
                     <div class="space-y-6">
-                        <p class="text-base text-gray-900">The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: &quot;Black&quot;. Need to add an extra pop of color to your outfit? Our white tee has you covered.</p>
+                        <p class="text-base text-gray-900">{{ $product->description }}</p>
                     </div>
                 </div>
                 <div class="mt-10">
@@ -262,4 +164,52 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    const handleSizeClick = ({ target, currentTarget }) => {
+        if (target.nodeName == "LABEL") {
+            currentTarget.querySelectorAll("label").forEach(item => item.classList.remove("border-2", "border-indigo-500"));
+            target.classList.add("border-2", "border-indigo-500");
+        }
+    };
+    document.getElementById("sizes-container").addEventListener("click", handleSizeClick);
+
+    const handleColorClick = ({ target, currentTarget }) => {
+        if (target.nodeName == "LABEL") {
+            currentTarget.querySelectorAll("label").forEach(item => item.classList.remove("ring", "ring-offset-1"));
+            target.classList.add("ring", "ring-offset-1");
+        }
+    };
+    document.getElementById("colors-container").addEventListener("click", handleColorClick);
+
+    const handleAddToCartClick = async (e) => {
+        e.preventDefault();
+
+        const productId = document.querySelector("form").id;
+        const color = document.querySelector("input[name=color-choice]:checked").value;
+        const size = document.querySelector("input[name=size-choice]:checked").value;
+        const payload = {
+            action: "add",
+            product_id: productId,
+            quantity: 1,
+            color_id: color,
+            size_id: size
+        };
+
+        const req = await fetch("{{ route('cart') }}", {
+            method: "POST",
+            headers: {
+                "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                "Content-Type": "application/json",
+                "accept": "application/json"
+            },
+            body: JSON.stringify(payload)
+        });
+
+        const res = await req.json();
+    };
+    document.getElementById("add-to-cart-btn").addEventListener("click", handleAddToCartClick);
+</script>
 @endsection
