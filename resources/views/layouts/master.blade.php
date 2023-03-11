@@ -267,23 +267,23 @@
                                         <div class="flow-root">
                                             <ul role="list" class="-my-6 divide-y divide-gray-200">
                                                 @if (Auth::check() && Auth::user()->in_cart_items()->exists())
-                                                @foreach (Auth::user()->in_cart_items() as $item)
+                                                @foreach (Auth::user()->in_cart_items as $item)
                                                 <li class="flex py-6">
                                                     <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                                        <img src="https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg" alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt." class="h-full w-full object-cover object-center">
+                                                        <img src="{{ $item->product->images[0]->url }}" alt="{{ $item->product->name }}" class="h-full w-full object-cover object-center">
                                                     </div>
                                                     <div class="ml-4 flex flex-1 flex-col">
                                                         <div>
                                                             <div class="flex justify-between text-base font-medium text-gray-900">
                                                                 <h3>
-                                                                    <a href="#">{{ $item->name }}</a>
+                                                                    <a href="#">{{ $item->product->name }}</a>
                                                                 </h3>
-                                                                <p class="ml-4">Rs.{{ $item->unit_price }}</p>
+                                                                <p class="ml-4">Rs.{{ $item->product->unit_price }}</p>
                                                             </div>
-                                                            <p class="mt-1 text-sm text-gray-500">{{ $item->colors[0]->name }}</p>
+                                                            <p class="mt-1 text-sm text-gray-500">{{ $item->product->colors[0]->name }}</p>
                                                         </div>
                                                         <div class="flex flex-1 items-end justify-between text-sm">
-                                                            <p class="text-gray-500">Qty {{ $item->quantity }}</p>
+                                                            <p class="text-gray-500">Qty {{ $item->product->quantity }}</p>
                                                             <div class="flex">
                                                                 <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
                                                             </div>
@@ -304,11 +304,11 @@
                                         @auth
                                         <p>Rs.
                                             {{
-                                            Auth::user()
-                                            ->in_cart_items
-                                            ->sum(function ($item) {
-                                            return ($item->quantity * $item->product->unit_price);
-                                            });
+                                                Auth::user()
+                                                ->in_cart_items
+                                                ->sum(function ($item) {
+                                                    return ($item->quantity * $item->product->unit_price);
+                                                });
                                             }}
                                         </p>
                                         @endauth
