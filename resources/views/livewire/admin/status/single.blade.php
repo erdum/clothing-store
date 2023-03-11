@@ -1,4 +1,5 @@
 <tr x-data="{ modalIsOpen : false }">
+    <td class="">{{ $status->name }}</td>
     
     @if(getCrudConfig('Status')->delete or getCrudConfig('Status')->update)
         <td>

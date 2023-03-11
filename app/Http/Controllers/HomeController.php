@@ -11,14 +11,13 @@ class HomeController extends Controller
 {
     public function index($category = null, $sub_category = null)
     {
-        // if (!empty($name) && !empty($sub_name)) {
-        //     $sub_category = Category::find($name)->sub->find($sub_name);
+        if (!empty($category) && !empty($sub_category)) {
+            $sub = Category::where('name', $category)->first()->sub->where('name', $sub_category)->first();
 
-        //     return View::make('product.listing', [
-        //         'sub_category' => $sub_category,
-        //         'products' => Product::all(),
-        //     ]);
-        // }
+            return View::make('layouts.sub', [
+                'sub' => $sub,
+            ]);
+        }
 
         if (!empty($category)) {
             return View::make('layouts.categories', [

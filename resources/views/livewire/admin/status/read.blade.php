@@ -38,6 +38,7 @@
                 <table class="table table-hover table-striped">
                     <thead>
                         <tr>
+                            <th scope="col" style='cursor: pointer' wire:click="sort('name')"> <i class='fa @if($sortType == 'desc' and $sortColumn == 'name') fa-sort-amount-down ml-2 @elseif($sortType == 'asc' and $sortColumn == 'name') fa-sort-amount-up ml-2 @endif'></i> {{ __('Name') }} </th>
                             
                             @if(getCrudConfig('Status')->delete or getCrudConfig('Status')->update)
                                 <th scope="col">{{ __('Action') }}</th>

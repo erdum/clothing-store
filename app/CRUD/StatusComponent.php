@@ -25,7 +25,7 @@ class StatusComponent implements CRUDComponent
     // which kind of data should be showed in list page
     public function fields()
     {
-        return [];
+        return ['name'];
     }
 
     // Searchable fields, if you dont want search feature, remove it
@@ -39,14 +39,14 @@ class StatusComponent implements CRUDComponent
     // "password", "number", "email", "select", "date", "datetime", "time"
     public function inputs()
     {
-        return [];
+        return ['name' => 'text'];
     }
 
     // Validation in update and create actions
     // It uses Laravel validation system
     public function validationRules()
     {
-        return [];
+        return ['name' => 'required'];
     }
 
     // Where files will store for inputs

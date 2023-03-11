@@ -123,5 +123,6 @@
     "Order": "Order",
     "Orders": "Orders",
     "OrderStatus": "OrderStatus",
-    "OrderStatuses": "OrderStatuses"
+    "OrderStatuses": "OrderStatuses",
+    "Statuses": "Statuses"
 }
