@@ -139,7 +139,7 @@
                             <div class="hidden lg:ml-8 lg:block lg:self-stretch">
                                 <div class="flex h-full space-x-8">
                                     @foreach (App\Models\Category::all() as $category)
-                                    <div class="flex flyout-btn">
+                                    <div class="flex flyout-btn z-40">
                                         <div class="relative flex">
                                             @if (request()->is($category->name . '/*'))
                                             <button type="button" class="border-indigo-600 text-indigo-600 relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out" aria-expanded="false">{{ $category->name }}</button>
