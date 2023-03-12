@@ -21,13 +21,24 @@ class CartController extends Controller
                 'quantity' => 'required'
             ]);
 
-            Cart::create([
-                'user_id' => $request->user()->id,
-                'product_id' => $request->product_id,
-                'color_id' => $request->color_id,
-                'size_id' => $request->size_id,
-                'quantity' => $request->quantity
-            ]);
+            $item = Cart::where('user_id', $request->user()->id)
+                ->where('product_id', $request->product_id)
+                ->where('color_id', $request->color_id)
+                ->where('size_id', $request->size_id)
+                ->first();
+
+            if (empty($item)) {
+                Cart::create([
+                    'user_id' => $request->user()->id,
+                    'product_id' => $request->product_id,
+                    'color_id' => $request->color_id,
+                    'size_id' => $request->size_id,
+                    'quantity' => $request->quantity
+                ]);
+            } else {
+                $item->quantity++;
+                $item->save();
+            }
 
             return response()->json(['message' => 'success'], 200);
         }
@@ -39,10 +50,12 @@ class CartController extends Controller
             $item = Cart::find($request->product_id);
 
             if (empty($item)) {
-                return response()->json(['message' => 'missing parameter product_id required for removing item.'], 400);
+                return response()->json(['message' => 'the requested item for delete not found.'], 400);
             }
 
             $item->delete();
+
+            return response()->json(['message' => 'success'], 200);
         }
     }
 }
