@@ -229,7 +229,12 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
                                         </svg>
                                         @auth
-                                        <span class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">{{ Auth::user()->in_cart_items()->count() }}</span>
+                                        <span class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">{{ Auth::user()
+                                                ->in_cart_items
+                                                ->sum(function($item) {
+                                                    return $item->quantity;
+                                                });
+                                        }}</span>
                                         @endauth
                                         @guest
                                         <span class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
@@ -283,7 +288,7 @@
                                                             <p class="mt-1 text-sm text-gray-500">{{ $item->product->colors[0]->name }}</p>
                                                         </div>
                                                         <div class="flex flex-1 items-end justify-between text-sm">
-                                                            <p class="text-gray-500">Qty {{ $item->product->quantity }}</p>
+                                                            <p class="text-gray-500">Qty {{ $item->quantity }}</p>
                                                             <div class="flex">
                                                                 <button id="{{ $item->id }}" type="button" class="font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
                                                             </div>
@@ -382,6 +387,23 @@
 
         const removeItemFromCart = async (itemId) => {
             console.log(itemId, "implement removeItemFromCart");
+
+            const payload = {
+                action: "remove",
+                product_id: itemId
+            };
+
+            const req = await fetch("{{ route('cart') }}", {
+                method: "POST",
+                headers: {
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                    "Content-Type": "application/json",
+                    "accept": "application/json"
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const res = await req.json();
         };
 
         document.getElementById("mobile-menu-btn").addEventListener("click", openMobileMenu);
