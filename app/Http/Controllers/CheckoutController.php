@@ -12,18 +12,22 @@ class CheckoutController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
-        $sub_total = $user->in_cart_items->sum(function ($item) {
-            return ($item->quantity * $item->product->unit_price);
+        $cart = Auth::user()->in_cart_items;
+
+        $sub_total = $cart->sum(function($item) {
+            return $item->quantity * $item->product->unit_price;
         });
+
         $delivery_charges = env('DELIVERY_CHARGES');
-        $total = $sub_total + $delivery_charges;
+        $taxes = env('TAX_CHARGES');
+        $total = $sub_total + $delivery_charges + $taxes;
 
         return View::make('checkout.index', [
-            'user' => $user,
-            'sub_total' => $sub_total,
+            'cart' => $cart,
             'delivery_charges' => $delivery_charges,
-            'total' => $total,
+            'taxes' => $taxes,
+            'sub_total' => $sub_total,
+            'total' => $total
         ]);
     }
 
