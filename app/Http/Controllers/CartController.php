@@ -66,7 +66,16 @@ class CartController extends Controller
                 'quantity' => 'required'
             ]);
 
-            dd($request->all());
+            $item = Cart::find($request->id);
+
+            if (empty($item)) {
+                return response()->json(['message' => 'the requested item for update not found.'], 400);
+            }
+
+            $item->quantity = $request->quantity;
+            $item->save();
+            
+            return response()->json(['message' => 'success'], 200);
         }
     }
 }
