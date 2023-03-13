@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('sub_total');
             $table->integer('total');
             $table->integer('discount');
+            $table->string('discount_text');
             $table->integer('tax');
             $table->integer('delivery_charges');
             $table->string('payment_method', 30);
