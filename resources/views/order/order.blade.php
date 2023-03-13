@@ -1,3 +1,8 @@
+@extends('layouts.master')
+
+@section('title', Order #124234234)
+
+@section('content')
 <!-- This example requires Tailwind CSS v2.0+ -->
 <div class="bg-white">
   <div class="max-w-3xl mx-auto px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
@@ -114,3 +119,4 @@
     </div>
   </div>
 </div>
+@endsection
