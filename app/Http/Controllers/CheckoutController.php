@@ -27,7 +27,9 @@ class CheckoutController extends Controller
 
         $delivery_charges = env('DELIVERY_CHARGES');
         $taxes = env('TAX_CHARGES');
-        $total = $sub_total + $delivery_charges + $taxes;
+        $discount = env('DISCOUNT_PERCENTAGE');
+        $discount_text = env('DISCOUNT_TEXT');
+        $total = ($sub_total - (($discount / 100) * $sub_total)) + $delivery_charges + $taxes;
 
         return View::make('checkout.index', [
             'user' => Auth::user(),
@@ -35,6 +37,8 @@ class CheckoutController extends Controller
             'countries_of_opreations' => $countries_of_opreations,
             'delivery_charges' => $delivery_charges,
             'taxes' => $taxes,
+            'discount' => $discount,
+            'discount_text' => $discount_text,
             'sub_total' => $sub_total,
             'total' => $total
         ]);
@@ -64,7 +68,9 @@ class CheckoutController extends Controller
         });
         $delivery_charges = env('DELIVERY_CHARGES');
         $taxes = env('TAX_CHARGES');
-        $total = $sub_total + $delivery_charges + $taxes;
+        $discount = env('DISCOUNT_PERCENTAGE');
+        $discount_text = env('DISCOUNT_TEXT');
+        $total = ($sub_total - (($discount / 100) * $sub_total)) + $delivery_charges + $taxes;
 
         $user
         ->shipping_address()
@@ -87,7 +93,8 @@ class CheckoutController extends Controller
             'shipping_address_id' => $user->shipping_address->id,
             'sub_total' => $sub_total,
             'total' => $total,
-            'discount' => 0,
+            'discount' => $discount,
+            'discount_text' => $discount_text,
             'tax' => $taxes,
             'delivery_charges' => $delivery_charges,
             'payment_method' => $request->payment_method,
