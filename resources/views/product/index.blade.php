@@ -168,24 +168,34 @@
 
 @section('scripts')
 <script>
-    const handleSizeClick = ({ target, currentTarget }) => {
-        if (target.nodeName == "LABEL") {
-            currentTarget.querySelectorAll("label").forEach(item => item.classList.remove("border-2", "border-indigo-500"));
-            target.classList.add("border-2", "border-indigo-500");
-        }
+    const handleSizeClick = (event) => {
+        const path = event.composedPath();
+
+        path.map((item) => {
+
+            if (item.nodeName === "LABEL") {
+                event.currentTarget.querySelectorAll("label").forEach(item => item.classList.remove("border-2", "border-indigo-500"));
+                item.classList.add("border-2", "border-indigo-500");
+            }
+        });
     };
     document.getElementById("sizes-container").addEventListener("click", handleSizeClick);
 
-    const handleColorClick = ({ target, currentTarget }) => {
-        if (target.nodeName == "LABEL") {
-            currentTarget.querySelectorAll("label").forEach(item => item.classList.remove("ring", "ring-offset-1"));
-            target.classList.add("ring", "ring-offset-1");
-        }
+    const handleColorClick = (event) => {
+        const path = event.composedPath();
+
+        path.map((item) => {
+
+            if (item.nodeName === "LABEL") {
+                event.currentTarget.querySelectorAll("label").forEach(item => item.classList.remove("ring", "ring-offset-1"));
+                item.classList.add("ring", "ring-offset-1");
+            }
+        });
     };
     document.getElementById("colors-container").addEventListener("click", handleColorClick);
 
-    const handleAddToCartClick = async (e) => {
-        e.preventDefault();
+    const handleAddToCartClick = async (event) => {
+        event.preventDefault();
 
         const productId = document.querySelector("form").id;
         const color = document.querySelector("input[name=color-choice]:checked").value;
