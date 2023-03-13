@@ -6,27 +6,22 @@
 <div class="bg-gray-50">
     <div class="max-w-2xl mx-auto pt-16 pb-24 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 class="sr-only">Checkout</h2>
-        <form class="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
+        <form action="{{ route('post_checkout') }}" method="POST" class="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
+            @csrf
             <div>
                 <div>
                     <h2 class="text-lg font-medium text-gray-900">Shipping information</h2>
                     <div class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
-                        <div>
-                            <label for="first-name" class="block text-sm font-medium text-gray-700">First name</label>
+                        <div class="sm:col-span-2">
+                            <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
                             <div class="mt-1">
-                                <input type="text" id="first-name" name="first-name" autocomplete="given-name" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                            </div>
-                        </div>
-                        <div>
-                            <label for="last-name" class="block text-sm font-medium text-gray-700">Last name</label>
-                            <div class="mt-1">
-                                <input type="text" id="last-name" name="last-name" autocomplete="family-name" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <input maxlength="30" required value="{{ $user->name ?? '' }}" type="text" id="name" name="name" autocomplete="given-name" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
                         </div>
                         <div class="sm:col-span-2">
                             <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
                             <div class="mt-1">
-                                <input type="text" name="address" id="address" autocomplete="street-address" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <input required value="{{ $user->shipping_address->address ?? '' }}" type="text" name="address" id="address" autocomplete="street-address" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
                         </div>
                         <div class="sm:col-span-2">
@@ -38,47 +33,39 @@
                         <div>
                             <label for="city" class="block text-sm font-medium text-gray-700">City</label>
                             <div class="mt-1">
-                                <input type="text" name="city" id="city" autocomplete="address-level2" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <input maxlength="30" required value="{{ $user->shipping_address->city ?? '' }}" type="text" name="city" id="city" autocomplete="address-level2" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
                         </div>
                         <div>
                             <label for="country" class="block text-sm font-medium text-gray-700">Country</label>
                             <div class="mt-1">
                                 <select id="country" name="country" autocomplete="country-name" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                    <option>Pakistan</option>
-                                    <option>UAE</option>
-                                    <option>Libya</option>
-                                    <option>Syria</option>
-                                    <option>Iraq</option>
-                                    <option>Yemen</option>
-                                    <option>Palestine</option>
-                                    <option>Lebanon</option>
-                                    <option>Egypt</option>
-                                    <option>Saudi Arabia</option>
-                                    <option>Kuwait</option>
-                                    <option>Oman</option>
-                                    <option>Qatar</option>
-                                    <option>Bahrain</option>
-                                    <option>Morocco</option>
+                                    @foreach ($countries_of_opreations as $country)
+                                    @if ($user->shipping_address?->country == $country)
+                                    <option selected value="{{ $country }}" >{{ $country }}</option>
+                                    @else
+                                    <option value="{{ $country }}" >{{ $country }}</option>
+                                    @endif
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
                         <div>
-                            <label for="region" class="block text-sm font-medium text-gray-700">State / Province</label>
+                            <label for="state" class="block text-sm font-medium text-gray-700">State / Province</label>
                             <div class="mt-1">
-                                <input type="text" name="region" id="region" autocomplete="address-level1" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <input maxlength="30" value="{{ $user->shipping_address->state ?? '' }}" type="text" name="state" id="state" autocomplete="address-level1" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
                         </div>
                         <div>
-                            <label for="postal-code" class="block text-sm font-medium text-gray-700">Postal code</label>
+                            <label for="postal_code" class="block text-sm font-medium text-gray-700">Postal code</label>
                             <div class="mt-1">
-                                <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <input maxlength="10" required value="{{ $user->shipping_address->postal_code ?? '' }}" type="text" name="postal_code" id="postal_code" autocomplete="postal-code" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
                         </div>
                         <div class="sm:col-span-2">
-                            <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
+                            <label for="phone_number" class="block text-sm font-medium text-gray-700">Phone</label>
                             <div class="mt-1">
-                                <input type="text" name="phone" id="phone" autocomplete="tel" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <input maxlength="20" required value="{{ $user->shipping_address->phone_number ?? '' }}" type="text" name="phone_number" id="phone_number" autocomplete="tel" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
                         </div>
                     </div>
@@ -87,15 +74,11 @@
                     <fieldset>
                         <legend class="text-lg font-medium text-gray-900">Delivery method</legend>
                         <div class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
-                            <!--
-                Checked: "border-transparent", Not Checked: "border-gray-300"
-                Active: "ring-2 ring-indigo-500"
-              -->
                             <label class="relative bg-white border rounded-lg shadow-sm p-4 flex cursor-pointer focus:outline-none">
-                                <input type="radio" name="delivery-method" value="Standard" class="sr-only" aria-labelledby="delivery-method-0-label" aria-describedby="delivery-method-0-description-0 delivery-method-0-description-1">
+                                <input checked type="radio" name="shipping_method" value="Standard" class="sr-only" aria-labelledby="delivery_method_0_label" aria-describedby="delivery-method-0-description-0 delivery-method-0-description-1">
                                 <div class="flex-1 flex">
                                     <div class="flex flex-col">
-                                        <span id="delivery-method-0-label" class="block text-sm font-medium text-gray-900"> Standard </span>
+                                        <span id="delivery_method_0_label" class="block text-sm font-medium text-gray-900"> Standard </span>
                                         <span id="delivery-method-0-description-0" class="mt-1 flex items-center text-sm text-gray-500"> 1-4 business days </span>
                                         <span id="delivery-method-0-description-1" class="mt-6 text-sm font-medium text-gray-900"> Rs.{{ $delivery_charges }} </span>
                                     </div>
@@ -131,7 +114,7 @@
                   Checked: "border-indigo-500", Not Checked: "border-transparent"
                 -->
                                 <!-- <div class="absolute -inset-px rounded-lg border-2 pointer-events-none" aria-hidden="true"></div> -->
-                            </label>
+                            <!-- </label> -->
                         </div>
                     </fieldset>
                 </div>
@@ -141,39 +124,39 @@
                     <fieldset class="mt-4">
                         <legend class="sr-only">Payment type</legend>
                         <div class="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
-                            <div class="flex items-center">
-                                <input id="credit-card" name="payment-type" type="radio" checked class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                            <div class="flex items-center cursor-pointer">
+                                <input selected value="Credit Card" id="credit-card" name="payment_method" type="radio" checked class="focus:ring-indigo-500 cursor-pointer h-4 w-4 text-indigo-600 border-gray-300">
                                 <label for="credit-card" class="ml-3 block text-sm font-medium text-gray-700"> Credit card </label>
                             </div>
                             <div class="flex items-center">
-                                <input id="etransfer" name="payment-type" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                                <input value="Bank Transfer" id="etransfer" name="payment_method" type="radio" class="focus:ring-indigo-500 cursor-pointer h-4 w-4 text-indigo-600 border-gray-300">
                                 <label for="etransfer" class="ml-3 block text-sm font-medium text-gray-700"> Bank Transfer </label>
                             </div>
                         </div>
                     </fieldset>
                     <div class="mt-6 grid grid-cols-4 gap-y-6 gap-x-4">
                         <div class="col-span-4">
-                            <label for="card-number" class="block text-sm font-medium text-gray-700">Card number</label>
+                            <label for="card_number" class="block text-sm font-medium text-gray-700">Card number</label>
                             <div class="mt-1">
-                                <input type="text" id="card-number" name="card-number" autocomplete="cc-number" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <input value="{{ $user->shipping_address->card_number ?? '' }}" type="text" id="card_number" name="card_number" autocomplete="cc-number" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
                         </div>
                         <div class="col-span-4">
-                            <label for="name-on-card" class="block text-sm font-medium text-gray-700">Name on card</label>
+                            <label for="name_on_card" class="block text-sm font-medium text-gray-700">Name on card</label>
                             <div class="mt-1">
-                                <input type="text" id="name-on-card" name="name-on-card" autocomplete="cc-name" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <input value="{{ $user->shipping_address->name_on_card ?? '' }}" type="text" id="name_on_card" name="name_on_card" autocomplete="cc-name" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
                         </div>
                         <div class="col-span-3">
-                            <label for="expiration-date" class="block text-sm font-medium text-gray-700">Expiration date (MM/YY)</label>
+                            <label for="card_expiry" class="block text-sm font-medium text-gray-700">Expiration date (MM/YY)</label>
                             <div class="mt-1">
-                                <input type="text" name="expiration-date" id="expiration-date" autocomplete="cc-exp" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <input value="{{ $user->shipping_address->card_expiry ?? '' }}" type="text" name="card_expiry" id="card_expiry" autocomplete="cc-exp" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
                         </div>
                         <div>
                             <label for="cvc" class="block text-sm font-medium text-gray-700">CVC</label>
                             <div class="mt-1">
-                                <input type="text" name="cvc" id="cvc" autocomplete="csc" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <input value="{{ $user->shipping_address->cvc ?? '' }}" type="text" name="cvc" id="cvc" autocomplete="csc" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
                         </div>
                     </div>
@@ -196,8 +179,8 @@
                                         <h4 class="text-sm">
                                             <a href="{{ route('product', ['id' => $item->product->id]) }}" class="font-medium text-gray-700 hover:text-gray-800">{{ $item->product->name }}</a>
                                         </h4>
-                                        <p class="mt-1 text-sm text-gray-500">{{ $item->color }}</p>
-                                        <p class="mt-1 text-sm text-gray-500">{{ $item->size }}</p>
+                                        <p class="mt-1 text-sm text-gray-500">{{ $item->color->name }}</p>
+                                        <p class="mt-1 text-sm text-gray-500">{{ $item->size->name }}</p>
                                     </div>
                                     <div class="ml-4 flex-shrink-0 flow-root">
                                         <a data-item-id="{{ $item->id }}" title="Remove item from cart" class="cursor-pointer -m-2.5 bg-white p-2.5 flex items-center justify-center text-gray-400 hover:text-gray-500">
