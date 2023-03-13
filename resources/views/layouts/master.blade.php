@@ -8,7 +8,7 @@
     <!-- FavIcon Link -->
     <link rel="shortcut icon" href="{{ asset('assets/site/images/favicon/favicon-32x32.png') }}" type="image/x-icon">
     <title>@yield('title', 'Clothing Store') | Apparel UBInn365</title>
-    <script src="https://cdn.tailwindcss.com?plugins=aspect-ratio"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=aspect-ratio,forms"></script>
     <style type="text/css">
     .flyout-btn:hover .flyout {
         display: block;
@@ -390,7 +390,7 @@
 
             const payload = {
                 action: "remove",
-                product_id: itemId
+                id: itemId
             };
 
             const req = await fetch("{{ route('cart') }}", {

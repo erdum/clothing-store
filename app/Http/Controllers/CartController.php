@@ -28,6 +28,7 @@ class CartController extends Controller
                 ->first();
 
             if (empty($item)) {
+                
                 Cart::create([
                     'user_id' => $request->user()->id,
                     'product_id' => $request->product_id,
@@ -45,9 +46,9 @@ class CartController extends Controller
 
         if ($request->action == 'remove') {
 
-            $request->validate(['product_id' => 'required']);
+            $request->validate(['id' => 'required']);
             
-            $item = Cart::find($request->product_id);
+            $item = Cart::find($request->id);
 
             if (empty($item)) {
                 return response()->json(['message' => 'the requested item for delete not found.'], 400);
@@ -56,6 +57,16 @@ class CartController extends Controller
             $item->delete();
 
             return response()->json(['message' => 'success'], 200);
+        }
+
+        if ($request->action == 'update') {
+
+            $request->validate([
+                'id' => 'required',
+                'quantity' => 'required'
+            ]);
+
+            dd($request->all());
         }
     }
 }
