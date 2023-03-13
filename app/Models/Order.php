@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\User;
-use App\Models\OrderStatus;
+use App\Models\Status;
 use App\Models\ShippingAddress;
 use App\Models\Item;
 
@@ -21,6 +21,7 @@ class Order extends Model
         'sub_total',
         'total',
         'discount',
+        'discount_text',
         'tax',
         'delivery_charges',
         'payment_method',
@@ -37,7 +38,7 @@ class Order extends Model
 
     public function status()
     {
-        return $this->belongsTo(OrderStatus::class);
+        return $this->belongsTo(Status::class);
     }
 
     public function shipping_address()

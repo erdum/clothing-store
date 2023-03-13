@@ -7,18 +7,14 @@ use Illuminate\Support\Facades\View;
 
 class OrderController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, $id = null)
     {
         $user = $request->user();
 
-        if ($request->id) {
-            $order = $user->orders->find($request->id);
-
-            return View::make('order.order', ['order' => $order]);
+        if (!empty($id)) {
+            return View::make('order.order', ['order' => $user->orders->find($request->id)]);
         }
 
-        $orders = $user->orders;
-
-        return View::make('order.index', ['orders' => $orders]);
+        return View::make('order.index', ['orders' => $user->orders]);
     }
 }
