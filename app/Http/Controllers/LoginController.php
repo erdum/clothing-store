@@ -14,11 +14,19 @@ class LoginController extends Controller
 {
     public function index()
     {
+        if (Auth::check()) {
+            return redirect()->route('home');
+        }
+
         return View::make('login');
     }
 
     public function signup()
     {
+        if (Auth::check()) {
+            return redirect()->route('home');
+        }
+        
         return View::make('signup');
     }
 
