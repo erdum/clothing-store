@@ -19,6 +19,10 @@ class ShippingAddress extends Model
         'address',
         'postal_code',
         'phone_number',
+        'card_number',
+        'name_on_card',
+        'card_expiry',
+        'cvc'
     ];
 
     public function user()
