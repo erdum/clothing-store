@@ -386,8 +386,6 @@
         };
 
         const removeItemFromCart = async (itemId) => {
-            console.log(itemId, "implement removeItemFromCart");
-
             const payload = {
                 action: "remove",
                 id: itemId
@@ -403,7 +401,9 @@
                 body: JSON.stringify(payload)
             });
 
-            const res = await req.json();
+            if (req.status === 200) {
+                location.reload();
+            }
         };
 
         document.getElementById("mobile-menu-btn").addEventListener("click", openMobileMenu);
@@ -417,7 +417,7 @@
         document.getElementById("mobile-sidebar-tabs").addEventListener("click", handleTabClick);
         
         document.getElementById("cart-wrapper").addEventListener("click", ({ target }) => {
-            if (target.nodeName == "BUTTON") removeItemFromCart(target.id);
+            if (target.nodeName === "BUTTON") removeItemFromCart(target.id);
         });
 
         </script>
