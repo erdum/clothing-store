@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\OrderStatus;
 use App\Models\ShippingAddress;
-use App\Models\OrderItem;
+use App\Models\Item;
 
 class Order extends Model
 {
@@ -16,7 +16,7 @@ class Order extends Model
 
     protected $fillable = [
         'user_id',
-        'order_status_id',
+        'status_id',
         'shipping_address_id',
         'sub_total',
         'total',
@@ -47,6 +47,6 @@ class Order extends Model
 
     public function items()
     {
-        return $this->hasMany(OrderItem::class)->product();
+        return $this->hasMany(Item::class);
     }
 }

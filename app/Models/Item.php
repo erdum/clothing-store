@@ -12,6 +12,14 @@ class Item extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'order_id',
+        'product_id',
+        'color_id',
+        'size_id',
+        'quantity'
+    ];
+
     public function order()
     {
         return $this->belongsTo(Order::class);
@@ -22,4 +30,13 @@ class Item extends Model
         return $this->belongsTo(Product::class);
     }
 
+    public function color()
+    {
+        return $this->belongsTo(Color::class);
+    }
+
+    public function size()
+    {
+        return $this->belongsTo(Size::class);
+    }
 }
