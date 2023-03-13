@@ -208,7 +208,9 @@
             body: JSON.stringify(payload)
         });
 
-        const res = await req.json();
+        if (req.status === 200) {
+            location.reload();
+        }
     };
     document.getElementById("add-to-cart-btn").addEventListener("click", handleAddToCartClick);
 </script>
