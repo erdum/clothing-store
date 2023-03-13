@@ -9,15 +9,6 @@
         <form class="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
             <div>
                 <div>
-                    <h2 class="text-lg font-medium text-gray-900">Contact information</h2>
-                    <div class="mt-4">
-                        <label for="email-address" class="block text-sm font-medium text-gray-700">Email address</label>
-                        <div class="mt-1">
-                            <input type="email" id="email-address" name="email-address" autocomplete="email" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-10 border-t border-gray-200 pt-10">
                     <h2 class="text-lg font-medium text-gray-900">Shipping information</h2>
                     <div class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
                         <div>
@@ -30,12 +21,6 @@
                             <label for="last-name" class="block text-sm font-medium text-gray-700">Last name</label>
                             <div class="mt-1">
                                 <input type="text" id="last-name" name="last-name" autocomplete="family-name" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                            </div>
-                        </div>
-                        <div class="sm:col-span-2">
-                            <label for="company" class="block text-sm font-medium text-gray-700">Company</label>
-                            <div class="mt-1">
-                                <input type="text" name="company" id="company" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
                         </div>
                         <div class="sm:col-span-2">
@@ -60,9 +45,21 @@
                             <label for="country" class="block text-sm font-medium text-gray-700">Country</label>
                             <div class="mt-1">
                                 <select id="country" name="country" autocomplete="country-name" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                    <option>United States</option>
-                                    <option>Canada</option>
-                                    <option>Mexico</option>
+                                    <option>Pakistan</option>
+                                    <option>UAE</option>
+                                    <option>Libya</option>
+                                    <option>Syria</option>
+                                    <option>Iraq</option>
+                                    <option>Yemen</option>
+                                    <option>Palestine</option>
+                                    <option>Lebanon</option>
+                                    <option>Egypt</option>
+                                    <option>Saudi Arabia</option>
+                                    <option>Kuwait</option>
+                                    <option>Oman</option>
+                                    <option>Qatar</option>
+                                    <option>Bahrain</option>
+                                    <option>Morocco</option>
                                 </select>
                             </div>
                         </div>
@@ -99,29 +96,20 @@
                                 <div class="flex-1 flex">
                                     <div class="flex flex-col">
                                         <span id="delivery-method-0-label" class="block text-sm font-medium text-gray-900"> Standard </span>
-                                        <span id="delivery-method-0-description-0" class="mt-1 flex items-center text-sm text-gray-500"> 4–10 business days </span>
-                                        <span id="delivery-method-0-description-1" class="mt-6 text-sm font-medium text-gray-900"> $5.00 </span>
+                                        <span id="delivery-method-0-description-0" class="mt-1 flex items-center text-sm text-gray-500"> 1-4 business days </span>
+                                        <span id="delivery-method-0-description-1" class="mt-6 text-sm font-medium text-gray-900"> Rs.{{ $delivery_charges }} </span>
                                     </div>
                                 </div>
-                                <!--
-                  Not Checked: "hidden"
-
-                  Heroicon name: solid/check-circle
-                -->
                                 <svg class="h-5 w-5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                                 </svg>
-                                <!--
-                  Active: "border", Not Active: "border-2"
-                  Checked: "border-indigo-500", Not Checked: "border-transparent"
-                -->
                                 <div class="absolute -inset-px rounded-lg border-2 pointer-events-none" aria-hidden="true"></div>
                             </label>
                             <!--
                 Checked: "border-transparent", Not Checked: "border-gray-300"
                 Active: "ring-2 ring-indigo-500"
               -->
-                            <label class="relative bg-white border rounded-lg shadow-sm p-4 flex cursor-pointer focus:outline-none">
+                            <!-- <label class="relative bg-white border rounded-lg shadow-sm p-4 flex cursor-pointer focus:outline-none">
                                 <input type="radio" name="delivery-method" value="Express" class="sr-only" aria-labelledby="delivery-method-1-label" aria-describedby="delivery-method-1-description-0 delivery-method-1-description-1">
                                 <div class="flex-1 flex">
                                     <div class="flex flex-col">
@@ -129,20 +117,20 @@
                                         <span id="delivery-method-1-description-0" class="mt-1 flex items-center text-sm text-gray-500"> 2–5 business days </span>
                                         <span id="delivery-method-1-description-1" class="mt-6 text-sm font-medium text-gray-900"> $16.00 </span>
                                     </div>
-                                </div>
+                                </div> -->
                                 <!--
                   Not Checked: "hidden"
 
                   Heroicon name: solid/check-circle
                 -->
-                                <svg class="h-5 w-5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <!-- <svg class="h-5 w-5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                </svg>
+                                </svg> -->
                                 <!--
                   Active: "border", Not Active: "border-2"
                   Checked: "border-indigo-500", Not Checked: "border-transparent"
                 -->
-                                <div class="absolute -inset-px rounded-lg border-2 pointer-events-none" aria-hidden="true"></div>
+                                <!-- <div class="absolute -inset-px rounded-lg border-2 pointer-events-none" aria-hidden="true"></div> -->
                             </label>
                         </div>
                     </fieldset>
@@ -158,12 +146,8 @@
                                 <label for="credit-card" class="ml-3 block text-sm font-medium text-gray-700"> Credit card </label>
                             </div>
                             <div class="flex items-center">
-                                <input id="paypal" name="payment-type" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
-                                <label for="paypal" class="ml-3 block text-sm font-medium text-gray-700"> PayPal </label>
-                            </div>
-                            <div class="flex items-center">
                                 <input id="etransfer" name="payment-type" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
-                                <label for="etransfer" class="ml-3 block text-sm font-medium text-gray-700"> eTransfer </label>
+                                <label for="etransfer" class="ml-3 block text-sm font-medium text-gray-700"> Bank Transfer </label>
                             </div>
                         </div>
                     </fieldset>
@@ -200,7 +184,7 @@
                 <h2 class="text-lg font-medium text-gray-900">Order summary</h2>
                 <div class="mt-4 bg-white border border-gray-200 rounded-lg shadow-sm">
                     <h3 class="sr-only">Items in your cart</h3>
-                    <ul role="list" class="divide-y divide-gray-200">
+                    <ul id="item-wrapper" role="list" class="divide-y divide-gray-200">
                         @foreach ($cart as $item)
                         <li class="flex py-6 px-4 sm:px-6">
                             <div class="flex-shrink-0">
@@ -216,7 +200,7 @@
                                         <p class="mt-1 text-sm text-gray-500">{{ $item->size }}</p>
                                     </div>
                                     <div class="ml-4 flex-shrink-0 flow-root">
-                                        <a class="-m-2.5 bg-white p-2.5 flex items-center justify-center text-gray-400 hover:text-gray-500">
+                                        <a data-item-id="{{ $item->id }}" title="Remove item from cart" class="cursor-pointer -m-2.5 bg-white p-2.5 flex items-center justify-center text-gray-400 hover:text-gray-500">
                                             <span class="sr-only">Remove</span>
                                             <!-- Heroicon name: solid/trash -->
                                             <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -229,16 +213,14 @@
                                     <p class="mt-1 text-sm font-medium text-gray-900">Rs.{{ $item->quantity * $item->product->unit_price }}</p>
                                     <div class="ml-4">
                                         <label for="quantity" class="sr-only">Quantity</label>
-                                        <select id="quantity" name="quantity" class="rounded-md border border-gray-300 text-base font-medium text-gray-700 text-left shadow-sm focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                            <option value="1">1</option>
-                                            <option selected value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
+                                        <select onchange="handleQuantityChange(event)" data-item-id="{{ $item->id }}" name="quantity" title="Select Quantity" class="cursor-pointer rounded-md border border-gray-300 text-base font-medium text-gray-700 text-left shadow-sm focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                            @for ($i = 1; $i <= 10; $i++)
+                                            @if ($i == $item->quantity)
+                                            <option selected value="{{ $i }}">{{ $i }}</option>
+                                            @else
+                                            <option value="{{ $i }}">{{ $i }}</option>
+                                            @endif
+                                            @endfor
                                         </select>
                                     </div>
                                 </div>
@@ -250,27 +232,65 @@
                     <dl class="border-t border-gray-200 py-6 px-4 space-y-6 sm:px-6">
                         <div class="flex items-center justify-between">
                             <dt class="text-sm">Subtotal</dt>
-                            <dd class="text-sm font-medium text-gray-900">Rs.{{ $sub_total }}</dd>
+                            <dd id="sub-total" class="text-sm font-medium text-gray-900">Rs.{{ $sub_total }}</dd>
                         </div>
                         <div class="flex items-center justify-between">
                             <dt class="text-sm">Delivery Charges</dt>
-                            <dd class="text-sm font-medium text-gray-900">Rs.{{ $delivery_charges }}</dd>
+                            <dd id="delivery-charges" class="text-sm font-medium text-gray-900">Rs.{{ $delivery_charges }}</dd>
                         </div>
                         <div class="flex items-center justify-between">
                             <dt class="text-sm">Taxes</dt>
-                            <dd class="text-sm font-medium text-gray-900">Rs.{{ $taxes }}</dd>
+                            <dd id="taxes" class="text-sm font-medium text-gray-900">Rs.{{ $taxes }}</dd>
                         </div>
                         <div class="flex items-center justify-between border-t border-gray-200 pt-6">
                             <dt class="text-base font-medium">Total</dt>
-                            <dd class="text-base font-medium text-gray-900">Rs.{{ $total }}</dd>
+                            <dd id="total" class="text-base font-medium text-gray-900">Rs.{{ $total }}</dd>
                         </div>
                     </dl>
                     <div class="border-t border-gray-200 py-6 px-4 sm:px-6">
-                        <a href="{{ route('post_checkout') }}" class="w-full bg-indigo-600 border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500">Confirm order</a>
+                        <button type="submit" class="w-full bg-indigo-600 border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500">Confirm order</button>
                     </div>
                 </div>
             </div>
         </form>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    const handleQuantityChange = async ({ target }) => {
+        const id = target.dataset.itemId;
+        const quantity = target.value;
+
+        const payload = {
+            action: "update",
+            id,
+            quantity
+        };
+        const req = await fetch("{{ route('cart') }}", {
+            method: "POST",
+            headers: {
+                "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                "Content-Type": "application/json",
+                "accept": "application/json"
+            },
+            body: JSON.stringify(payload)
+        });
+
+        if (req.status === 200) {
+            location.reload();
+        }
+    };
+
+    document.getElementById("item-wrapper").addEventListener("click", (e) => {
+        const path = e.composedPath();
+
+        path.map((elem) => {
+            if (elem.nodeName === "A" && elem.dataset.itemId) {
+                removeItemFromCart(elem.dataset.itemId);
+            }
+        });
+    });
+</script>
 @endsection
