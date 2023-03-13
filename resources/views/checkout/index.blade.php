@@ -221,6 +221,14 @@
                             <dt class="text-sm">Delivery Charges</dt>
                             <dd id="delivery-charges" class="text-sm font-medium text-gray-900">Rs.{{ $delivery_charges }}</dd>
                         </div>
+                        @if ($discount > 0)
+                        <div class="flex items-center justify-between">
+                            <dt class="text-sm">Discount
+                                <span class="rounded-full bg-gray-200 text-xs text-gray-600 py-0.5 px-2 ml-2">{{ $discount_text }}</span>
+                            </dt>
+                            <dd id="taxes" class="text-sm font-medium text-gray-900">-Rs.{{ ($discount / 100) * $sub_total }} ({{ $discount }}%)</dd>
+                        </div>
+                        @endif
                         <div class="flex items-center justify-between">
                             <dt class="text-sm">Taxes</dt>
                             <dd id="taxes" class="text-sm font-medium text-gray-900">Rs.{{ $taxes }}</dd>
