@@ -10,6 +10,8 @@ use App\Models\User;
 use App\Models\Order;
 use App\Models\Item;
 
+use Tco\TwocheckoutFacade;
+
 class CheckoutController extends Controller
 {
     public function index()
@@ -60,7 +62,6 @@ class CheckoutController extends Controller
             'cvc' => 'max:10'
         ]);
 
-
         $user = Auth::user();
         $cart = $user->in_cart_items;
         $sub_total = $cart->sum(function($item) {
@@ -87,6 +88,15 @@ class CheckoutController extends Controller
             'cvc' => $request->cvc
         ]);
 
+        $test = new TwocheckoutFacade([
+            'sellerId'      => env('VERIFONE_MERCHANT_CODE'),
+            'secretKey'     => env('VERIFONE_SECRET_KEY'),
+            'buyLinkSecretWord'    => env('VERIFONE_SECRET_WORD'),
+            'jwtExpireTime' => 30,
+            'curlVerifySsl' => 1
+        ]);
+        dd($test);
+
         $order = Order::create([
             'user_id' => $user->id,
             'status_id' => 1,
@@ -100,7 +110,8 @@ class CheckoutController extends Controller
             'payment_method' => $request->payment_method,
             'payment_id' => "N/A",
             'shipping_method' => $request->shipping_method,
-            'shipping_eta' => "1-4 days"
+            'shipping_eta' => "1-4 days",
+            'tracking_id' => "N/A"
         ]);
 
         foreach ($user->in_cart_items as $cart_item) {

@@ -28,7 +28,10 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": [
+            "app/2checkout-php-sdk/autoloader.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
