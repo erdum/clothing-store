@@ -123,44 +123,44 @@
                     <h2 class="text-lg font-medium text-gray-900">Payment</h2>
                     <fieldset class="mt-4">
                         <legend class="sr-only">Payment type</legend>
-                        <div class="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
+                        <div id="payment-method-wrapper" class="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
                             <div class="flex items-center cursor-pointer">
                                 <input selected value="Credit Card" id="credit-card" name="payment_method" type="radio" checked class="focus:ring-indigo-500 cursor-pointer h-4 w-4 text-indigo-600 border-gray-300">
                                 <label for="credit-card" class="ml-3 block text-sm font-medium text-gray-700"> Credit card </label>
                             </div>
                             <div class="flex items-center">
-                                <input value="Bank Transfer" id="etransfer" name="payment_method" type="radio" class="focus:ring-indigo-500 cursor-pointer h-4 w-4 text-indigo-600 border-gray-300">
+                                <input value="Bank Transfer" id="bank-transfer" name="payment_method" type="radio" class="focus:ring-indigo-500 cursor-pointer h-4 w-4 text-indigo-600 border-gray-300">
                                 <label for="etransfer" class="ml-3 block text-sm font-medium text-gray-700"> Bank Transfer </label>
                             </div>
                         </div>
                     </fieldset>
-                    <div class="hidden mt-6 grid grid-cols-4 gap-y-6 gap-x-4">
+                    <div id="credit-card-wrapper" class="mt-6 grid grid-cols-4 gap-y-6 gap-x-4">
                         <div class="col-span-4">
                             <label for="card_number" class="block text-sm font-medium text-gray-700">Card number *</label>
                             <div class="mt-1">
-                                <input value="{{ $user->shipping_address->card_number ?? '' }}" type="text" id="card_number" name="card_number" autocomplete="cc-number" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <input required value="{{ $user->shipping_address->card_number ?? '' }}" type="number" id="card_number" name="card_number" autocomplete="cc-number" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
                         </div>
                         <div class="col-span-4">
                             <label for="name_on_card" class="block text-sm font-medium text-gray-700">Name on card *</label>
                             <div class="mt-1">
-                                <input value="{{ $user->shipping_address->name_on_card ?? '' }}" type="text" id="name_on_card" name="name_on_card" autocomplete="cc-name" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <input required value="{{ $user->shipping_address->name_on_card ?? '' }}" type="text" id="name_on_card" name="name_on_card" autocomplete="cc-name" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
                         </div>
                         <div class="col-span-3">
                             <label for="card_expiry" class="block text-sm font-medium text-gray-700">Expiration date (MM/YY) *</label>
                             <div class="mt-1">
-                                <input value="{{ $user->shipping_address->card_expiry ?? '' }}" type="text" name="card_expiry" id="card_expiry" autocomplete="cc-exp" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <input required value="{{ $user->shipping_address->card_expiry ?? '' }}" type="month" name="card_expiry" id="card_expiry" autocomplete="cc-exp" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
                         </div>
                         <div>
                             <label for="cvc" class="block text-sm font-medium text-gray-700">CVC *</label>
                             <div class="mt-1">
-                                <input value="{{ $user->shipping_address->cvc ?? '' }}" type="text" name="cvc" id="cvc" autocomplete="csc" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <input required value="{{ $user->shipping_address->cvc ?? '' }}" type="number" name="cvc" id="cvc" autocomplete="csc" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
                         </div>
                     </div>
-                    <div class="mt-6 grid grid-cols-4 gap-y-6 gap-x-4">
+                    <div id="bank-transfer-wrapper" class="hidden mt-6 grid grid-cols-4 gap-y-6 gap-x-4">
                         <div class="col-span-4">
                             <span class="mt-4 px-4 py-2 rounded-md text-gray-700 bg-gray-200">
                                 {{ $iban }}
@@ -294,8 +294,27 @@
         const path = e.composedPath();
 
         path.map((elem) => {
+            
             if (elem.nodeName === "A" && elem.dataset.itemId) {
                 removeItemFromCart(elem.dataset.itemId);
+            }
+        });
+    });
+
+    document.getElementById("payment-method-wrapper").addEventListener("click", (e) => {
+        const path = e.composedPath();
+
+        path.map((elem) => {
+            
+            if (elem.nodeName === "INPUT") {
+
+                if (elem.id === "bank-transfer") {
+                    document.getElementById("credit-card-wrapper").classList.add("hidden");
+                    document.getElementById("bank-transfer-wrapper").classList.remove("hidden");
+                } else {
+                    document.getElementById("credit-card-wrapper").classList.remove("hidden");
+                    document.getElementById("bank-transfer-wrapper").classList.add("hidden");
+                }
             }
         });
     });
