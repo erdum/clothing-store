@@ -27,6 +27,11 @@ class CheckoutController extends Controller
             'UAE'
         ];
 
+        $currencies = [
+            'Pakistan' => 'Rs.',
+            'UAE' => 'AED.'
+        ];
+
         $delivery_charges = env('DELIVERY_CHARGES');
         $taxes = env('TAX_CHARGES');
         $discount = env('DISCOUNT_PERCENTAGE');
@@ -88,14 +93,66 @@ class CheckoutController extends Controller
             'cvc' => $request->cvc
         ]);
 
-        $test = new TwocheckoutFacade([
+        $tco = new TwocheckoutFacade([
             'sellerId'      => env('VERIFONE_MERCHANT_CODE'),
             'secretKey'     => env('VERIFONE_SECRET_KEY'),
             'buyLinkSecretWord'    => env('VERIFONE_SECRET_WORD'),
             'jwtExpireTime' => 30,
             'curlVerifySsl' => 1
         ]);
-        dd($test);
+
+        $dynamicOrderParams = array(
+            'Country'           => 'PK',
+            'Currency'          => 'PKR',
+            'CustomerIP'        => '91.220.121.21',
+            'ExternalReference' => 'CustOrd101',
+            'Language'          => 'en',
+            'Source'            => 'tcolib.local',
+            'BillingDetails'    =>
+                array(
+                    'Address1'    => 'Street 1',
+                    'City'        => 'Karachi',
+                    'State'       => 'Sindh',
+                    'CountryCode' => 'PK',
+                    'Email'       => 'testcustomer@2Checkout.com',
+                    'FirstName'   => 'John',
+                    'LastName'    => 'Doe',
+                    'Zip'         => '75850',
+                ),
+            'Items'             =>
+                array(
+                    0 =>
+                        array(
+                            'Name'         => 'Dynamic product2',
+                            'Description'  => 'Product 2',
+                            'Quantity'     => 3, //units
+                            'IsDynamic'    => true,
+                            'Tangible'     => false,
+                            'PurchaseType' => 'PRODUCT',
+                            'Price'        =>
+                                array(
+                                    'Amount' => 6, //value
+                                    'Type'   => 'CUSTOM',
+                                ),
+                        )
+                ),
+            'PaymentDetails'    =>
+                array(
+                    'Type'          => 'TEST', //'TEST' or 'EES_TOKEN_PAYMENT'
+                    'Currency'      => 'PKR',
+                    'CustomerIP'    => '91.220.121.21',
+                    'PaymentMethod' =>
+                        array(
+                            'RecurringEnabled' => false,
+                            'HolderNameTime'   => 1,
+                            'CardNumberTime'   => 1,
+                        ),
+                ),
+        );
+
+        $order = $tco->order();
+        $response = $order->place( $dynamicOrderParams );
+        dd($response);
 
         $order = Order::create([
             'user_id' => $user->id,
