@@ -13,13 +13,13 @@
                     <h2 class="text-lg font-medium text-gray-900">Shipping information</h2>
                     <div class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
                         <div class="sm:col-span-2">
-                            <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                            <label for="name" class="block text-sm font-medium text-gray-700">Name *</label>
                             <div class="mt-1">
                                 <input maxlength="30" required value="{{ $user->name ?? '' }}" type="text" id="name" name="name" autocomplete="given-name" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
                         </div>
                         <div class="sm:col-span-2">
-                            <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
+                            <label for="address" class="block text-sm font-medium text-gray-700">Address *</label>
                             <div class="mt-1">
                                 <input required value="{{ $user->shipping_address->address ?? '' }}" type="text" name="address" id="address" autocomplete="street-address" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
@@ -31,15 +31,15 @@
                             </div>
                         </div>
                         <div>
-                            <label for="city" class="block text-sm font-medium text-gray-700">City</label>
+                            <label for="city" class="block text-sm font-medium text-gray-700">City *</label>
                             <div class="mt-1">
                                 <input maxlength="30" required value="{{ $user->shipping_address->city ?? '' }}" type="text" name="city" id="city" autocomplete="address-level2" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
                         </div>
                         <div>
-                            <label for="country" class="block text-sm font-medium text-gray-700">Country</label>
+                            <label for="country" class="block text-sm font-medium text-gray-700">Country *</label>
                             <div class="mt-1">
-                                <select id="country" name="country" autocomplete="country-name" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <select id="country" required name="country" autocomplete="country-name" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                     @foreach ($countries_of_opreations as $country)
                                     @if ($user->shipping_address?->country == $country)
                                     <option selected value="{{ $country }}" >{{ $country }}</option>
@@ -57,13 +57,13 @@
                             </div>
                         </div>
                         <div>
-                            <label for="postal_code" class="block text-sm font-medium text-gray-700">Postal code</label>
+                            <label for="postal_code" class="block text-sm font-medium text-gray-700">Postal code *</label>
                             <div class="mt-1">
                                 <input maxlength="10" required value="{{ $user->shipping_address->postal_code ?? '' }}" type="text" name="postal_code" id="postal_code" autocomplete="postal-code" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
                         </div>
                         <div class="sm:col-span-2">
-                            <label for="phone_number" class="block text-sm font-medium text-gray-700">Phone</label>
+                            <label for="phone_number" class="block text-sm font-medium text-gray-700">Phone *</label>
                             <div class="mt-1">
                                 <input maxlength="20" required value="{{ $user->shipping_address->phone_number ?? '' }}" type="text" name="phone_number" id="phone_number" autocomplete="tel" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
@@ -134,29 +134,45 @@
                             </div>
                         </div>
                     </fieldset>
-                    <div class="mt-6 grid grid-cols-4 gap-y-6 gap-x-4">
+                    <div class="hidden mt-6 grid grid-cols-4 gap-y-6 gap-x-4">
                         <div class="col-span-4">
-                            <label for="card_number" class="block text-sm font-medium text-gray-700">Card number</label>
+                            <label for="card_number" class="block text-sm font-medium text-gray-700">Card number *</label>
                             <div class="mt-1">
                                 <input value="{{ $user->shipping_address->card_number ?? '' }}" type="text" id="card_number" name="card_number" autocomplete="cc-number" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
                         </div>
                         <div class="col-span-4">
-                            <label for="name_on_card" class="block text-sm font-medium text-gray-700">Name on card</label>
+                            <label for="name_on_card" class="block text-sm font-medium text-gray-700">Name on card *</label>
                             <div class="mt-1">
                                 <input value="{{ $user->shipping_address->name_on_card ?? '' }}" type="text" id="name_on_card" name="name_on_card" autocomplete="cc-name" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
                         </div>
                         <div class="col-span-3">
-                            <label for="card_expiry" class="block text-sm font-medium text-gray-700">Expiration date (MM/YY)</label>
+                            <label for="card_expiry" class="block text-sm font-medium text-gray-700">Expiration date (MM/YY) *</label>
                             <div class="mt-1">
                                 <input value="{{ $user->shipping_address->card_expiry ?? '' }}" type="text" name="card_expiry" id="card_expiry" autocomplete="cc-exp" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
                         </div>
                         <div>
-                            <label for="cvc" class="block text-sm font-medium text-gray-700">CVC</label>
+                            <label for="cvc" class="block text-sm font-medium text-gray-700">CVC *</label>
                             <div class="mt-1">
                                 <input value="{{ $user->shipping_address->cvc ?? '' }}" type="text" name="cvc" id="cvc" autocomplete="csc" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 grid grid-cols-4 gap-y-6 gap-x-4">
+                        <div class="col-span-4">
+                            <span class="mt-4 px-4 py-2 rounded-md text-gray-700 bg-gray-200">
+                                {{ $iban }}
+                            </span>
+                            <p class="text-gray-700 mt-6">
+                                Transfer the total amount to the above IBAN number and attach the Transaction ID below and confirm the order.
+                            </p>
+                        </div>
+                        <div class="col-span-4">
+                            <label for="tid" class="block text-sm font-medium text-gray-700">Transaction ID *</label>
+                            <div class="mt-1">
+                                <input required type="text" id="tid" name="tid" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
                         </div>
                     </div>

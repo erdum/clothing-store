@@ -46,6 +46,7 @@ class CheckoutController extends Controller
             'taxes' => $taxes,
             'discount' => $discount,
             'discount_text' => $discount_text,
+            'iban' => env('IBAN'),
             'sub_total' => $sub_total,
             'total' => $total
         ]);
