@@ -80,7 +80,7 @@
                                     <div class="flex flex-col">
                                         <span id="delivery_method_0_label" class="block text-sm font-medium text-gray-900"> Standard </span>
                                         <span id="delivery-method-0-description-0" class="mt-1 flex items-center text-sm text-gray-500"> 1-4 business days </span>
-                                        <span id="delivery-method-0-description-1" class="mt-6 text-sm font-medium text-gray-900"> Rs.{{ $delivery_charges }} </span>
+                                        <span id="delivery-method-0-description-1" class="mt-6 text-sm font-medium text-gray-900"> {{ $currency ?? 'Rs.' }}{{ $delivery_charges }} </span>
                                     </div>
                                 </div>
                                 <svg class="h-5 w-5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -193,7 +193,7 @@
                                     </div>
                                 </div>
                                 <div class="flex-1 pt-2 flex items-end justify-between">
-                                    <p class="mt-1 text-sm font-medium text-gray-900">Rs.{{ $item->quantity * $item->product->unit_price }}</p>
+                                    <p class="mt-1 text-sm font-medium text-gray-900">{{ $currency ?? 'Rs.' }}{{ $item->quantity * $item->product->unit_price }}</p>
                                     <div class="ml-4">
                                         <label for="quantity" class="sr-only">Quantity</label>
                                         <select onchange="handleQuantityChange(event)" data-item-id="{{ $item->id }}" name="quantity" title="Select Quantity" class="cursor-pointer rounded-md border border-gray-300 text-base font-medium text-gray-700 text-left shadow-sm focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -215,27 +215,27 @@
                     <dl class="border-t border-gray-200 py-6 px-4 space-y-6 sm:px-6">
                         <div class="flex items-center justify-between">
                             <dt class="text-sm">Subtotal</dt>
-                            <dd id="sub-total" class="text-sm font-medium text-gray-900">Rs.{{ $sub_total }}</dd>
+                            <dd id="sub-total" class="text-sm font-medium text-gray-900">{{ $currency ?? 'Rs.' }}{{ $sub_total }}</dd>
                         </div>
                         <div class="flex items-center justify-between">
                             <dt class="text-sm">Delivery Charges</dt>
-                            <dd id="delivery-charges" class="text-sm font-medium text-gray-900">Rs.{{ $delivery_charges }}</dd>
+                            <dd id="delivery-charges" class="text-sm font-medium text-gray-900">{{ $currency ?? 'Rs.' }}{{ $delivery_charges }}</dd>
                         </div>
                         @if ($discount > 0)
                         <div class="flex items-center justify-between">
                             <dt class="text-sm">Discount
                                 <span class="rounded-full bg-gray-200 text-xs text-gray-600 py-0.5 px-2 ml-2">{{ $discount_text }}</span>
                             </dt>
-                            <dd id="taxes" class="text-sm font-medium text-gray-900">-Rs.{{ ($discount / 100) * $sub_total }} ({{ $discount }}%)</dd>
+                            <dd id="taxes" class="text-sm font-medium text-gray-900">-{{ $currency ?? 'Rs.' }}{{ ($discount / 100) * $sub_total }} ({{ $discount }}%)</dd>
                         </div>
                         @endif
                         <div class="flex items-center justify-between">
                             <dt class="text-sm">Taxes</dt>
-                            <dd id="taxes" class="text-sm font-medium text-gray-900">Rs.{{ $taxes }}</dd>
+                            <dd id="taxes" class="text-sm font-medium text-gray-900">{{ $currency ?? 'Rs.' }}{{ $taxes }}</dd>
                         </div>
                         <div class="flex items-center justify-between border-t border-gray-200 pt-6">
                             <dt class="text-base font-medium">Total</dt>
-                            <dd id="total" class="text-base font-medium text-gray-900">Rs.{{ $total }}</dd>
+                            <dd id="total" class="text-base font-medium text-gray-900">{{ $currency ?? 'Rs.' }}{{ $total }}</dd>
                         </div>
                     </dl>
                     <div class="border-t border-gray-200 py-6 px-4 sm:px-6">

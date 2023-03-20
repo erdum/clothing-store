@@ -32,11 +32,11 @@
         <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
             @foreach ($product->images as $index => $image)
             @if ($index == 0)
-            <div class="aspect-w-4 aspect-h-5 sm:overflow-hidden sm:rounded-lg lg:aspect-w-3 lg:aspect-h-4">
+            <div class="aspect-w-4 aspect-h-5 my-4 sm:overflow-hidden sm:rounded-lg lg:aspect-w-3 lg:aspect-h-4">
                 <img src="{{ asset($image->url) }}" alt="{{ $product->name }}" class="h-full w-full object-cover object-center">
             </div>
             @else
-            <div class="aspect-w-3 aspect-h-4 hidden overflow-hidden rounded-lg lg:block">
+            <div class="aspect-w-3 aspect-h-4 my-4 hidden overflow-hidden rounded-lg lg:block">
                 <img src="{{ asset($image->url) }}" alt="{{ $product->name }}" class="h-full w-full object-cover object-center">
             </div>
             @endif
@@ -50,7 +50,7 @@
             <!-- Options -->
             <div class="mt-4 lg:row-span-3 lg:mt-0">
                 <h2 class="sr-only">Product information</h2>
-                <p class="text-3xl tracking-tight text-gray-900">Rs.{{ $product->unit_price }}</p>
+                <p class="text-3xl tracking-tight text-gray-900">{{ $currency ?? 'Rs.' }}{{ $product->unit_price }}</p>
                 <!-- Reviews -->
                 <!-- <div class="mt-6">
                     <h3 class="sr-only">Reviews</h3>
@@ -157,7 +157,9 @@
                 <div class="mt-10">
                     <h2 class="text-sm font-medium text-gray-900">Details</h2>
                     <div class="mt-4 space-y-6">
-                        <p class="text-sm text-gray-600">The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming &quot;Charcoal Gray&quot; limited release.</p>
+                        <p class="text-sm text-gray-600">
+                            Introducing our latest product, designed with high-quality materials to ensure durability and longevity. This product features a unique style, making it stand out from other products on the market. Whether for everyday use or special occasions, our product is a perfect addition to your collection.
+                        </p>
                     </div>
                 </div>
             </div>

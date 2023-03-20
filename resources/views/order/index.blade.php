@@ -32,7 +32,7 @@
               </div>
               <div class="flex justify-between pt-6 font-medium text-gray-900 sm:block sm:pt-0">
                 <dt>Total amount</dt>
-                <dd class="sm:mt-1">Rs.{{ $order->total }}</dd>
+                <dd class="sm:mt-1">{{ $currency ?? 'Rs.' }}{{ $order->total }}</dd>
               </div>
             </dl>
             <a href="{{ route('order', ['id' => $order->id]) }}" class="w-full flex items-center justify-center bg-white mt-6 py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:w-auto sm:mt-0">
@@ -62,11 +62,11 @@
                     <img src="{{ asset($item->product->images[0]->url) }}" alt="{{ $item->product->name }}" class="w-16 h-16 object-center object-cover rounded mr-6">
                     <div>
                       <div class="font-medium text-gray-900">{{ $item->product->name }}</div>
-                      <div class="mt-1 sm:hidden">Rs.{{ $item->product->unit_price }}</div>
+                      <div class="mt-1 sm:hidden">{{ $currency ?? 'Rs.' }}{{ $item->product->unit_price }}</div>
                     </div>
                   </div>
                 </td>
-                <td class="hidden py-6 pr-8 sm:table-cell">Rs.{{ $item->product->unit_price }}</td>
+                <td class="hidden py-6 pr-8 sm:table-cell">{{ $currency ?? 'Rs.' }}{{ $item->product->unit_price }}</td>
                 <td class="hidden py-6 pr-8 sm:table-cell">x{{ $item->quantity }}</td>
                 <td class="hidden py-6 pr-8 sm:table-cell">{{ $order->status->name }}</td>
                 <td class="py-6 font-medium text-right whitespace-nowrap">

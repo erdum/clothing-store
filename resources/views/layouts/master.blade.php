@@ -283,7 +283,7 @@
                                                                 <h3>
                                                                     <a href="{{ route('product', ['id' => $item->product->id]) }}">{{ $item->product->name }}</a>
                                                                 </h3>
-                                                                <p class="ml-4">Rs.{{ $item->product->unit_price }}</p>
+                                                                <p class="ml-4">{{ $currency ?? 'Rs.' }}{{ $item->product->unit_price }}</p>
                                                             </div>
                                                             <p class="mt-1 text-sm text-gray-500">{{ $item->product->colors[0]->name }}</p>
                                                         </div>
@@ -307,7 +307,7 @@
                                     <div class="flex justify-between text-base font-medium text-gray-900">
                                         <p>Subtotal</p>
                                         @auth
-                                        <p>Rs.
+                                        <p>{{ $currency ?? 'Rs.' }}
                                             {{
                                                 Auth::user()
                                                 ->in_cart_items
@@ -318,7 +318,7 @@
                                         </p>
                                         @endauth
                                         @guest
-                                        <p>Rs.0</p>
+                                        <p>{{ $currency ?? 'Rs.' }}0</p>
                                         @endguest
                                     </div>
                                     <p class="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
@@ -345,37 +345,47 @@
                 </div>
             </div>
         </div>
+
+        <!-- This example requires Tailwind CSS v2.0+ -->
+        <div class="fixed bottom-0 inset-x-0 pb-2 sm:pb-5">
+          <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+            <div class="p-2 rounded-lg bg-indigo-600 shadow-lg sm:p-3">
+              <div class="flex items-center justify-between flex-wrap">
+                <div class="w-0 flex-1 flex items-center">
+                  <span class="flex p-2 rounded-lg bg-indigo-800">
+                    <!-- Heroicon name: outline/speakerphone -->
+                    <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+                    </svg>
+                  </span>
+                  <p class="ml-3 font-medium text-white truncate">
+                    <span class="md:hidden"> We announced a new product! </span>
+                    <span class="hidden md:inline"> Big news! We're excited to announce a brand new product. </span>
+                  </p>
+                </div>
+                <div class="order-3 mt-2 flex-shrink-0 w-full sm:order-2 sm:mt-0 sm:w-auto">
+                  <a href="#" class="flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-indigo-600 bg-white hover:bg-indigo-50"> Learn more </a>
+                </div>
+                <div class="order-2 flex-shrink-0 sm:order-3 sm:ml-2">
+                  <button type="button" class="-mr-1 flex p-2 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-white">
+                    <span class="sr-only">Dismiss</span>
+                    <!-- Heroicon name: outline/x -->
+                    <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         @yield('content')
 
         <!-- This example requires Tailwind CSS v2.0+ -->
         <footer class="bg-white">
-          <div class="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
-            <nav class="-mx-5 -my-2 flex flex-wrap justify-center" aria-label="Footer">
-              <div class="px-5 py-2">
-                <a href="#" class="text-base text-gray-500 hover:text-gray-900"> About </a>
-              </div>
-
-              <div class="px-5 py-2">
-                <a href="#" class="text-base text-gray-500 hover:text-gray-900"> Blog </a>
-              </div>
-
-              <div class="px-5 py-2">
-                <a href="#" class="text-base text-gray-500 hover:text-gray-900"> Jobs </a>
-              </div>
-
-              <div class="px-5 py-2">
-                <a href="#" class="text-base text-gray-500 hover:text-gray-900"> Press </a>
-              </div>
-
-              <div class="px-5 py-2">
-                <a href="#" class="text-base text-gray-500 hover:text-gray-900"> Accessibility </a>
-              </div>
-
-              <div class="px-5 py-2">
-                <a href="#" class="text-base text-gray-500 hover:text-gray-900"> Partners </a>
-              </div>
-            </nav>
-            <div class="mt-8 flex justify-center space-x-6">
+          <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
+            <div class="flex justify-center space-x-6 md:order-2">
               <a href="#" class="text-gray-400 hover:text-gray-500">
                 <span class="sr-only">Facebook</span>
                 <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -411,9 +421,12 @@
                 </svg>
               </a>
             </div>
-            <p class="mt-8 text-center text-base text-gray-400">&copy; 2020 Workflow, Inc. All rights reserved.</p>
+            <div class="mt-8 md:mt-0 md:order-1">
+              <p class="text-center text-base text-gray-400">&copy; 2023 UbInn 365 Apparel. All rights reserved.</p>
+            </div>
           </div>
         </footer>
+
 
         <script>
         const openMobileMenu = () => {
