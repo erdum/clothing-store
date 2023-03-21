@@ -285,9 +285,7 @@
             body: JSON.stringify(payload)
         });
 
-        if (req.status === 200) {
-            location.reload();
-        }
+        location.reload();
     };
 
     document.getElementById("item-wrapper").addEventListener("click", (e) => {

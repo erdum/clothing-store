@@ -469,9 +469,7 @@
                 body: JSON.stringify(payload)
             });
 
-            if (req.status === 200) {
-                location.reload();
-            }
+            location.reload();
         };
 
         document.getElementById("mobile-menu-btn").addEventListener("click", openMobileMenu);
