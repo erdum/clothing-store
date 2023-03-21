@@ -37,4 +37,9 @@ class HomeController extends Controller
     {
         return View::make('policy');
     }
+
+    public function contact()
+    {
+        return View::make('contact');
+    }
 }

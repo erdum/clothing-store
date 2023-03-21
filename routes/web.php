@@ -45,10 +45,9 @@ Route::post('/signup', [LoginController::class, 'signup_post'])->name('signup_po
 Route::get('/login/redirect/{provider_name}', [LoginController::class, 'redirect'])->name('third_party_login');
 Route::get('/login/callback', [LoginController::class, 'callback']);
 
-Route::get('/contactus', [HomeController::class, 'terms'])->name('contact-us');
+Route::get('/contact-us', [HomeController::class, 'contact'])->name('contact-us');
 Route::get('/terms', [HomeController::class, 'terms'])->name('terms');
 Route::get('/policy', [HomeController::class, 'policy'])->name('policy');
 
-Route::get('/featured', [ProductController::class, 'index'])->name('featured');
 Route::get('/product/{id}', [ProductController::class, 'index'])->name('product');
 Route::get('/{category?}/{sub_category?}', [HomeController::class, 'index'])->name('home');

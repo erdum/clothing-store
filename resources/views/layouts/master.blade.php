@@ -8,7 +8,7 @@
     <!-- FavIcon Link -->
     <link rel="shortcut icon" href="{{ asset('assets/site/images/favicon/favicon-32x32.png') }}" type="image/x-icon">
     <title>@yield('title', 'Clothing Store') | Apparel UBInn365</title>
-    <script src="https://cdn.tailwindcss.com?plugins=aspect-ratio,forms"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=aspect-ratio,forms,typography"></script>
     <style type="text/css">
     .flyout-btn:hover .flyout {
         display: block;
@@ -80,9 +80,6 @@
                             @endforeach
                         </div>
                         <div class="space-y-6 border-t border-gray-200 py-6 px-4">
-                            <div class="flow-root">
-                                <a href="{{ route('featured') }}" class="-m-2 block p-2 font-medium text-gray-900">Featured</a>
-                            </div>
                             <div class="flow-root">
                                 <a href="{{ route('contact-us') }}" class="-m-2 block p-2 font-medium text-gray-900">Contact Us</a>
                             </div>
@@ -184,7 +181,6 @@
                                         </div>
                                     </div>
                                     @endforeach
-                                    <a href="{{ route('featured') }}" class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Featured</a>
                                     <a href="{{ route('contact-us') }}" class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Contact Us</a>
                                 </div>
                             </div>
@@ -283,7 +279,7 @@
                                                                 <h3>
                                                                     <a href="{{ route('product', ['id' => $item->product->id]) }}">{{ $item->product->name }}</a>
                                                                 </h3>
-                                                                <p class="ml-4">{{ $currency ?? 'Rs.' }}{{ $item->product->unit_price }}</p>
+                                                                <p class="ml-4">{{ $currency ?? 'Rs.' }}{{ number_format($item->product->unit_price) }}</p>
                                                             </div>
                                                             <p class="mt-1 text-sm text-gray-500">{{ $item->product->colors[0]->name }}</p>
                                                         </div>
@@ -309,11 +305,11 @@
                                         @auth
                                         <p>{{ $currency ?? 'Rs.' }}
                                             {{
-                                                Auth::user()
-                                                ->in_cart_items
-                                                ->sum(function ($item) {
+                                                number_format(Auth::user()
+                                                    ->in_cart_items
+                                                    ->sum(function ($item) {
                                                     return ($item->quantity * $item->product->unit_price);
-                                                });
+                                                }));
                                             }}
                                         </p>
                                         @endauth
@@ -387,6 +383,15 @@
         <footer class="bg-white">
           <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
             <div class="flex justify-center space-x-6 md:order-2">
+              <a href="{{ route('contact-us') }}" class="text-gray-400 hover:text-gray-500">
+                  Contact Us
+              </a>
+              <a href="{{ route('policy') }}" class="text-gray-400 hover:text-gray-500">
+                  Privacy Policy
+              </a>
+              <a href="{{ route('terms') }}" class="text-gray-400 hover:text-gray-500">
+                  Terms
+              </a>
               <a href="#" class="text-gray-400 hover:text-gray-500">
                 <span class="sr-only">Facebook</span>
                 <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
