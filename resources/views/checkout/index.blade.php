@@ -163,7 +163,7 @@
                     <div id="bank-transfer-wrapper" class="hidden mt-6 grid grid-cols-4 gap-y-6 gap-x-4">
                         <div class="col-span-4">
                             <span class="mt-4 px-4 py-2 rounded-md text-gray-700 bg-gray-200">
-                                {{ $iban }}
+                                {{ App\Models\Site::first()->iban }}
                             </span>
                             <p class="text-gray-700 mt-6">
                                 Transfer the total amount to the above IBAN number and attach the Transaction ID below and confirm the order.

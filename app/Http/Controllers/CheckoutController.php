@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Item;
+use App\Models\Site;
 
 use Tco\TwocheckoutFacade;
 
@@ -17,6 +18,7 @@ class CheckoutController extends Controller
     public function index()
     {
         $cart = Auth::user()->in_cart_items;
+        $site = Site::first();
 
         $sub_total = $cart->sum(function($item) {
             return $item->quantity * $item->product->unit_price;
@@ -32,10 +34,10 @@ class CheckoutController extends Controller
             'UAE' => 'AED.'
         ];
 
-        $delivery_charges = env('DELIVERY_CHARGES');
-        $taxes = env('TAX_CHARGES');
-        $discount = env('DISCOUNT_PERCENTAGE');
-        $discount_text = env('DISCOUNT_TEXT');
+        $delivery_charges = $site->delivery_charges;
+        $taxes = $site->tax_charges;
+        $discount = $site->discount;
+        $discount_text = $site->discount_text;
         $total = ($sub_total - (($discount / 100) * $sub_total)) + $delivery_charges + $taxes;
 
         return View::make('checkout.index', [
@@ -46,7 +48,7 @@ class CheckoutController extends Controller
             'taxes' => $taxes,
             'discount' => $discount,
             'discount_text' => $discount_text,
-            'iban' => env('IBAN'),
+            'iban' => $site->iban,
             'sub_total' => $sub_total,
             'total' => $total
         ]);
