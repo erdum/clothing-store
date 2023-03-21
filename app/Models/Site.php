@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Site extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'discount_text',
+        'discount',
+        'delivery_charges',
+        'tax_charges',
+        'currency_multiplier',
+        'iban',
+        'address',
+        'phone',
+        'email',
+        'instagram',
+        'facebook'
+    ];
 }

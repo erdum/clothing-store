@@ -15,11 +15,17 @@ return new class extends Migration
     {
         Schema::create('sites', function (Blueprint $table) {
             $table->id();
-            $table->string('promo_discount_text');
-            $table->integer('promo_discount');
+            $table->string('discount_text');
+            $table->integer('discount');
             $table->integer('delivery_charges');
             $table->integer('tax_charges');
             $table->integer('currency_multiplier');
+            $table->string('iban');
+            $table->string('address');
+            $table->string('phone');
+            $table->string('email');
+            $table->string('instagram');
+            $table->string('facebook');
             $table->timestamps();
         });
     }

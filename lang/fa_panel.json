@@ -130,5 +130,15 @@
     "Orders": "Orders",
     "OrderStatus": "OrderStatus",
     "OrderStatuses": "OrderStatuses",
-    "Statuses": "Statuses"
+    "Statuses": "Statuses",
+    "Discount_text": "Discount_text",
+    "Tax_charges": "Tax_charges",
+    "Currency_multiplier": "Currency_multiplier",
+    "Iban": "Iban",
+    "Address": "Address",
+    "Phone": "Phone",
+    "Instagram": "Instagram",
+    "Facebook": "Facebook",
+    "Site": "Site",
+    "Sites": "Sites"
 }
