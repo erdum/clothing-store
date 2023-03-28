@@ -125,7 +125,11 @@
                         <legend class="sr-only">Payment type</legend>
                         <div id="payment-method-wrapper" class="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
                             <div class="flex items-center cursor-pointer">
-                                <input selected value="Credit Card" id="credit-card" name="payment_method" type="radio" checked class="focus:ring-indigo-500 cursor-pointer h-4 w-4 text-indigo-600 border-gray-300">
+                                <input checked value="Cash On Delivery" id="cod" name="payment_method" type="radio" class="focus:ring-indigo-500 cursor-pointer h-4 w-4 text-indigo-600 border-gray-300">
+                                <label for="credit-card" class="ml-3 block text-sm font-medium text-gray-700"> Cash On Delivery </label>
+                            </div>
+                            <div class="flex items-center cursor-pointer">
+                                <input value="Credit Card" id="credit-card" name="payment_method" type="radio" class="focus:ring-indigo-500 cursor-pointer h-4 w-4 text-indigo-600 border-gray-300">
                                 <label for="credit-card" class="ml-3 block text-sm font-medium text-gray-700"> Credit card </label>
                             </div>
                             <div class="flex items-center">
@@ -134,7 +138,14 @@
                             </div>
                         </div>
                     </fieldset>
-                    <div id="credit-card-wrapper" class="mt-6 grid grid-cols-4 gap-y-6 gap-x-4">
+                    <div id="cod-wrapper" class="mt-6 grid grid-cols-4 gap-y-6 gap-x-4">
+                        <div class="col-span-4">
+                            <p class="text-gray-700 mt-6">
+                                With our COD method, you can place your order online and have your items delivered to your doorstep, with payment made in full upon delivery.
+                            </p>
+                        </div>
+                    </div>
+                    <div id="credit-card-wrapper" class="hidden mt-6 grid grid-cols-4 gap-y-6 gap-x-4">
                         <div class="col-span-4">
                             <label for="card_number" class="block text-sm font-medium text-gray-700">Card number *</label>
                             <div class="mt-1">
@@ -307,10 +318,16 @@
             if (elem.nodeName === "INPUT") {
 
                 if (elem.id === "bank-transfer") {
-                    document.getElementById("credit-card-wrapper").classList.add("hidden");
                     document.getElementById("bank-transfer-wrapper").classList.remove("hidden");
+                    document.getElementById("credit-card-wrapper").classList.add("hidden");
+                    document.getElementById("cod-wrapper").classList.add("hidden");
+                } else if (elem.id === "cod") {
+                    document.getElementById("cod-wrapper").classList.remove("hidden");
+                    document.getElementById("credit-card-wrapper").classList.add("hidden");
+                    document.getElementById("bank-transfer-wrapper").classList.add("hidden");
                 } else {
                     document.getElementById("credit-card-wrapper").classList.remove("hidden");
+                    document.getElementById("cod-wrapper").classList.add("hidden");
                     document.getElementById("bank-transfer-wrapper").classList.add("hidden");
                 }
             }
