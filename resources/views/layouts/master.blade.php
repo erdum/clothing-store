@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- FavIcon Link -->
     <link rel="shortcut icon" href="{{ asset('assets/site/images/favicon/favicon-32x32.png') }}" type="image/x-icon">
-    <title>@yield('title', 'Clothing Store') | Apparel UBInn365</title>
+    <title>@yield('title', 'Clothing Store') | Apparel Ub365Inn</title>
     <script src="https://cdn.tailwindcss.com?plugins=aspect-ratio,forms,typography"></script>
     <style type="text/css">
     .flyout-btn:hover .flyout {
