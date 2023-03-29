@@ -149,25 +149,25 @@
                         <div class="col-span-4">
                             <label for="card_number" class="block text-sm font-medium text-gray-700">Card number *</label>
                             <div class="mt-1">
-                                <input required value="{{ $user->shipping_address->card_number ?? '' }}" type="number" id="card_number" name="card_number" autocomplete="cc-number" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <input value="{{ $user->shipping_address->card_number ?? '' }}" type="number" id="card_number" name="card_number" autocomplete="cc-number" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
                         </div>
                         <div class="col-span-4">
                             <label for="name_on_card" class="block text-sm font-medium text-gray-700">Name on card *</label>
                             <div class="mt-1">
-                                <input required value="{{ $user->shipping_address->name_on_card ?? '' }}" type="text" id="name_on_card" name="name_on_card" autocomplete="cc-name" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <input value="{{ $user->shipping_address->name_on_card ?? '' }}" type="text" id="name_on_card" name="name_on_card" autocomplete="cc-name" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
                         </div>
                         <div class="col-span-3">
                             <label for="card_expiry" class="block text-sm font-medium text-gray-700">Expiration date (MM/YY) *</label>
                             <div class="mt-1">
-                                <input required value="{{ $user->shipping_address->card_expiry ?? '' }}" type="month" name="card_expiry" id="card_expiry" autocomplete="cc-exp" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <input value="{{ $user->shipping_address->card_expiry ?? '' }}" type="month" name="card_expiry" id="card_expiry" autocomplete="cc-exp" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
                         </div>
                         <div>
                             <label for="cvc" class="block text-sm font-medium text-gray-700">CVC *</label>
                             <div class="mt-1">
-                                <input required value="{{ $user->shipping_address->cvc ?? '' }}" type="number" name="cvc" id="cvc" autocomplete="csc" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <input value="{{ $user->shipping_address->cvc ?? '' }}" type="number" name="cvc" id="cvc" autocomplete="csc" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
                         </div>
                     </div>
@@ -183,7 +183,7 @@
                         <div class="col-span-4">
                             <label for="tid" class="block text-sm font-medium text-gray-700">Transaction ID *</label>
                             <div class="mt-1">
-                                <input required type="text" id="tid" name="tid" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <input type="text" id="tid" name="tid" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
                         </div>
                     </div>
