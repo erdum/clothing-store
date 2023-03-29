@@ -22,7 +22,7 @@
                         </h3>
                         <p class="mt-1 text-sm text-gray-500">{{ $product?->colors[0]->name ?? '' }}</p>
                     </div>
-                    <p class="text-sm font-medium text-gray-900">{{ $currency ?? 'Rs.' }}{{ $product->unit_price }}</p>
+                    <p class="text-sm font-medium text-gray-900">{{ $currency ?? 'Rs.' }}{{ number_format($product->unit_price) }}</p>
                 </div>
             </div>
         </div>
