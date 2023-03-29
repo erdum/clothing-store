@@ -64,10 +64,12 @@ class CheckoutController extends Controller
             'address' => 'required',
             'postal_code' => 'required|max:10',
             'phone_number' => 'required|max:20',
+            'payment_method' => 'required',
             'card_number' => 'max:30',
             'name_on_card' => 'max:30',
             'card_expiry' => 'max:30',
-            'cvc' => 'max:10'
+            'cvc' => 'max:10',
+            'tid' => 'max:30'
         ]);
 
         $user = Auth::user();
@@ -96,64 +98,9 @@ class CheckoutController extends Controller
             'cvc' => $request->cvc
         ]);
 
-        // $dynamicOrderParams = array(
-        //     'Country'           => 'PK',
-        //     'Currency'          => 'PKR',
-        //     'CustomerIP'        => '91.220.121.21',
-        //     'ExternalReference' => 'CustOrd101',
-        //     'Language'          => 'en',
-        //     'Source'            => 'tcolib.local',
-        //     'BillingDetails'    =>
-        //         array(
-        //             'Address1'    => 'Street 1',
-        //             'City'        => 'Karachi',
-        //             'State'       => 'Sindh',
-        //             'CountryCode' => 'PK',
-        //             'Email'       => 'testcustomer@2Checkout.com',
-        //             'FirstName'   => 'John',
-        //             'LastName'    => 'Doe',
-        //             'Zip'         => '75850',
-        //         ),
-        //     'Items'             =>
-        //         array(
-        //             0 =>
-        //                 array(
-        //                     'Name'         => 'Dynamic product2',
-        //                     'Description'  => 'Product 2',
-        //                     'Quantity'     => 3, //units
-        //                     'IsDynamic'    => true,
-        //                     'Tangible'     => false,
-        //                     'PurchaseType' => 'PRODUCT',
-        //                     'Price'        =>
-        //                         array(
-        //                             'Amount' => 6, //value
-        //                             'Type'   => 'CUSTOM',
-        //                         ),
-        //                 )
-        //         ),
-        //     'PaymentDetails'    =>
-        //         array(
-        //             'Type'          => 'TEST', //'TEST' or 'EES_TOKEN_PAYMENT'
-        //             'Currency'      => 'PKR',
-        //             'CustomerIP'    => '91.220.121.21',
-        //             'PaymentMethod' =>
-        //                 array(
-        //                     'RecurringEnabled' => false,
-        //                     'HolderNameTime'   => 1,
-        //                     'CardNumberTime'   => 1,
-        //                 ),
-        //         ),
-        // );
-
-        // $tco = new TwocheckoutFacade([
-        //     'sellerId'      => env('VERIFONE_MERCHANT_CODE'),
-        //     'secretKey'     => env('VERIFONE_SECRET_KEY'),
-        //     'buyLinkSecretWord'    => env('VERIFONE_SECRET_WORD'),
-        //     'jwtExpireTime' => 30,
-        //     'curlVerifySsl' => 1
-        // ]);
-        // $order = $tco->order();
-        // $response = $order->place($dynamicOrderParams);
+        if ($request->payment_method == 'credit_card') {
+            // Process third party payment
+        }
 
         $order = Order::create([
             'user_id' => $user->id,
@@ -166,7 +113,7 @@ class CheckoutController extends Controller
             'tax' => $taxes,
             'delivery_charges' => $delivery_charges,
             'payment_method' => $request->payment_method,
-            'payment_id' => "N/A",
+            'payment_id' => $request?->tid ?? "N/A",
             'shipping_method' => $request->shipping_method,
             'shipping_eta' => "1-4 days",
             'tracking_id' => "N/A"
@@ -185,12 +132,5 @@ class CheckoutController extends Controller
         }
 
         dd($user->orders);
-
-        return View::make('checkout.checkout', [
-            'action_url' => env('VERIFONE_CHECKOUT_URL'),
-            'sid' => env('VERIFONE_MERCHANT_ID'),
-            'user' => $user,
-            'products' => $user->in_cart_items,
-        ]);
     }
 }
