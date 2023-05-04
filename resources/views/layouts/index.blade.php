@@ -1,23 +1,6 @@
 @extends('layouts.master')
 
 @section('content')
-<!--
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-      require('@tailwindcss/aspect-ratio'),
-    ],
-  }
-  ```
--->
 <div class="bg-white">
 
   <main>
@@ -48,7 +31,7 @@
         <div class="relative py-32">
           <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">Mid-Season Sale</h1>
           <div class="mt-4 sm:mt-6">
-            <a href="#" class="inline-block bg-indigo-600 border border-transparent rounded-md py-3 px-8 font-medium text-white hover:bg-indigo-700">Shop Collection</a>
+            <a href="{{ route('categories') }}" class="inline-block bg-indigo-600 border border-transparent rounded-md py-3 px-8 font-medium text-white hover:bg-indigo-700">Shop Collection</a>
           </div>
         </div>
       </div>
@@ -56,71 +39,30 @@
       <section aria-labelledby="collection-heading" class="-mt-96 relative sm:mt-0">
         <h2 id="collection-heading" class="sr-only">Collections</h2>
         <div class="max-w-md mx-auto grid grid-cols-1 gap-y-6 px-4 sm:max-w-7xl sm:px-6 sm:grid-cols-3 sm:gap-y-0 sm:gap-x-6 lg:px-8 lg:gap-x-8">
-          <div class="group relative h-96 bg-white rounded-lg shadow-xl sm:h-auto sm:aspect-w-4 sm:aspect-h-5">
-            <div>
-              <div aria-hidden="true" class="absolute inset-0 rounded-lg overflow-hidden">
-                <div class="absolute inset-0 overflow-hidden group-hover:opacity-75">
-                  <img src="https://tailwindui.com/img/ecommerce-images/home-page-04-collection-01.jpg" alt="Woman wearing a comfortable cotton t-shirt." class="w-full h-full object-center object-cover">
+          
+          @foreach ($categories as $category)
+            <div class="group relative h-96 bg-white rounded-lg shadow-xl sm:h-auto sm:aspect-w-4 sm:aspect-h-5">
+              <div>
+                <div aria-hidden="true" class="absolute inset-0 rounded-lg overflow-hidden">
+                  <div class="absolute inset-0 overflow-hidden group-hover:opacity-75">
+                    <img src="{{ $category->cover_image }}" alt="{{ $category->name }}" class="w-full h-full object-center object-cover">
+                  </div>
+                  <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-50"></div>
                 </div>
-                <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-50"></div>
-              </div>
-              <div class="absolute inset-0 rounded-lg p-6 flex items-end">
-                <div>
-                  <p aria-hidden="true" class="text-sm text-white">Shop the collection</p>
-                  <h3 class="mt-1 font-semibold text-white">
-                    <a href="#">
-                      <span class="absolute inset-0"></span>
-                      Women&#039;s
-                    </a>
-                  </h3>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="group relative h-96 bg-white rounded-lg shadow-xl sm:h-auto sm:aspect-w-4 sm:aspect-h-5">
-            <div>
-              <div aria-hidden="true" class="absolute inset-0 rounded-lg overflow-hidden">
-                <div class="absolute inset-0 overflow-hidden group-hover:opacity-75">
-                  <img src="https://tailwindui.com/img/ecommerce-images/home-page-04-collection-02.jpg" alt="Man wearing a comfortable and casual cotton t-shirt." class="w-full h-full object-center object-cover">
-                </div>
-                <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-50"></div>
-              </div>
-              <div class="absolute inset-0 rounded-lg p-6 flex items-end">
-                <div>
-                  <p aria-hidden="true" class="text-sm text-white">Shop the collection</p>
-                  <h3 class="mt-1 font-semibold text-white">
-                    <a href="#">
-                      <span class="absolute inset-0"></span>
-                      Men&#039;s
-                    </a>
-                  </h3>
+                <div class="absolute inset-0 rounded-lg p-6 flex items-end">
+                  <div>
+                    <p aria-hidden="true" class="text-sm text-white">Shop the collection</p>
+                    <h3 class="mt-1 font-semibold text-white">
+                      <a href="{{ route('home', ['category' => $category->name]) }}">
+                        <span class="absolute inset-0"></span>
+                        {{ $category->name }}
+                      </a>
+                    </h3>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-
-          <div class="group relative h-96 bg-white rounded-lg shadow-xl sm:h-auto sm:aspect-w-4 sm:aspect-h-5">
-            <div>
-              <div aria-hidden="true" class="absolute inset-0 rounded-lg overflow-hidden">
-                <div class="absolute inset-0 overflow-hidden group-hover:opacity-75">
-                  <img src="https://tailwindui.com/img/ecommerce-images/home-page-04-collection-03.jpg" alt="Person sitting at a wooden desk with paper note organizer, pencil and tablet." class="w-full h-full object-center object-cover">
-                </div>
-                <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-50"></div>
-              </div>
-              <div class="absolute inset-0 rounded-lg p-6 flex items-end">
-                <div>
-                  <p aria-hidden="true" class="text-sm text-white">Shop the collection</p>
-                  <h3 class="mt-1 font-semibold text-white">
-                    <a href="#">
-                      <span class="absolute inset-0"></span>
-                      Desk Accessories
-                    </a>
-                  </h3>
-                </div>
-              </div>
-            </div>
-          </div>
+          @endforeach
         </div>
       </section>
     </div>

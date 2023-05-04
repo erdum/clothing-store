@@ -25,7 +25,10 @@ class HomeController extends Controller
             ]);
         }
 
-        return View::make('layouts.index', ['categories' => Category::all()]);
+        return View::make('layouts.index', [
+            'categories' => Category::take(4)->get(),
+            'trending_products' => []
+        ]);
     }
 
     public function terms()
