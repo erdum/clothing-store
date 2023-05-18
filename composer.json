@@ -28,13 +28,10 @@
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/",
-            "EasyPanel\\": "packages/RezaaminiIr/LaravelEasypanel/src/",
-            "EasyBlade\\": "packages/RezaaminiIr/LaravelEasyblade/src/"
+            "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
-            "packages/2checkout-php-sdk/autoloader.php",
-            "packages/RezaaminiIr/LaravelEasypanel/src/helpers.php"
+            "packages/2checkout-php-sdk/autoloader.php"
         ]
     },
     "autoload-dev": {

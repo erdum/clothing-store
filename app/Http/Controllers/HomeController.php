@@ -14,13 +14,13 @@ class HomeController extends Controller
         if (!empty($category) && !empty($sub_category)) {
             $sub = Category::where('name', $category)->first()->sub->where('name', $sub_category)->first();
 
-            return View::make('layouts.sub', [
+            return View::make('layouts.products', [
                 'sub' => $sub,
             ]);
         }
 
         if (!empty($category)) {
-            return View::make('layouts.categories', [
+            return View::make('layouts.sub_categories', [
                 'category' => Category::where('name', $category)->first()
             ]);
         }
@@ -29,6 +29,11 @@ class HomeController extends Controller
             'categories' => Category::take(4)->get(),
             'trending_products' => []
         ]);
+    }
+
+    public function categories()
+    {
+        return View::make('layouts.categories', ['categories' => Category::all()]);
     }
 
     public function terms()

@@ -185,8 +185,6 @@ return [
         /*
          * Package Service Providers...
          */
-        EasyPanel\EasyPanelServiceProvider::class,
-        EasyBlade\EasyBladeServiceProvider::class,
 
         /*
          * Application Service Providers...
