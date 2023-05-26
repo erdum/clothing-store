@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\AdminPanelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,11 @@ use App\Http\Controllers\OrderController;
 
 // Private Routes & Views
 Route::middleware('auth')->group(function () {
+    Route::get('/admin', [AdminPanelController::class, 'index'])->name('admin-panel');
+    Route::get('/admin/add/product', [AdminPanelController::class, 'add_product'])->name('add-product');
+    Route::get('/admin/edit/product/{product_id}', [AdminPanelController::class, 'edit_product'])->name('edit-product');
+    Route::post('/admin/save/product/{product_id}', [AdminPanelController::class, 'save_product'])->name('save-product');
+
     Route::get('/orders/{id?}', [OrderController::class, 'index'])->name('order');
 
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
