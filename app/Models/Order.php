@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\User;
-use App\Models\Status;
+use App\Models\OrderStatus;
 use App\Models\ShippingAddress;
-use App\Models\Item;
+use App\Models\CartItem;
 
 class Order extends Model
 {
@@ -38,7 +38,7 @@ class Order extends Model
 
     public function status()
     {
-        return $this->belongsTo(Status::class);
+        return $this->belongsTo(OrderStatus::class);
     }
 
     public function shipping_address()
@@ -48,6 +48,6 @@ class Order extends Model
 
     public function items()
     {
-        return $this->hasMany(Item::class);
+        return $this->hasMany(CartItem::class);
     }
 }

@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\Sub;
-use App\Models\Size;
-use App\Models\Color;
-use App\Models\Image;
+use App\Models\SubCategory;
+use App\Models\ProductSize;
+use App\Models\ProductColor;
+use App\Models\ProductImage;
 use App\Models\OrderItem;
 use App\Models\Cart;
 
@@ -27,22 +27,22 @@ class Product extends Model
 
     public function sub()
     {
-        return $this->belongsTo(Sub::class);
+        return $this->belongsTo(SubCategory::class);
     }
 
     public function sizes()
     {
-        return $this->hasMany(Size::class);
+        return $this->hasMany(ProductSize::class);
     }
 
     public function colors()
     {
-        return $this->hasMany(Color::class);
+        return $this->hasMany(ProductColor::class);
     }
 
     public function images()
     {
-        return $this->hasMany(Image::class);
+        return $this->hasMany(ProductImage::class);
     }
 
     public function orders()
