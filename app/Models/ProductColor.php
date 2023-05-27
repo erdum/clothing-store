@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Product;
 
-class Color extends Model
+class ProductColor extends Model
 {
     use HasFactory;
 
