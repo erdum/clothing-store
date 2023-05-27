@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Category;
 use App\Models\Product;
 
-class Sub extends Model
+class SubCategory extends Model
 {
     use HasFactory;
 
@@ -16,7 +16,6 @@ class Sub extends Model
         'category_id',
         'name',
         'extra_text',
-        'cover_image',
     ];
 
     public function category()
