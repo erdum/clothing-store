@@ -31,4 +31,16 @@ class AdminPanelController extends Controller
     {
 
     }
+
+    public function categories()
+    {}
+
+    public function orders()
+    {}
+
+    public function users()
+    {}
+
+    public function site()
+    {}
 }

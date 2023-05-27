@@ -29,6 +29,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/add/product', [AdminPanelController::class, 'add_product'])->name('add-product');
     Route::get('/admin/edit/product/{product_id}', [AdminPanelController::class, 'edit_product'])->name('edit-product');
     Route::post('/admin/save/product/{product_id}', [AdminPanelController::class, 'save_product'])->name('save-product');
+    Route::get('/admin/categories', [AdminPanelController::class, 'categories'])->name('admin-categories');
+    Route::get('/admin/orders', [AdminPanelController::class, 'orders'])->name('admin-orders');
+    Route::get('/admin/users', [AdminPanelController::class, 'users'])->name('admin-users');
+    Route::get('/admin/site', [AdminPanelController::class, 'site'])->name('admin-site');
 
     Route::get('/orders/{id?}', [OrderController::class, 'index'])->name('order');
 
