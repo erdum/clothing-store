@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('name', 30)->unique();
             $table->string('extra_text');
-            $table->string('cover_image');
             $table->timestamps();
         });
     }
