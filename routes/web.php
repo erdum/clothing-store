@@ -28,8 +28,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminPanelController::class, 'index'])->name('admin-panel');
     Route::get('/admin/add/product', [AdminPanelController::class, 'add_product'])->name('add-product');
     Route::get('/admin/edit/product/{product_id}', [AdminPanelController::class, 'edit_product'])->name('edit-product');
-    Route::post('/admin/save/product/{product_id}', [AdminPanelController::class, 'save_product'])->name('save-product');
+    Route::post('/admin/save/product', [AdminPanelController::class, 'save_product'])->name('save-product');
+
     Route::get('/admin/categories', [AdminPanelController::class, 'categories'])->name('admin-categories');
+    Route::get('/admin/add/category', [AdminPanelController::class, 'add_category'])->name('add-category');
+    Route::get('/admin/edit/category/{category_id}', [AdminPanelController::class, 'edit_category'])->name('edit-category');
+    Route::post('/admin/save/category', [AdminPanelController::class, 'save_category'])->name('save-category');
+    Route::get('/admin/delete/category/{category_id}', [AdminPanelController::class, 'delete_category'])->name('delete-category');
+
     Route::get('/admin/orders', [AdminPanelController::class, 'orders'])->name('admin-orders');
     Route::get('/admin/users', [AdminPanelController::class, 'users'])->name('admin-users');
     Route::get('/admin/site', [AdminPanelController::class, 'site'])->name('admin-site');
