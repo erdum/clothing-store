@@ -36,6 +36,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/admin/save/category', [AdminPanelController::class, 'save_category'])->name('save-category');
     Route::get('/admin/delete/category/{category_id}', [AdminPanelController::class, 'delete_category'])->name('delete-category');
 
+    Route::get('/admin/sub-categories', [AdminPanelController::class, 'sub_categories'])->name('admin-sub-categories');
+    Route::get('/admin/add/sub-category', [AdminPanelController::class, 'add_sub_category'])->name('add-sub-category');
+    Route::get('/admin/edit/sub-category/{sub_category_id}', [AdminPanelController::class, 'edit_sub_category'])->name('edit-sub-category');
+    Route::post('/admin/save/sub-category', [AdminPanelController::class, 'save_sub_category'])->name('save-sub-category');
+    Route::get('/admin/delete/sub-category/{sub_category_id}', [AdminPanelController::class, 'delete_sub_category'])->name('delete-sub-category');
+
     Route::get('/admin/orders', [AdminPanelController::class, 'orders'])->name('admin-orders');
     Route::get('/admin/users', [AdminPanelController::class, 'users'])->name('admin-users');
     Route::get('/admin/site', [AdminPanelController::class, 'site'])->name('admin-site');

@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\SubCategory;
 
 class AdminPanelController extends Controller
 {
@@ -86,8 +88,8 @@ class AdminPanelController extends Controller
         }
 
         Category::updateOrCreate(
-            ['name' => trim($request->name)],
-            ['extra_text' => $request->extra_text],
+            ['id' => $request->category_id],
+            ['name' => trim($request->name), 'extra_text' => trim($request->extra_text)],
         );
 
         return redirect()->route('admin-categories');
@@ -104,6 +106,71 @@ class AdminPanelController extends Controller
         $category->delete();
 
         return redirect()->route('admin-categories');
+    }
+
+
+    // ------------ Sub Categories Operations ------------
+    // ===============================================
+    public function sub_categories()
+    {
+        $sub_categories = SubCategory::all();
+
+        return View::make('admin-panel.sub-category.index', ['sub_categories' => $sub_categories]);
+    }
+
+    public function add_sub_category()
+    {
+        return View::make('admin-panel.sub-category.add-sub-category', ['categories' => Category::all()]);
+    }
+
+    public function edit_sub_category($sub_category_id)
+    {
+        $sub_category = SubCategory::find($sub_category_id);
+
+        if (empty($sub_category)) {
+            return response()->json(['message' => 'the requested item for update not found.'], 400);
+        }
+
+        return View::make('admin-panel.sub-category.edit-sub-category', ['sub_category' => $sub_category, 'categories' => Category::all()]);
+    }
+
+    public function save_sub_category(Request $request)
+    {
+        $rule = Rule::unique('sub_categories')->where(function ($query) use ($request) {
+            return $query->where('category_id', $request->category_id);
+        });
+
+        if ($request->sub_category_id) $rule = 'required';
+        
+        $validated = Validator::make($request->all(), [
+            'name' => $rule,
+            'extra_text' => 'required',
+            'category_id' => 'required',
+        ]);
+
+        if ($validated->fails()) {
+            return back()->withErrors($validated)->withInput();
+        }
+
+        SubCategory::updateOrCreate(
+            ['id' => $request->sub_category_id],
+            ['extra_text' => trim($request->extra_text), 'name' => trim($request->name), 'category_id' => $request->category_id],
+        );
+
+        return redirect()->route('admin-sub-categories');
+    }
+
+    public function delete_sub_category($sub_category_id)
+    {
+        $sub_category = SubCategory::find($sub_category_id);
+
+        if (empty($sub_category)) {
+            return response()->json(['message' => 'the requested item for delete not found.'], 400);
+        }
+
+        $sub_category->delete();
+
+        return redirect()->route('admin-sub-categories');
     }
 
     public function orders()
