@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('product_id')->constrained();
             $table->string('name', 30);
+            $table->string('value', 7);
             $table->timestamps();
         });
     }
