@@ -54,10 +54,11 @@ class AdminPanelController extends Controller
         if ($validated->fails()) {
             return back()->withErrors($validated)->withInput();
         }
-        dd($request);
+
         Product::updateOrCreate(
             ['id' => $request->product_id],
             [
+                'sub_category_id' => $request->sub_category_id,
                 'name' => $request->name,
                 'description' => $request->description,
                 'details' => $request->details,
@@ -68,18 +69,6 @@ class AdminPanelController extends Controller
         );
 
         return redirect()->route('admin-panel');
-    }
-
-    public function upload_product_images(Request $request)
-    {
-        $paths = [];
-
-        foreach ($request->file('images') as $file) {
-            $path = $file->store('products-images');
-            array_push($paths, $path);
-        }
-
-        return response(200);
     }
 
     public function delete_product($product_id)

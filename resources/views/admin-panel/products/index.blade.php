@@ -36,10 +36,10 @@
             @foreach ($products as $product)
             <tr>
               <td class="px-6 py-4 whitespace-nowrap w-40">
-                <div class="text-sm text-gray-900">{{ $product->sub->category->name }}</div>
+                <div class="text-sm text-gray-900">{{ $product->sub_category->category->name }}</div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap w-40">
-                <div class="text-sm text-gray-900">{{ $product->sub->name }}</div>
+                <div class="text-sm text-gray-900">{{ $product->sub_category->name }}</div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
                 <div class="flex items-center">

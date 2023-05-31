@@ -26,7 +26,7 @@ class Product extends Model
         'quantity'
     ];
 
-    public function sub()
+    public function sub_category()
     {
         return $this->belongsTo(SubCategory::class);
     }
