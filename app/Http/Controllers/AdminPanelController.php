@@ -13,6 +13,9 @@ use App\Models\SubCategory;
 
 class AdminPanelController extends Controller
 {
+
+    // ------------ Product Operations ------------
+    // ===============================================
     public function index()
     {
         $products = Product::all();
@@ -22,7 +25,7 @@ class AdminPanelController extends Controller
 
     public function add_product()
     {
-        return View::make('admin-panel.products.add-product');
+        return View::make('admin-panel.products.add-product', ['categories' => Category::all(), 'sub_categories' => SubCategory::all()]);
     }
 
     public function edit_product($product_id)
@@ -36,14 +39,60 @@ class AdminPanelController extends Controller
         return View::make('admin-panel.products.edit-product', ['product' => $item]);
     }
 
-    public function save_product()
+    public function save_product(Request $request)
     {
+        $validated = Validator::make($request->all(), [
+            'sub_category_id' => 'required',
+            'name' => 'required|max:30',
+            'description' => 'required|max:60',
+            'details' => 'required',
+            'unit_price' => 'required|numeric',
+            'discount' => 'required|numeric',
+            'quantity' => 'required|numeric',
+        ]);
 
+        if ($validated->fails()) {
+            return back()->withErrors($validated)->withInput();
+        }
+        dd($request);
+        Product::updateOrCreate(
+            ['id' => $request->product_id],
+            [
+                'name' => $request->name,
+                'description' => $request->description,
+                'details' => $request->details,
+                'unit_price' => $request->unit_price,
+                'discount' => $request->discount,
+                'quantity' => $request->quantity,
+            ]
+        );
+
+        return redirect()->route('admin-panel');
     }
 
-    public function delete_product()
+    public function upload_product_images(Request $request)
     {
+        $paths = [];
 
+        foreach ($request->file('images') as $file) {
+            $path = $file->store('products-images');
+            array_push($paths, $path);
+        }
+
+        return response(200);
+    }
+
+    public function delete_product($product_id)
+    {
+        $product = Product::find($product_id);
+
+        if (empty($product)) {
+            return response()->json(['message' => 'the requested item for delete not found.'], 400);
+        }
+
+        $product->delete();
+
+        return redirect()->route('admin-panel');
     }
 
 
