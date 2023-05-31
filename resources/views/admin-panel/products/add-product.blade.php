@@ -67,6 +67,29 @@
                 <input type="number" required value="{{ old('discount') ?? 0 }}" placeholder="0" name="discount" id="postal-code" autocomplete="postal-code" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
               </div>
 
+              <div class="col-span-6 sm:col-span-2">
+                <label for="product_color_name" class="block text-sm font-medium text-gray-700">Color Name</label>
+                <input type="text" required value="{{ old('product_color_name') }}" placeholder="white" name="product_color_name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+              </div>
+
+              <div class="col-span-6 sm:col-span-2">
+                <label for="product_color_value" class="block text-sm font-medium text-gray-700">Color Value(HEX)</label>
+                <input type="text" required value="{{ old('product_color_value') }}" placeholder="#ffffff" name="product_color_value" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+              </div>
+
+              <div class="col-span-6 sm:col-span-2 flex items-end justify-end">
+                <button type="submit" class="py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add</button>
+              </div>
+
+              <div class="col-span-6 sm:col-span-2">
+                <label for="product_size" class="block text-sm font-medium text-gray-700">Size</label>
+                <input type="text" required value="{{ old('product_size') }}" placeholder="XL" name="product_size" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+              </div>
+
+              <div class="col-span-6 sm:col-span-4 flex items-end justify-end">
+                <button type="submit" class="py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add</button>
+              </div>
+
             </div>
 
             <div>
@@ -116,13 +139,27 @@
 
   const addImageHandler = ({ currentTarget: { files: raw_files } }) => {
     const files = Array.from(raw_files);
-    files.forEach((file) => {
-      const src = URL.createObjectURL(file);
-      const newImage = document.querySelector("[name=catlog-image]").cloneNode(true);
-      newImage.querySelector("img").setAttribute("src", src);
-      newImage.classList.remove("hidden");
-      document.getElementById("catlog-image-container").appendChild(newImage);
+    const form = document.getElementById("add_product");
+    files.forEach((file, index) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = () => {
+        const newImage = document.querySelector("[name=catlog-image]").cloneNode(true);
+        newImage.querySelector("img").setAttribute("src", fileReader.result);
+        newImage.querySelector("img").setAttribute("name", file.name);
+        newImage.classList.remove("hidden");
+        document.getElementById("catlog-image-container").appendChild(newImage);
+
+        const newInput = document.createElement("input");
+        newInput.setAttribute("type", "hidden");
+        newInput.setAttribute("name", "product-image" + index);
+        newInput.setAttribute("id", file.name);
+        newInput.setAttribute("value", fileReader.result);
+        form.appendChild(newInput);
+      }
     });
+
+    document.getElementById("images").value = "";
   };
 
   const removeImageHandler = (event) => {
@@ -130,9 +167,10 @@
 
     if (path.length === 0) return;
 
-    const img = path[0].parentNode;
-    URL.revokeObjectURL(img.querySelector("img").src);
-    img.remove();
+    const img = path[0].nextElementSibling;
+    const formInput = document.getElementById(img.getAttribute("name"));
+    formInput.remove();
+    img.parentNode.remove();
   };
 
   const handleCategoryChange = () => {
@@ -140,8 +178,6 @@
 
     const subCategoryOptions = Array.from(document.getElementById("sub_category_id").children);
     subCategoryOptions.map((option) => {
-
-      console.log(categoryId, option.getAttribute("name"));
 
       if (option.getAttribute("name") != categoryId) {
         option.style.setProperty("display", "none");
@@ -151,35 +187,12 @@
     });
   };
 
-  const handleProductSubmit = async (event) => {
-    event.preventDefault();
-    const formData = new FormData();
-    formData.append("_token", "{{ csrf_token() }}");
-
-    const images = Array.from(document.querySelectorAll("#catlog-image-container img"));
-    images.shift();
-    for (const img of images) {
-      const req = await fetch(img.src);
-      const blob = await req.blob();
-      formData.append("images[]", blob);
-    }
-
-    const req = await fetch("{{ route('upload-product-images') }}", {
-      method: "post",
-      body: formData
-    });
-
-    if (req.status === 200) event.target.submit();
-  };
-
   document.getElementById("images").addEventListener("change", addImageHandler);
   document.getElementById("catlog-image-container").addEventListener("click", removeImageHandler);
 
   handleCategoryChange();
   document.getElementById("category_id").addEventListener("change", handleCategoryChange);
 
-  document.getElementById("add_product").addEventListener("submit", handleProductSubmit);
-  
 </script>
 
 @endsection
