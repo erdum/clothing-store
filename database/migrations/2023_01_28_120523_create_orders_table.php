@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('shipping_eta', 10);
             $table->text('tracking_id')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

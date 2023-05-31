@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('card_expiry', 30)->nullable();
             $table->string('cvc', 10)->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
