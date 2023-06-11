@@ -18,7 +18,7 @@
 
               <div class="col-span-6 sm:col-span-3">
                 <label for="category_id" class="block text-sm font-medium text-gray-700">Category</label>
-                <select id="category_id" name="category_id" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <select required id="category_id" name="category_id" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                   @foreach ($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                   @endforeach
@@ -27,7 +27,7 @@
 
               <div class="col-span-6 sm:col-span-3">
                 <label for="sub_category_id" class="block text-sm font-medium text-gray-700">Sub Category</label>
-                <select id="sub_category_id" name="sub_category_id" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <select required id="sub_category_id" name="sub_category_id" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                   @foreach ($sub_categories as $sub_category)
                     <option name="{{ $sub_category->category->id }}" value="{{ $sub_category->id }}">{{ $sub_category->name }}</option>
                   @endforeach
@@ -54,40 +54,63 @@
 
               <div class="col-span-6 sm:col-span-6 lg:col-span-2">
                 <label for="unit_price" class="block text-sm font-medium text-gray-700">Unit Price in {{ $currency ?? 'Rs.' }}</label>
-                <input type="number" required value="{{ old('unit_price') }}" placeholder="100" name="unit_price" id="unit_price" autocomplete="address-level2" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                <input type="number" required value="{{ old('unit_price') }}" placeholder="100" name="unit_price" id="unit_price" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
               </div>
 
               <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                 <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity</label>
-                <input type="number" required value="{{ old('quantity') }}" placeholder="100" name="quantity" id="quantity" autocomplete="address-level1" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                <input type="number" required value="{{ old('quantity') }}" placeholder="100" name="quantity" id="quantity" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
               </div>
 
               <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                 <label for="discount" class="block text-sm font-medium text-gray-700">Discount in %</label>
-                <input type="number" required value="{{ old('discount') ?? 0 }}" placeholder="0" name="discount" id="postal-code" autocomplete="postal-code" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                <input type="number" required value="{{ old('discount') ?? 0 }}" placeholder="0" name="discount" id="discount" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
               </div>
 
               <div class="col-span-6 sm:col-span-2">
-                <label for="product_color_name" class="block text-sm font-medium text-gray-700">Color Name</label>
-                <input type="text" required value="{{ old('product_color_name') }}" placeholder="white" name="product_color_name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                <label for="product_color_name" class="block text-sm font-medium text-gray-700">Add Colors</label>
+                <input type="text" required value="{{ old('product_color_name') }}" placeholder="color name" id="product_color_name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
               </div>
 
-              <div class="col-span-6 sm:col-span-2">
-                <label for="product_color_value" class="block text-sm font-medium text-gray-700">Color Value(HEX)</label>
-                <input type="text" required value="{{ old('product_color_value') }}" placeholder="#ffffff" name="product_color_value" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+              <div class="col-span-6 sm:col-span-2 flex items-end">
+                <input type="text" required value="{{ old('product_color_value') }}" placeholder="color value(#ff44ff)" id="product_color_value" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
               </div>
 
               <div class="col-span-6 sm:col-span-2 flex items-end justify-end">
-                <button type="submit" class="py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add</button>
+                <button id="add_product_color_btn" class="py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add</button>
+              </div>
+
+              <div id="product_color_template" class="hidden">
+                <div class="col-span-6 sm:col-span-2 flex items-end">
+                  <input type="text" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                </div>
+
+                <div class="col-span-6 sm:col-span-2">
+                  <input type="text" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                </div>
+
+                <div class="col-span-6 sm:col-span-2 flex items-center justify-end">
+                  <button class="text-indigo-600 hover:text-indigo-500">Remove</button>
+                </div>
               </div>
 
               <div class="col-span-6 sm:col-span-2">
-                <label for="product_size" class="block text-sm font-medium text-gray-700">Size</label>
+                <label for="product_size" class="block text-sm font-medium text-gray-700">Add Sizes</label>
                 <input type="text" required value="{{ old('product_size') }}" placeholder="XL" name="product_size" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
               </div>
 
               <div class="col-span-6 sm:col-span-4 flex items-end justify-end">
-                <button type="submit" class="py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add</button>
+                <button id="add_product_size_btn" class="py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add</button>
+              </div>
+
+              <div id="product_size_template" class="hidden">
+                <div class="col-span-6 sm:col-span-2 flex items-end">
+                  <input type="text" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                </div>
+
+                <div class="col-span-6 sm:col-span-4 flex items-center justify-end">
+                  <button class="text-indigo-600 hover:text-indigo-500">Remove</button>
+                </div>
               </div>
 
             </div>
@@ -187,11 +210,35 @@
     });
   };
 
+  const addProductColor = () => {
+    const colorName = document.getElementById("product_color_name");
+    const colorValue = document.getElementById("product_color_value");
+    const template = document.getElementById("product_color_template");
+    const wrapper = template.parentElement;
+    const colorNameElem = template.children[0].cloneNode(true);
+    const colorValueElem = template.children[1].cloneNode(true);
+    const removeBtnElem = template.children[2].cloneNode(true);
+
+    console.log(colorName.value, colorValue.value);
+
+    wrapper.appendChild(colorNameElem);
+    wrapper.appendChild(colorValueElem);
+    wrapper.appendChild(removeBtnElem);
+
+    colorNameElem.value = colorName.value;
+    colorValueElem.value = colorValue.value;
+
+    // colorName.value = "";
+    // colorValue.value = "";
+  };
+
   document.getElementById("images").addEventListener("change", addImageHandler);
   document.getElementById("catlog-image-container").addEventListener("click", removeImageHandler);
 
   handleCategoryChange();
   document.getElementById("category_id").addEventListener("change", handleCategoryChange);
+
+  document.getElementById("add_product_color_btn").addEventListener("click", addProductColor);
 
 </script>
 

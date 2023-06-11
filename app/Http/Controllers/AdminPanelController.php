@@ -41,6 +41,7 @@ class AdminPanelController extends Controller
 
     public function save_product(Request $request)
     {
+        dd($request);
         $validated = Validator::make($request->all(), [
             'sub_category_id' => 'required',
             'name' => 'required|max:30',
