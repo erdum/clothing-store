@@ -67,7 +67,7 @@
                 <input type="number" required value="{{ old('discount') ?? 0 }}" placeholder="0" name="discount" id="discount" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
               </div>
 
-              <div class="col-span-6 sm:col-span-2">
+              <div class="col-span-6 sm:col-span-2" id="product_color_input">
                 <label for="product_color_name" class="block text-sm font-medium text-gray-700">Add Colors</label>
                 <input type="text" required value="{{ old('product_color_name') }}" placeholder="color name" id="product_color_name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
               </div>
@@ -90,13 +90,13 @@
                 </div>
 
                 <div class="col-span-6 sm:col-span-2 flex items-center justify-end">
-                  <button class="text-indigo-600 hover:text-indigo-500">Remove</button>
+                  <button class="text-indigo-600 hover:text-indigo-500" name="remove-btn">Remove</button>
                 </div>
               </div>
 
-              <div class="col-span-6 sm:col-span-2">
+              <div class="col-span-6 sm:col-span-2" id="product_size_input">
                 <label for="product_size" class="block text-sm font-medium text-gray-700">Add Sizes</label>
-                <input type="text" required value="{{ old('product_size') }}" placeholder="XL" name="product_size" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                <input type="text" required value="{{ old('product_size') }}" placeholder="XL" id="product_size" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
               </div>
 
               <div class="col-span-6 sm:col-span-4 flex items-end justify-end">
@@ -109,7 +109,7 @@
                 </div>
 
                 <div class="col-span-6 sm:col-span-4 flex items-center justify-end">
-                  <button class="text-indigo-600 hover:text-indigo-500">Remove</button>
+                  <button class="text-indigo-600 hover:text-indigo-500" name="remove-btn">Remove</button>
                 </div>
               </div>
 
@@ -214,22 +214,55 @@
     const colorName = document.getElementById("product_color_name");
     const colorValue = document.getElementById("product_color_value");
     const template = document.getElementById("product_color_template");
-    const wrapper = template.parentElement;
     const colorNameElem = template.children[0].cloneNode(true);
     const colorValueElem = template.children[1].cloneNode(true);
     const removeBtnElem = template.children[2].cloneNode(true);
 
-    console.log(colorName.value, colorValue.value);
+    colorNameElem.firstElementChild.setAttribute("value", colorName.value);
+    colorValueElem.firstElementChild.setAttribute("value", colorValue.value);
+    
+    colorNameElem.firstElementChild.setAttribute("disabled", "");
+    colorValueElem.firstElementChild.setAttribute("disabled", "");
 
-    wrapper.appendChild(colorNameElem);
-    wrapper.appendChild(colorValueElem);
-    wrapper.appendChild(removeBtnElem);
+    colorNameElem.setAttribute("name", colorName.value);
+    colorValueElem.setAttribute("name", colorName.value);
+    removeBtnElem.setAttribute("name", colorName.value);
 
-    colorNameElem.value = colorName.value;
-    colorValueElem.value = colorValue.value;
+    template.after(removeBtnElem);
+    template.after(colorValueElem);
+    template.after(colorNameElem);
 
-    // colorName.value = "";
-    // colorValue.value = "";
+    colorName.setAttribute("value", "");
+    colorValue.setAttribute("value", "");
+  };
+
+  const addProductSize = () => {
+    const size = document.getElementById("product_size");
+    const template = document.getElementById("product_size_template");
+    const sizeElem = template.children[0].cloneNode(true);
+    const removeBtnElem = template.children[1].cloneNode(true);
+
+    sizeElem.firstElementChild.setAttribute("value", size.value);
+    sizeElem.firstElementChild.setAttribute("disabled", "");
+
+    sizeElem.setAttribute("name", size.value);
+    removeBtnElem.setAttribute("name", size.value);
+
+    template.after(removeBtnElem);
+    template.after(sizeElem);
+
+    size.setAttribute("value", "");
+  };
+
+  const removeProductSizeAndColor = (event) => {
+    const btn = event.composedPath()[0];
+
+    if (btn.tagName !== "BUTTON" || btn.getAttribute("name") !== "remove-btn") return;
+
+    const elementsToRemove = document.querySelectorAll(`[name=${btn.parentElement.getAttribute("name")}]`);
+    for (elem of elementsToRemove) {
+      elem.remove();
+    }
   };
 
   document.getElementById("images").addEventListener("change", addImageHandler);
@@ -239,6 +272,9 @@
   document.getElementById("category_id").addEventListener("change", handleCategoryChange);
 
   document.getElementById("add_product_color_btn").addEventListener("click", addProductColor);
+  document.getElementById("add_product_size_btn").addEventListener("click", addProductSize);
+
+  document.getElementById("add_product").addEventListener("click", removeProductSizeAndColor);
 
 </script>
 
