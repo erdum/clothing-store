@@ -224,8 +224,8 @@
     colorNameElem.firstElementChild.setAttribute("name", colorName.value);
     colorValueElem.firstElementChild.setAttribute("name", colorValue.value);
     
-    colorNameElem.firstElementChild.setAttribute("disabled", "");
-    colorValueElem.firstElementChild.setAttribute("disabled", "");
+    colorNameElem.firstElementChild.setAttribute("readonly", "");
+    colorValueElem.firstElementChild.setAttribute("readonly", "");
 
     colorNameElem.setAttribute("name", colorName.value);
     colorValueElem.setAttribute("name", colorName.value);
@@ -247,7 +247,7 @@
 
     sizeElem.firstElementChild.setAttribute("value", size.value);
     sizeElem.firstElementChild.setAttribute("name", size.value);
-    sizeElem.firstElementChild.setAttribute("disabled", "");
+    sizeElem.firstElementChild.setAttribute("readonly", "");
 
     sizeElem.setAttribute("name", size.value);
     removeBtnElem.setAttribute("name", size.value);
