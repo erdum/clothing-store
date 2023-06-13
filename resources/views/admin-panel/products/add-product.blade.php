@@ -220,6 +220,9 @@
 
     colorNameElem.firstElementChild.setAttribute("value", colorName.value);
     colorValueElem.firstElementChild.setAttribute("value", colorValue.value);
+
+    colorNameElem.firstElementChild.setAttribute("name", colorName.value);
+    colorValueElem.firstElementChild.setAttribute("name", colorValue.value);
     
     colorNameElem.firstElementChild.setAttribute("disabled", "");
     colorValueElem.firstElementChild.setAttribute("disabled", "");
@@ -243,6 +246,7 @@
     const removeBtnElem = template.children[1].cloneNode(true);
 
     sizeElem.firstElementChild.setAttribute("value", size.value);
+    sizeElem.firstElementChild.setAttribute("name", size.value);
     sizeElem.firstElementChild.setAttribute("disabled", "");
 
     sizeElem.setAttribute("name", size.value);
