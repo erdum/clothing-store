@@ -180,7 +180,7 @@
 
         const newInput = document.createElement("input");
         newInput.setAttribute("type", "hidden");
-        newInput.setAttribute("name", "product-images[]");
+        newInput.setAttribute("name", "product_images[]");
         newInput.setAttribute("id", file.name);
         newInput.setAttribute("value", fileReader.result);
         form.appendChild(newInput);
