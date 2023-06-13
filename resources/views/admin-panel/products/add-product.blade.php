@@ -77,7 +77,7 @@
               </div>
 
               <div class="col-span-6 sm:col-span-2 flex items-end justify-end">
-                <button id="add_product_color_btn" class="py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add</button>
+                <button type="button" id="add_product_color_btn" class="py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add</button>
               </div>
 
               <div id="product_color_template" class="hidden">
@@ -100,7 +100,7 @@
               </div>
 
               <div class="col-span-6 sm:col-span-4 flex items-end justify-end">
-                <button id="add_product_size_btn" class="py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add</button>
+                <button type="button" id="add_product_size_btn" class="py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add</button>
               </div>
 
               <div id="product_size_template" class="hidden">
