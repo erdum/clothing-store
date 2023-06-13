@@ -175,7 +175,7 @@
 
         const newInput = document.createElement("input");
         newInput.setAttribute("type", "hidden");
-        newInput.setAttribute("name", "product-image" + index);
+        newInput.setAttribute("name", "product-images[]");
         newInput.setAttribute("id", file.name);
         newInput.setAttribute("value", fileReader.result);
         form.appendChild(newInput);
@@ -221,8 +221,8 @@
     colorNameElem.firstElementChild.setAttribute("value", colorName.value);
     colorValueElem.firstElementChild.setAttribute("value", colorValue.value);
 
-    colorNameElem.firstElementChild.setAttribute("name", "color_name[]");
-    colorValueElem.firstElementChild.setAttribute("name", "color_value[]");
+    colorNameElem.firstElementChild.setAttribute("name", "color_names[]");
+    colorValueElem.firstElementChild.setAttribute("name", "color_values[]");
     
     colorNameElem.firstElementChild.setAttribute("readonly", "");
     colorValueElem.firstElementChild.setAttribute("readonly", "");
@@ -246,7 +246,7 @@
     const removeBtnElem = template.children[1].cloneNode(true);
 
     sizeElem.firstElementChild.setAttribute("value", size.value);
-    sizeElem.firstElementChild.setAttribute("name", "size[]");
+    sizeElem.firstElementChild.setAttribute("name", "sizes[]");
     sizeElem.firstElementChild.setAttribute("readonly", "");
 
     sizeElem.setAttribute("name", size.value);
