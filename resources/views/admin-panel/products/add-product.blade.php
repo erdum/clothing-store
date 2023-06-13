@@ -232,8 +232,8 @@
     template.after(colorValueElem);
     template.after(colorNameElem);
 
-    colorName.setAttribute("value", "");
-    colorValue.setAttribute("value", "");
+    colorName.value = "";
+    colorValue.value = "";
   };
 
   const addProductSize = () => {
@@ -251,7 +251,7 @@
     template.after(removeBtnElem);
     template.after(sizeElem);
 
-    size.setAttribute("value", "");
+    size.value = "";
   };
 
   const removeProductSizeAndColor = (event) => {
