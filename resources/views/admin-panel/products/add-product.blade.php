@@ -36,18 +36,18 @@
 
               <div class="col-span-6 sm:col-span-4">
                 <label for="name" class="block text-sm font-medium text-gray-700">Product Title</label>
-                <input type="text" required value="{{ old('name') }}" placeholder="Casual Rust T-Shirt" name="name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                <input type="text" required value="{{ old('name') }}" placeholder="Casual Rust T-Shirt" name="name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('name') border border-red-500 @enderror">
               </div>
 
               <div class="col-span-6">
                 <label for="description" class="block text-sm font-medium text-gray-700">Product Description</label>
-                <input type="text" required value="{{ old('description') }}" placeholder="Upgrade your wardrobe with our Casual Rust T-Shirt and enjoy the perfect combination of style and comfort." name="description" id="street-address" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                <input type="text" required value="{{ old('description') }}" placeholder="Upgrade your wardrobe with our Casual Rust T-Shirt and enjoy the perfect combination of style and comfort." name="description" id="street-address" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('description') border border-red-500 @enderror">
               </div>
 
               <div class="col-span-6">
                 <label for="details" class="block text-sm font-medium text-gray-700">Product Details</label>
                 <div class="mt-1">
-                  <textarea id="details" required name="details" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md">{{ old('details') }}</textarea>
+                  <textarea id="details" required name="details" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md @error('details') border border-red-500 @enderror">{{ old('details') }}</textarea>
                 </div>
                 <p class="mt-2 text-sm text-gray-500">Details about your product including material type, special instructions, highlights etc.</p>
               </div>
@@ -145,7 +145,12 @@
               <p class="mt-2 text-sm text-gray-500">You can upload up to 8 images.</p>
             </div>
           </div>
-          <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+          <div class="px-4 py-3 bg-gray-50 sm:px-6 flex justify-between">
+            <p class="text-red-500">
+              @if ($errors->any())
+                {{ $errors->all()[0] }}
+              @endif
+            </p>
             <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
           </div>
         </div>
