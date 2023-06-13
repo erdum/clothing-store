@@ -69,11 +69,11 @@
 
               <div class="col-span-6 sm:col-span-2" id="product_color_input">
                 <label for="product_color_name" class="block text-sm font-medium text-gray-700">Add Colors</label>
-                <input type="text" required value="{{ old('product_color_name') }}" placeholder="color name" id="product_color_name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                <input type="text" value="{{ old('product_color_name') }}" placeholder="color name" id="product_color_name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
               </div>
 
               <div class="col-span-6 sm:col-span-2 flex items-end">
-                <input type="text" required value="{{ old('product_color_value') }}" placeholder="color value(#ff44ff)" id="product_color_value" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                <input type="text" value="{{ old('product_color_value') }}" placeholder="color value(#ff44ff)" id="product_color_value" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
               </div>
 
               <div class="col-span-6 sm:col-span-2 flex items-end justify-end">
@@ -96,7 +96,7 @@
 
               <div class="col-span-6 sm:col-span-2" id="product_size_input">
                 <label for="product_size" class="block text-sm font-medium text-gray-700">Add Sizes</label>
-                <input type="text" required value="{{ old('product_size') }}" placeholder="XL" id="product_size" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                <input type="text" value="{{ old('product_size') }}" placeholder="XL" id="product_size" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
               </div>
 
               <div class="col-span-6 sm:col-span-4 flex items-end justify-end">
