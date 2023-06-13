@@ -183,7 +183,6 @@
     });
 
     document.getElementById("images").value = "";
-    document.getElementById("images").remove();
   };
 
   const removeImageHandler = (event) => {
