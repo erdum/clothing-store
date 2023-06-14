@@ -59,7 +59,7 @@ class AdminPanelController extends Controller
             return back()->withErrors($validated)->withInput();
         }
 
-        Product::updateOrCreate(
+        $product = Product::updateOrCreate(
             ['id' => $request->product_id],
             [
                 'sub_category_id' => $request->sub_category_id,
@@ -71,6 +71,10 @@ class AdminPanelController extends Controller
                 'quantity' => $request->quantity,
             ]
         );
+
+        $product->update_or_insert_colors($request->color_names, $request->color_values);
+        $product->update_or_insert_sizes($request->sizes);
+        $product->update_or_insert_images(convert_base64_to_webp($request->product_images));
 
         return redirect()->route('admin-panel');
     }
