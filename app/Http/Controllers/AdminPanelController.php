@@ -41,7 +41,6 @@ class AdminPanelController extends Controller
 
     public function save_product(Request $request)
     {
-        dd($request);
         $validated = Validator::make($request->all(), [
             'sub_category_id' => 'required',
             'name' => 'required|max:30',
@@ -50,6 +49,10 @@ class AdminPanelController extends Controller
             'unit_price' => 'required|numeric',
             'discount' => 'required|numeric',
             'quantity' => 'required|numeric',
+            'color_names' => 'required|array',
+            'color_values' => 'required|array',
+            'sizes' => 'required|array',
+            'product_images' => 'required|array',
         ]);
 
         if ($validated->fails()) {
