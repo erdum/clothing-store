@@ -55,4 +55,50 @@ class Product extends Model
     {
         return $this->hasMany(Cart::class);
     }
+
+    public function update_or_insert_colors($colors_names, $colors_values)
+    {
+        ProductColor::where('product_id', $this->id)->delete();
+
+        $new_colors = [];
+
+        foreach ($colors_names as $index => $color_name) {
+            array_push($new_colors, [
+                'name' => $color_name,
+                'value' => $colors_values[$index]
+            ]);
+        }
+
+        $this->colors()->createMany($new_colors);
+    }
+
+    public function update_or_insert_sizes($sizes)
+    {
+        ProductSize::where('product_id', $this->id)->delete();
+
+        $new_sizes = [];
+
+        foreach ($sizes as $size) {
+            array_push($new_sizes, [
+                'name' => $size
+            ]);
+        }
+
+        $this->sizes()->createMany($new_sizes);
+    }
+
+    public function update_or_insert_images($images)
+    {
+        ProductImage::where('product_id', $this->id)->delete();
+
+        $new_images = [];
+
+        foreach ($images as $image) {
+            array_push($new_images, [
+                'url' => $image
+            ]);
+        }
+
+        $this->images()->createMany($new_images);
+    }
 }
