@@ -17,4 +17,4 @@ yarn-error.log
 /.idea
 /.vscode
 .vercel
-.composer.lock
+composer.lock
