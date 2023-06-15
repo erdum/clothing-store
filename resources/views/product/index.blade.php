@@ -9,7 +9,7 @@
             <ol role="list" class="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
                 <li>
                     <div class="flex items-center">
-                        <a href="{{ route('home', ['category' => $product->sub->category->name]) }}" class="mr-2 text-sm font-medium text-gray-900">{{ $product->sub->category->name }}</a>
+                        <a href="{{ route('home', ['category' => $product->sub_category->category->name]) }}" class="mr-2 text-sm font-medium text-gray-900">{{ $product->sub_category->category->name }}</a>
                         <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor" aria-hidden="true" class="h-5 w-4 text-gray-300">
                             <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
                         </svg>
@@ -17,7 +17,7 @@
                 </li>
                 <li>
                     <div class="flex items-center">
-                        <a href="{{ route('home', ['category' => $product->sub->category->name, 'sub_category' => $product->sub->name ]) }}" class="mr-2 text-sm font-medium text-gray-900">{{ $product->sub->name }}</a>
+                        <a href="{{ route('home', ['category' => $product->sub_category->category->name, 'sub_category' => $product->sub_category->name ]) }}" class="mr-2 text-sm font-medium text-gray-900">{{ $product->sub_category->name }}</a>
                         <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor" aria-hidden="true" class="h-5 w-4 text-gray-300">
                             <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
                         </svg>
