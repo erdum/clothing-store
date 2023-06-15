@@ -45,7 +45,7 @@
               <div>
                 <div aria-hidden="true" class="absolute inset-0 rounded-lg overflow-hidden">
                   <div class="absolute inset-0 overflow-hidden group-hover:opacity-75">
-                    <img src="{{ $category->cover_image }}" alt="{{ $category->name }}" class="w-full h-full object-center object-cover">
+                    <img src="{{ asset($category->sub[0]->products[0]->images[0]->url) }}" alt="{{ $category->name }}" class="w-full h-full object-center object-cover">
                   </div>
                   <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-50"></div>
                 </div>
