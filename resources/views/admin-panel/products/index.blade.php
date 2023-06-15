@@ -30,6 +30,9 @@
               <th scope="col" class="relative px-6 py-3">
                 <span class="sr-only">Edit</span>
               </th>
+              <th scope="col" class="relative px-6 py-3">
+                <span class="sr-only">Delete</span>
+              </th>
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
@@ -69,6 +72,9 @@
               </td> -->
               <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <a href="{{ route('edit-product', ['product_id' => $product->id]) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                <a href="{{ route('delete-product', ['product_id' => $product->id]) }}" class="text-indigo-600 hover:text-indigo-900">Delete</a>
               </td>
             </tr>
             @endforeach
