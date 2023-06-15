@@ -26,6 +26,7 @@
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Unit Price</th>
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Discount</th>
               <th scope="col" class="relative px-6 py-3">
                 <span class="sr-only">Edit</span>
               </th>
@@ -44,7 +45,7 @@
               <td class="px-6 py-4 whitespace-nowrap">
                 <div class="flex items-center">
                   <div class="flex-shrink-0 h-10 w-10">
-                    <img class="h-10 w-10 rounded-full object-cover" src="{{ $product->images[0]->url }}">
+                    <img class="h-10 w-10 rounded-full object-cover" src="{{ asset($product->images[0]->url) }}">
                   </div>
                   <div class="ml-4 w-96">
                     <a href="{{ route('product', ['id' => $product->id]) }}">
@@ -58,7 +59,10 @@
                 <div class="text-sm text-gray-900">{{ $currency ?? 'Rs.' }}{{ $product->unit_price }}</div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap w-40">
-                <div class="text-sm text-gray-900">{{ $product->quantity }}</div>
+                <div class="text-sm text-gray-900">x{{ $product->quantity }}</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap w-40">
+                <div class="text-sm text-gray-900">{{ $product->discount }}%</div>
               </td>
               <!-- <td class="px-6 py-4 whitespace-nowrap">
                 <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"> Active </span>
