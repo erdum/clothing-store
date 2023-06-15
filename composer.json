@@ -31,7 +31,8 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
-            "packages/2checkout-php-sdk/autoloader.php"
+            "packages/2checkout-php-sdk/autoloader.php",
+            "app/helpers.php"
         ]
     },
     "autoload-dev": {
