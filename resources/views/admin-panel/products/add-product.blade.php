@@ -211,6 +211,7 @@
         option.style.setProperty("display", "none");
       } else {
         option.style.setProperty("display", "block");
+        option.setAttribute("selected", "");
       }
     });
   };
