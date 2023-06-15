@@ -101,4 +101,14 @@ class Product extends Model
 
         $this->images()->createMany($new_images);
     }
+
+    public function delete()
+    {
+        ProductColor::where('product_id', $this->id)->delete();
+        ProductSize::where('product_id', $this->id)->delete();
+        ProductImage::where('product_id', $this->id)->delete();
+        Cart::where('product_id', $this->id)->delete();
+        OrderItem::where('product_id', $this->id)->delete();
+        Product::where('id', $this->id)->delete();
+    }
 }
