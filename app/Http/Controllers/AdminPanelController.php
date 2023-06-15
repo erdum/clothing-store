@@ -74,7 +74,7 @@ class AdminPanelController extends Controller
 
         $product->update_or_insert_colors($request->color_names, $request->color_values);
         $product->update_or_insert_sizes($request->sizes);
-        $product->update_or_insert_images(convert_base64_to_webp($request->product_images));
+        $product->update_or_insert_images(save_base64_to_webp($request->product_images));
 
         return redirect()->route('admin-panel');
     }
