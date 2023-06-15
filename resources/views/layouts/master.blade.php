@@ -87,7 +87,7 @@
                         @auth
                         <div class="border-t border-gray-200 py-6 px-4">
                             <a class="-m-2 flex items-center p-2">
-                                <img src="{{ Auth::user()->avatar ?? asset('assets/site/images/user.jpg') }}" alt="avatar" class="block h-auto w-8 flex-shrink-0 rounded-full">
+                                <img src="{{ Auth::user()->avatar ?? asset('assets/images/user.jpg') }}" alt="avatar" class="block h-auto w-8 flex-shrink-0 rounded-full">
                                 <span class="ml-3 block text-base font-medium text-gray-900">{{ Auth::user()->name }}</span>
                             </a>
                         </div>
@@ -104,7 +104,7 @@
                         </div>
                         <div class="border-t border-gray-200 py-6 px-4">
                             <a class="-m-2 flex items-center p-2">
-                                <img src="{{ asset('assets/site/images/pakistan.png') }}" alt="Pakistan Flag" class="block h-auto w-8 flex-shrink-0">
+                                <img src="{{ asset('assets/images/pakistan.png') }}" alt="Pakistan Flag" class="block h-auto w-8 flex-shrink-0">
                                 <span class="ml-3 block text-base font-medium text-gray-900">PKR</span>
                                 <span class="sr-only">, change currency</span>
                             </a>
@@ -196,7 +196,7 @@
                                 </div>
                                 <div class="hidden lg:ml-6 lg:flex">
                                     <a title="Selected Currency" class="flex items-center text-gray-700 hover:text-gray-800">
-                                        <img src="{{ asset('assets/site/images/pakistan.png') }}" alt="Pakistan Flag" class="block h-auto w-8 flex-shrink-0">
+                                        <img src="{{ asset('assets/images/pakistan.png') }}" alt="Pakistan Flag" class="block h-auto w-8 flex-shrink-0">
                                         <span class="ml-3 block text-sm font-medium">PKR</span>
                                         <span class="sr-only">, change currency</span>
                                     </a>
@@ -214,7 +214,7 @@
                                 @auth
                                 <div class="hidden lg:ml-6 lg:flex">
                                     <a href="{{ route('order') }}" title="Orders History" class="flex items-center text-gray-700 hover:text-gray-800">
-                                        <img src="{{ Auth::user()->avatar ?? asset('assets/site/images/user.jpg') }}" alt="avatar" class="block h-auto w-8 flex-shrink-0 rounded-full">
+                                        <img src="{{ Auth::user()->avatar ?? asset('assets/images/user.jpg') }}" alt="avatar" class="block h-auto w-8 flex-shrink-0 rounded-full">
                                         <span class="ml-3 block text-sm font-medium">{{ Auth::user()->name }}</span>
                                     </a>
                                 </div>
