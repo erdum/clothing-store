@@ -55,7 +55,7 @@
                                 <div class="grid grid-cols-2 gap-x-4">
                                     <div class="group relative text-sm">
                                         <div class="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
-                                            <img src="{{ asset($category->cover_image) ?? 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg' }}" alt="{{ $category->name }}" class="object-cover object-center">
+                                            <img src="{{ asset($category->sub[0]->products[0]->images[0]->url) ?? 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg' }}" alt="{{ $category->name }}" class="object-cover object-center">
                                         </div>
                                         <a class="mt-6 block font-medium text-gray-900">
                                             <span class="absolute inset-0 z-10" aria-hidden="true"></span>
@@ -152,7 +152,7 @@
                                                         <div class="col-start-2 grid grid-cols-2 gap-x-8">
                                                             <div class="group relative text-base sm:text-sm">
                                                                 <div class="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
-                                                                    <img src="{{ asset($category->cover_image) ?? 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg' }}" alt="{{ $category->name }}" class="object-cover object-center">
+                                                                    <img src="{{ asset($category->sub[0]->products[0]->images[0]->url) ?? 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg' }}" alt="{{ $category->name }}" class="object-cover object-center">
                                                                 </div>
                                                                 <a href="{{ route('home', ['category' => $category->name]) }}" class="mt-6 block font-medium text-gray-900">
                                                                     <span class="absolute inset-0 z-10" aria-hidden="true"></span>
