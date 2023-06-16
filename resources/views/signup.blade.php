@@ -61,11 +61,11 @@
         </button>
         <span class="block h-px w-full bg-gray-300 my-6"></span>
         <a href="{{ route('third_party_login', ['provider_name' => 'google']) }}" class="border border-gray-300 my-3 group relative flex w-full justify-center rounded-md bg-white py-3 md:py-2 px-3 text-sm font-semibold text-gray-400 shadow-sm hover:bg-gray-400 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-colors">
-            <img class="w-5 mr-2" src="{{ asset('assets/site/images/google.svg') }}">
+            <img class="w-5 mr-2" src="{{ asset('assets/images/google.svg') }}">
             Google
         </a>
         <a href="{{ route('third_party_login', ['provider_name' => 'facebook']) }}" class="border border-gray-300 my-3 group relative flex w-full justify-center rounded-md bg-white py-3 md:py-2 px-3 text-sm font-semibold text-gray-400 shadow-sm hover:bg-gray-400 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-colors">
-            <img class="w-5 mr-2" src="{{ asset('assets/site/images/facebook.svg') }}">
+            <img class="w-5 mr-2" src="{{ asset('assets/images/facebook.svg') }}">
             Facebook
         </a>
       </div>
