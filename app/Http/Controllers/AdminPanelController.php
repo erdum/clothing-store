@@ -36,27 +36,33 @@ class AdminPanelController extends Controller
             return response()->json(['message' => 'the requested item not found.'], 400);
         }
 
-        return View::make('admin-panel.products.edit-product', ['product' => $item]);
+        return View::make('admin-panel.products.edit-product', [
+            'product' => $item,
+            'categories' => Category::all(),
+            'sub_categories' => SubCategory::all()
+        ]);
     }
 
     public function save_product(Request $request)
     {
-        $validated = Validator::make($request->all(), [
-            'sub_category_id' => 'required',
-            'name' => 'required|max:30',
-            'description' => 'required|max:60',
-            'details' => 'required',
-            'unit_price' => 'required|numeric',
-            'discount' => 'required|numeric',
-            'quantity' => 'required|numeric',
-            'color_names' => 'required|array',
-            'color_values' => 'required|array',
-            'sizes' => 'required|array',
-            'product_images' => 'required|array',
-        ]);
+        if (!$request->product_id) {
+            $validated = Validator::make($request->all(), [
+                'sub_category_id' => 'required',
+                'name' => 'required|max:30',
+                'description' => 'required|max:60',
+                'details' => 'required',
+                'unit_price' => 'required|numeric',
+                'discount' => 'required|numeric',
+                'quantity' => 'required|numeric',
+                'color_names' => 'required|array',
+                'color_values' => 'required|array',
+                'sizes' => 'required|array',
+                'product_images' => 'required|array',
+            ]);
 
-        if ($validated->fails()) {
-            return back()->withErrors($validated)->withInput();
+            if ($validated->fails()) {
+                return back()->withErrors($validated)->withInput();
+            }
         }
 
         $product = Product::updateOrCreate(
@@ -72,9 +78,26 @@ class AdminPanelController extends Controller
             ]
         );
 
-        $product->update_or_insert_colors($request->color_names, $request->color_values);
-        $product->update_or_insert_sizes($request->sizes);
-        $product->update_or_insert_images(save_base64_to_webp($request->product_images));
+        $product->update_or_insert_colors($request->color_names ?? [], $request->color_values ?? []);
+        $product->update_or_insert_sizes($request->sizes ?? []);
+
+        if ($request->product_id) {
+            $new_images = [];
+            $existing_images = [];
+
+            foreach ($request->product_images as $image) {
+
+                if ($product->images()->where('url', $image)->count() == 0) {
+                    array_push($new_images, $image);
+                } else {
+                    array_push($existing_images, $image);
+                }
+            }
+            $new_images = save_base64_to_webp($new_images);
+            $product->update_or_insert_images(array_merge($existing_images, $new_images));
+        } else {
+            $product->update_or_insert_images(save_base64_to_webp($request->product_images));
+        }
 
         return redirect()->route('admin-panel');
     }
