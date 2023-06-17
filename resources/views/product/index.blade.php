@@ -88,14 +88,14 @@
                                 @if ($index == 0)
                                 <label class="ring ring-offset-1 relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none ring-gray-400">
                                     <input checked type="radio" name="color-choice" value="{{ $color->id }}" class="sr-only" aria-labelledby="color-choice-0-label">
-                                    <span id="color-choice-0-label" class="sr-only"> White </span>
-                                    <span aria-hidden="true" class="h-8 w-8 bg-[{{ $color->name }}] rounded-full border border-black border-opacity-10"></span>
+                                    <span id="color-choice-0-label" class="sr-only">{{ $color->name }}</span>
+                                    <span aria-hidden="true" class="h-8 w-8 bg-[{{ $color->value }}] rounded-full border border-black border-opacity-10"></span>
                                 </label>
                                 @else
                                 <label class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none ring-gray-400">
                                     <input type="radio" name="color-choice" value="{{ $color->id }}" class="sr-only" aria-labelledby="color-choice-1-label">
-                                    <span id="color-choice-1-label" class="sr-only"> Gray </span>
-                                    <span aria-hidden="true" class="h-8 w-8 bg-[{{ $color->name }}] rounded-full border border-black border-opacity-10"></span>
+                                    <span id="color-choice-1-label" class="sr-only">{{ $color->name }}</span>
+                                    <span aria-hidden="true" class="h-8 w-8 bg-[{{ $color->value }}] rounded-full border border-black border-opacity-10"></span>
                                 </label>
                                 @endif
                                 @endforeach

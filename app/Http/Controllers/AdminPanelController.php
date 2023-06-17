@@ -10,6 +10,7 @@ use Illuminate\Validation\Rule;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\SubCategory;
+use App\Models\Order;
 
 class AdminPanelController extends Controller
 {
@@ -243,7 +244,9 @@ class AdminPanelController extends Controller
     }
 
     public function orders()
-    {}
+    {
+        return View::make('admin-panel.orders.index', ['orders' => Order::all()]);
+    }
 
     public function users()
     {}
