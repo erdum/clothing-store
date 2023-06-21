@@ -31,11 +31,6 @@ class HomeController extends Controller
         ]);
     }
 
-    public function categories()
-    {
-        return View::make('layouts.categories', ['categories' => Category::all()]);
-    }
-
     public function terms()
     {
         return View::make('terms');

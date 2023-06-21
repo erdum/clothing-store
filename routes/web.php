@@ -75,5 +75,4 @@ Route::get('/terms', [HomeController::class, 'terms'])->name('terms');
 Route::get('/policy', [HomeController::class, 'policy'])->name('policy');
 
 Route::get('/product/{id}', [ProductController::class, 'index'])->name('product');
-Route::get('/categories', [HomeController::class, 'categories'])->name('categories');
 Route::get('/{category?}/{sub_category?}', [HomeController::class, 'index'])->name('home');
