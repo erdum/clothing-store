@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Item;
-use App\Models\Site;
+use App\Models\SiteSetting;
 
 use Tco\TwocheckoutFacade;
 
@@ -18,7 +18,7 @@ class CheckoutController extends Controller
     public function index()
     {
         $cart = Auth::user()->in_cart_items;
-        $site = Site::first();
+        $site = SiteSetting::first();
 
         $sub_total = $cart->sum(function($item) {
             return $item->quantity * $item->product->unit_price;
