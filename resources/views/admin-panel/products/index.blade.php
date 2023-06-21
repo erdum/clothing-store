@@ -59,7 +59,7 @@
                 </div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap w-40">
-                <div class="text-sm text-gray-900">{{ $currency ?? 'Rs.' }}{{ $product->unit_price }}</div>
+                <div class="text-sm text-gray-900">{{ $currency ?? 'Rs.' }}{{ number_format($product->unit_price) }}</div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap w-40">
                 <div class="text-sm text-gray-900">x{{ $product->quantity }}</div>
