@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\ProductColor;
+use App\Models\ProductSize;
 
 class OrderItem extends Model
 {
@@ -17,8 +19,8 @@ class OrderItem extends Model
     protected $fillable = [
         'order_id',
         'product_id',
-        'color_id',
-        'size_id',
+        'product_color_id',
+        'product_size_id',
         'quantity'
     ];
 
@@ -34,11 +36,11 @@ class OrderItem extends Model
 
     public function color()
     {
-        return $this->belongsTo(Color::class);
+        return $this->belongsTo(ProductColor::class);
     }
 
     public function size()
     {
-        return $this->belongsTo(Size::class);
+        return $this->belongsTo(ProductSize::class);
     }
 }

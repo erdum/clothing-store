@@ -32,8 +32,8 @@ class CartController extends Controller
                 Cart::create([
                     'user_id' => $request->user()->id,
                     'product_id' => $request->product_id,
-                    'color_id' => $request->color_id,
-                    'size_id' => $request->size_id,
+                    'product_color_id' => $request->color_id,
+                    'product_size_id' => $request->size_id,
                     'quantity' => $request->quantity
                 ]);
             } else {
