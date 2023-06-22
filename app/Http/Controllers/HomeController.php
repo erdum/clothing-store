@@ -26,8 +26,7 @@ class HomeController extends Controller
         }
 
         return View::make('layouts.index', [
-            'categories' => Category::take(4)->get(),
-            'trending_products' => []
+            'categories' => Category::take(4)->get()
         ]);
     }
 
