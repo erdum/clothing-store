@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
 use App\Models\Order;
-use App\Models\Item;
+use App\Models\OrderItem;
 use App\Models\SiteSetting;
 
 use Tco\TwocheckoutFacade;
@@ -34,10 +34,10 @@ class CheckoutController extends Controller
             'UAE' => 'AED.'
         ];
 
-        $delivery_charges = $site->delivery_charges;
-        $taxes = $site->tax_charges;
-        $discount = $site->discount;
-        $discount_text = $site->discount_text;
+        $delivery_charges = $site?->delivery_charges;
+        $taxes = $site?->tax_charges;
+        $discount = $site?->discount;
+        $discount_text = $site?->discount_text;
         $total = ($sub_total - (($discount / 100) * $sub_total)) + $delivery_charges + $taxes;
 
         return View::make('checkout.index', [
@@ -48,7 +48,7 @@ class CheckoutController extends Controller
             'taxes' => $taxes,
             'discount' => $discount,
             'discount_text' => $discount_text,
-            'iban' => $site->iban,
+            'iban' => $site?->iban,
             'sub_total' => $sub_total,
             'total' => $total
         ]);
@@ -73,14 +73,15 @@ class CheckoutController extends Controller
         ]);
 
         $user = Auth::user();
+        $site = SiteSetting::first();
         $cart = $user->in_cart_items;
         $sub_total = $cart->sum(function($item) {
             return $item->quantity * $item->product->unit_price;
         });
-        $delivery_charges = env('DELIVERY_CHARGES');
-        $taxes = env('TAX_CHARGES');
-        $discount = env('DISCOUNT_PERCENTAGE');
-        $discount_text = env('DISCOUNT_TEXT');
+        $delivery_charges = $site->delivery_charges ?? 0;
+        $taxes = $site->tax_charges ?? 0;
+        $discount = $site->discount ?? 0;
+        $discount_text = $site->discount_text ?? '';
         $total = ($sub_total - (($discount / 100) * $sub_total)) + $delivery_charges + $taxes;
 
         $user
@@ -104,7 +105,7 @@ class CheckoutController extends Controller
 
         $order = Order::create([
             'user_id' => $user->id,
-            'status_id' => 1,
+            'status' => 'Pending',
             'shipping_address_id' => $user->shipping_address->id,
             'sub_total' => $sub_total,
             'total' => $total,
@@ -120,11 +121,11 @@ class CheckoutController extends Controller
         ]);
 
         foreach ($user->in_cart_items as $cart_item) {
-            Item::create([
+            OrderItem::create([
                 'order_id' => $order->id,
                 'product_id' => $cart_item->product->id,
-                'color_id' => $cart_item->color->id,
-                'size_id' => $cart_item->size->id,
+                'product_color_id' => $cart_item->color->id,
+                'product_size_id' => $cart_item->size->id,
                 'quantity' => $cart_item->quantity
             ]);
 
