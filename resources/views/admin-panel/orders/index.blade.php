@@ -20,10 +20,10 @@
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Shipping Address</th>
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sub Total</th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Discount</th>
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tax</th>
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Delivery Charges</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Payment Method</th>
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Payment ID</th>
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Shipping Method</th>
@@ -39,25 +39,25 @@
                 <div class="text-sm text-gray-900">{{ $order->user->name }}</div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap w-40">
-                <div class="text-sm text-gray-900">{{ $order->status->name }}</div>
+                <div class="text-sm text-gray-900">{{ $order->status }}</div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap w-40">
                 <div class="text-sm text-gray-900">{{ $order->shipping_address->address }}</div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap w-40">
-                <div class="text-sm text-gray-900">{{ $order->sub_total }}</div>
+                <div class="text-sm text-gray-900">{{ number_format($order->sub_total) }}</div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap w-40">
-                <div class="text-sm text-gray-900">{{ $order->total }}</div>
+                <div class="text-sm text-gray-900">{{ number_format($order->discount) }}</div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap w-40">
-                <div class="text-sm text-gray-900">{{ $order->discount }}</div>
+                <div class="text-sm text-gray-900">{{ number_format($order->tax) }}</div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap w-40">
-                <div class="text-sm text-gray-900">{{ $order->tax }}</div>
+                <div class="text-sm text-gray-900">{{ number_format($order->delivery_charges) }}</div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap w-40">
-                <div class="text-sm text-gray-900">{{ $order->delivery_charges }}</div>
+                <div class="text-sm text-gray-900">{{ number_format($order->total) }}</div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap w-40">
                 <div class="text-sm text-gray-900">{{ $order->payment_method }}</div>
@@ -78,7 +78,6 @@
                 <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"> Active </span>
               </td> -->
               <!-- <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <a href="{{ route('edit-order', ['order_id' => $order->id]) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
               </td> -->
             </tr>
             @endforeach
