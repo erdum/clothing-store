@@ -74,7 +74,7 @@
                                     <div class="flex flex-col">
                                         <span id="delivery_method_0_label" class="block text-sm font-medium text-gray-900"> Standard </span>
                                         <span id="delivery-method-0-description-0" class="mt-1 flex items-center text-sm text-gray-500"> 1-4 business days </span>
-                                        <span id="delivery-method-0-description-1" class="mt-6 text-sm font-medium text-gray-900"> {{ $currency ?? 'Rs.' }}{{ $delivery_charges }} </span>
+                                        <span id="delivery-method-0-description-1" class="mt-6 text-sm font-medium text-gray-900"> {{ $currency ?? 'Rs.' }}{{ number_format($delivery_charges ?? 0) }} </span>
                                     </div>
                                 </div>
                                 <svg class="h-5 w-5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -119,15 +119,15 @@
                         <legend class="sr-only">Payment type</legend>
                         <div id="payment-method-wrapper" class="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
                             <div class="flex items-center cursor-pointer">
-                                <input checked value="cash_on_delivery" id="cod" name="payment_method" type="radio" class="focus:ring-indigo-500 cursor-pointer h-4 w-4 text-indigo-600 border-gray-300">
+                                <input checked value="Cash on delivery" id="cod" name="payment_method" type="radio" class="focus:ring-indigo-500 cursor-pointer h-4 w-4 text-indigo-600 border-gray-300">
                                 <label for="credit-card" class="ml-3 block text-sm font-medium text-gray-700"> Cash On Delivery </label>
                             </div>
                             <div class="flex items-center cursor-pointer">
-                                <input value="credit_card" id="credit-card" name="payment_method" type="radio" class="focus:ring-indigo-500 cursor-pointer h-4 w-4 text-indigo-600 border-gray-300">
+                                <input value="Credit card" id="credit-card" name="payment_method" type="radio" class="focus:ring-indigo-500 cursor-pointer h-4 w-4 text-indigo-600 border-gray-300">
                                 <label for="credit-card" class="ml-3 block text-sm font-medium text-gray-700"> Credit card </label>
                             </div>
                             <div class="flex items-center">
-                                <input value="bank_transfer" id="bank-transfer" name="payment_method" type="radio" class="focus:ring-indigo-500 cursor-pointer h-4 w-4 text-indigo-600 border-gray-300">
+                                <input value="Bank transfer" id="bank-transfer" name="payment_method" type="radio" class="focus:ring-indigo-500 cursor-pointer h-4 w-4 text-indigo-600 border-gray-300">
                                 <label for="etransfer" class="ml-3 block text-sm font-medium text-gray-700"> Bank Transfer </label>
                             </div>
                         </div>
@@ -168,7 +168,7 @@
                     <div id="bank-transfer-wrapper" class="hidden mt-6 grid grid-cols-4 gap-y-6 gap-x-4">
                         <div class="col-span-4">
                             <span class="mt-4 px-4 py-2 rounded-md text-gray-700 bg-gray-200">
-                                {{ App\Models\Site::first()->iban }}
+                                {{ App\Models\SiteSetting::first()->iban ?? '--------------------------------' }}
                             </span>
                             <p class="text-gray-700 mt-6">
                                 Transfer the total amount to the above IBAN number and attach the Transaction ID below and confirm the order.
@@ -240,19 +240,19 @@
                         </div>
                         <div class="flex items-center justify-between">
                             <dt class="text-sm">Delivery Charges</dt>
-                            <dd id="delivery-charges" class="text-sm font-medium text-gray-900">{{ $currency ?? 'Rs.' }}{{ number_format($delivery_charges) }}</dd>
+                            <dd id="delivery-charges" class="text-sm font-medium text-gray-900">{{ $currency ?? 'Rs.' }}{{ number_format($delivery_charges ?? 0) }}</dd>
                         </div>
                         @if ($discount > 0)
                         <div class="flex items-center justify-between">
                             <dt class="text-sm">Discount
-                                <span class="rounded-full bg-gray-200 text-xs text-gray-600 py-0.5 px-2 ml-2">{{ $discount_text }}</span>
+                                <span class="rounded-full bg-gray-200 text-xs text-gray-600 py-0.5 px-2 ml-2">{{ $discount_text ?? '' }}</span>
                             </dt>
-                            <dd id="taxes" class="text-sm font-medium text-gray-900">-{{ $currency ?? 'Rs.' }}{{ number_format(($discount / 100) * $sub_total) }} ({{ $discount }}%)</dd>
+                            <dd id="taxes" class="text-sm font-medium text-gray-900">-{{ $currency ?? 'Rs.' }}{{ number_format((($discount ?? 0) / 100) * $sub_total) }} ({{ $discount ?? 0 }}%)</dd>
                         </div>
                         @endif
                         <div class="flex items-center justify-between">
                             <dt class="text-sm">Taxes</dt>
-                            <dd id="taxes" class="text-sm font-medium text-gray-900">{{ $currency ?? 'Rs.' }}{{ number_format($taxes) }}</dd>
+                            <dd id="taxes" class="text-sm font-medium text-gray-900">{{ $currency ?? 'Rs.' }}{{ number_format($taxes ?? 0) }}</dd>
                         </div>
                         <div class="flex items-center justify-between border-t border-gray-200 pt-6">
                             <dt class="text-base font-medium">Total</dt>
