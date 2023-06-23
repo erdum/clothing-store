@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Models\User;
 use App\Models\ShippingAddress;
-use App\Models\CartItem;
+use App\Models\OrderItem;
 
 class Order extends Model
 {
@@ -44,6 +44,6 @@ class Order extends Model
 
     public function items()
     {
-        return $this->hasMany(CartItem::class);
+        return $this->hasMany(OrderItem::class);
     }
 }
