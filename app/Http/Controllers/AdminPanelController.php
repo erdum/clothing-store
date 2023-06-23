@@ -248,6 +248,13 @@ class AdminPanelController extends Controller
         return View::make('admin-panel.orders.index', ['orders' => Order::all()]);
     }
 
+    public function edit_order($order_id)
+    {
+        $order = Order::find($order_id);
+
+        dd($order);
+    }
+
     public function users()
     {}
 
