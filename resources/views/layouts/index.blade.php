@@ -31,7 +31,7 @@
         <div class="relative py-32">
           <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">Mid-Season Sale</h1>
           <div class="mt-4 sm:mt-6">
-            <a href="{{ route('home', ['category' => $categories[0]->name]) }}" class="inline-block bg-indigo-600 border border-transparent rounded-md py-3 px-8 font-medium text-white hover:bg-indigo-700">Shop Collection</a>
+            <a href="{{ route('home', ['category' => $categories[0]->name ?? '']) }}" class="inline-block bg-indigo-600 border border-transparent rounded-md py-3 px-8 font-medium text-white hover:bg-indigo-700">Shop Collection</a>
           </div>
         </div>
       </div>
