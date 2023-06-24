@@ -68,7 +68,7 @@
                 </td>
                 <td class="hidden py-6 pr-8 sm:table-cell">{{ $currency ?? 'Rs.' }}{{ number_format($item->product->unit_price) }}</td>
                 <td class="hidden py-6 pr-8 sm:table-cell">x{{ $item->quantity }}</td>
-                <td class="hidden py-6 pr-8 sm:table-cell">{{ $order->status->name }}</td>
+                <td class="hidden py-6 pr-8 sm:table-cell">{{ $order->status }}</td>
                 <td class="py-6 font-medium text-right whitespace-nowrap">
                   <a href="{{ route('product', ['id' => $item->product->id]) }}" class="text-indigo-600">View<span class="hidden lg:inline"> Product</span><span class="sr-only">, {{ $item->product->name }}</span></a>
                 </td>

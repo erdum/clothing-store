@@ -8,7 +8,7 @@
     <div class="max-w-xl">
       <h1 class="text-sm font-semibold uppercase tracking-wide text-indigo-600">Thank you!</h1>
       <p class="mt-2 text-4xl font-extrabold tracking-tight sm:text-5xl">It's on the way!</p>
-      <p class="mt-2 text-base text-gray-500">Your order #{{ $order->id }} has {{ $order->status->name }} and will be with you soon.</p>
+      <p class="mt-2 text-base text-gray-500">Your order #{{ $order->id }} has {{ $order->status }} and will be with you soon.</p>
 
       <dl class="mt-12 text-sm font-medium">
         <dt class="text-gray-900">Tracking number</dt>
