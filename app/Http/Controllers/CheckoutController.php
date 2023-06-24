@@ -135,6 +135,6 @@ class CheckoutController extends Controller
             $cart_item->delete();
         }
 
-        dd($user->orders);
+        return redirect()->route('order', ['id' => $order->id]);
     }
 }
