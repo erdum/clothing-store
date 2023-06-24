@@ -23,8 +23,8 @@ class CartController extends Controller
 
             $item = Cart::where('user_id', $request->user()->id)
                 ->where('product_id', $request->product_id)
-                ->where('color_id', $request->color_id)
-                ->where('size_id', $request->size_id)
+                ->where('product_color_id', $request->color_id)
+                ->where('product_size_id', $request->size_id)
                 ->first();
 
             if (empty($item)) {
