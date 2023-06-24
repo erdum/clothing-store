@@ -129,6 +129,9 @@ class CheckoutController extends Controller
                 'quantity' => $cart_item->quantity
             ]);
 
+            $cart_item->product->quantity -= $cart_item->quantity;
+            $cart_item->product->save();
+
             $cart_item->delete();
         }
 
