@@ -214,7 +214,7 @@
                                     </div>
                                 </div>
                                 <div class="flex-1 pt-2 flex items-end justify-between">
-                                    <p class="mt-1 text-sm font-medium text-gray-900">{{ $currency ?? 'Rs.' }}{{ number_format($item->quantity * $item->product->unit_price) }}</p>
+                                    <p class="mt-1 text-sm font-medium text-gray-900">{{ $currency ?? 'Rs.' }}{{ number_format(($item->quantity * $item->product->unit_price) - ($item->product->discount / 100)) }} @if ($item->product->discount > 0) <span class="text-gray-500 text-sm">(-{{ $item->product->discount }})</span> @endif</p>
                                     <div class="ml-4">
                                         <label for="quantity" class="sr-only">Quantity</label>
                                         <select onchange="handleQuantityChange(event)" data-item-id="{{ $item->id }}" name="quantity" title="Select Quantity" class="cursor-pointer rounded-md border border-gray-300 text-base font-medium text-gray-700 text-left shadow-sm focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
