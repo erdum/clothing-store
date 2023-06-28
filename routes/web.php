@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/delete/sub-category/{sub_category_id}', [AdminPanelController::class, 'delete_sub_category'])->name('delete-sub-category');
 
     Route::get('/admin/orders', [AdminPanelController::class, 'orders'])->name('admin-orders');
+    Route::get('/admin/view/order/{order_id}', [AdminPanelController::class, 'view_order'])->name('view-order');
     Route::get('/admin/edit/order/{order_id}', [AdminPanelController::class, 'edit_order'])->name('edit-order');
 
     Route::get('/admin/users', [AdminPanelController::class, 'users'])->name('admin-users');
