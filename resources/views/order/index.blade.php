@@ -66,7 +66,7 @@
                     </div>
                   </div>
                 </td>
-                <td class="hidden py-6 pr-8 sm:table-cell">{{ $currency ?? 'Rs.' }}{{ number_format($item->product->unit_price) }}</td>
+                <td class="hidden py-6 pr-8 sm:table-cell">{{ $currency ?? 'Rs.' }}{{ number_format($item->product->unit_price) }} @if ($item->product->discount > 0) ( -{{ $item->product->discount }}% ) @endif</td>
                 <td class="hidden py-6 pr-8 sm:table-cell">x{{ $item->quantity }}</td>
                 <td class="hidden py-6 pr-8 sm:table-cell">{{ $order->status }}</td>
                 <td class="py-6 font-medium text-right whitespace-nowrap">

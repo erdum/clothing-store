@@ -21,7 +21,7 @@ class CheckoutController extends Controller
         $site = SiteSetting::first();
 
         $sub_total = $cart->sum(function($item) {
-            return $item->quantity * $item->product->unit_price;
+            return ($item->quantity * $item->product->unit_price) - ($item->quantity * $item->product->unit_price) * ($item->product->discount / 100);
         });
 
         $countries_of_opreations = [
@@ -76,7 +76,7 @@ class CheckoutController extends Controller
         $site = SiteSetting::first();
         $cart = $user->in_cart_items;
         $sub_total = $cart->sum(function($item) {
-            return $item->quantity * $item->product->unit_price;
+            return ($item->quantity * $item->product->unit_price) - ($item->quantity * $item->product->unit_price) * ($item->product->discount / 100);
         });
         $delivery_charges = $site->delivery_charges ?? 0;
         $taxes = $site->tax_charges ?? 0;
