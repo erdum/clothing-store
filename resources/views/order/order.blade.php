@@ -43,6 +43,18 @@
               </div>
             </dl>
           </div>
+          <div class="mt-4 text-sm flex items-end">
+            <dl class="flex text-sm divide-x divide-gray-200 space-x-4 sm:space-x-6">
+              <div class="flex">
+                <dt class="font-medium text-gray-900">Color</dt>
+                <dd class="ml-2 text-gray-700">{{ $item->color->name }}</dd>
+              </div>
+              <div class="pl-4 flex sm:pl-6">
+                <dt class="font-medium text-gray-900">Size</dt>
+                <dd class="ml-2 text-gray-700">{{ $item->size->name }}</dd>
+              </div>
+            </dl>
+          </div>
         </div>
       </div>
       @endforeach
