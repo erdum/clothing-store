@@ -28,7 +28,7 @@
               </div>
               <div class="pl-4 flex sm:pl-6">
                 <dt class="font-medium text-gray-900">Price</dt>
-                <dd class="ml-2 text-gray-700">{{ $currency ?? 'Rs.' }}{{ number_format($item->product->unit_price) }}</dd>
+                <dd class="ml-2 text-gray-700">{{ $currency ?? 'Rs.' }}{{ number_format($item->product->unit_price) }} @if ($item->product->discount > 0) <span class="text-gray-500 text-sm">( -{{ $item->product->discount }}% )</span> @endif</dd>
               </div>
             </dl>
           </div>
