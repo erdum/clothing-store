@@ -5,7 +5,12 @@
 @section('content')
 <div class="bg-white">
   <div class="max-w-3xl mx-auto px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-    <div>
+    <div class="max-w-xl">
+      <p class="mt-2 text-3xl font-medium tracking-tight sm:text-4xl"># {{ $order->id }}</p>
+      <p class="mt-2 text-lg text-gray-500">{{ $order->status }}</p>
+    </div>
+
+    <div class="mt-10 border-t border-gray-200">
       <h2 class="sr-only">Your order</h2>
 
       <h3 class="sr-only">Items</h3>
