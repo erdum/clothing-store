@@ -242,17 +242,17 @@
                             <dt class="text-sm">Delivery Charges</dt>
                             <dd id="delivery-charges" class="text-sm font-medium text-gray-900">{{ $currency ?? 'Rs.' }}{{ number_format($delivery_charges ?? 0) }}</dd>
                         </div>
-                        @if ($discount > 0)
+                        <div class="flex items-center justify-between">
+                            <dt class="text-sm">Tax</dt>
+                            <dd id="taxes" class="text-sm font-medium text-gray-900">+{{ $currency ?? 'Rs.' }}{{ number_format((($taxes ?? 0) / 100) * $sub_total) }} ( {{ $taxes ?? 0 }}% )</dd>
+                        </div>
                         <div class="flex items-center justify-between">
                             <dt class="text-sm">Discount
-                                <span class="rounded-full bg-gray-200 text-xs text-gray-600 py-0.5 px-2 ml-2">{{ $discount_text ?? '' }}</span>
+                                @if (!empty($discount_text))
+                                    <span class="rounded-full bg-gray-200 text-xs text-gray-600 py-0.5 px-2 ml-2">{{ $discount_text ?? '' }}</span>
+                                @endif
                             </dt>
-                            <dd id="taxes" class="text-sm font-medium text-gray-900">-{{ $currency ?? 'Rs.' }}{{ number_format((($discount ?? 0) / 100) * $sub_total) }} ({{ $discount ?? 0 }}%)</dd>
-                        </div>
-                        @endif
-                        <div class="flex items-center justify-between">
-                            <dt class="text-sm">Taxes</dt>
-                            <dd id="taxes" class="text-sm font-medium text-gray-900">{{ $currency ?? 'Rs.' }}{{ number_format($taxes ?? 0) }}</dd>
+                            <dd id="taxes" class="text-sm font-medium text-gray-900">-{{ $currency ?? 'Rs.' }}{{ number_format((($discount ?? 0) / 100) * $sub_total) }} ( {{ $discount ?? 0 }}% )</dd>
                         </div>
                         <div class="flex items-center justify-between border-t border-gray-200 pt-6">
                             <dt class="text-base font-medium">Total</dt>
