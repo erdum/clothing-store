@@ -243,6 +243,8 @@ class AdminPanelController extends Controller
         return redirect()->route('admin-sub-categories');
     }
 
+    // ------------ Orders Operations ------------
+    // ===============================================
     public function orders()
     {
         return View::make('admin-panel.orders.index', ['orders' => Order::all()]);
@@ -257,7 +259,11 @@ class AdminPanelController extends Controller
     {
         $order = Order::find($order_id);
 
-        dd($order);
+        if (empty($order)) {
+            return response()->json(['message' => 'the requested item for update not found.'], 400);
+        }
+
+        return View::make('admin-panel.order.edit-order', ['order' => $order]);
     }
 
     public function users()
