@@ -250,11 +250,6 @@ class AdminPanelController extends Controller
         return View::make('admin-panel.orders.index', ['orders' => Order::all()]);
     }
 
-    public function view_order($order_id)
-    {
-        return View::make('admin-panel.orders.order', ['order' => Order::find($order_id)]);
-    }
-
     public function edit_order($order_id)
     {
         $order = Order::find($order_id);
@@ -263,7 +258,7 @@ class AdminPanelController extends Controller
             return response()->json(['message' => 'the requested item for update not found.'], 400);
         }
 
-        return View::make('admin-panel.order.edit-order', ['order' => $order]);
+        return View::make('admin-panel.orders.order', ['order' => $order]);
     }
 
     public function users()
