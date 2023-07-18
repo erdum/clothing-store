@@ -59,7 +59,7 @@
       </div>
       @endforeach
 
-      <div class="sm:ml-40 sm:pl-6">
+      <div class="sm:ml-40">
         <h3 class="sr-only">Your information</h3>
 
         <h4 class="sr-only">Addresses</h4>
