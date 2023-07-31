@@ -261,6 +261,21 @@ class AdminPanelController extends Controller
         return View::make('admin-panel.orders.order', ['order' => $order]);
     }
 
+    public function save_order(Request $request)
+    {
+        $order = Order::find($request->order_id);
+
+        if (empty($order)) {
+            return response()->json(['message' => 'the requested item for update not found.'], 400);
+        }
+
+        $order->status = $request->order_status;
+        $order->tracking_id = $request->tracking_id;
+        $order->save();
+
+        return redirect()->route('edit-order', ['order_id' => $order->id]);
+    }
+
     public function users()
     {}
 

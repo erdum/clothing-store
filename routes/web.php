@@ -45,6 +45,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/admin/orders', [AdminPanelController::class, 'orders'])->name('admin-orders');
     Route::get('/admin/edit/order/{order_id}', [AdminPanelController::class, 'edit_order'])->name('edit-order');
+    Route::post('/admin/save/order', [AdminPanelController::class, 'save_order'])->name('save-order');
 
     Route::get('/admin/users', [AdminPanelController::class, 'users'])->name('admin-users');
     Route::get('/admin/site', [AdminPanelController::class, 'site'])->name('admin-site');

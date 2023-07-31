@@ -6,8 +6,9 @@
 <div class="bg-gray-50">
     <div class="max-w-2xl mx-auto pt-16 pb-24 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 class="sr-only">Order #{{ $order->id }}</h2>
-        <form action="{{ route('post_checkout') }}" method="POST" class="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
+        <form action="{{ route('save-order') }}" method="POST" class="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
             @csrf
+            <input type="hidden" name="order_id" value="{{ $order->id }}">
             <div>
                 <div>
                     <h2 class="text-lg font-medium text-gray-900">Shipping information</h2>
@@ -63,7 +64,7 @@
                         <div class="sm:col-span-2">
                           <label for="order_status" class="block text-sm font-medium text-gray-700">Order Status *</label>
                           <select required id="order_status" name="order_status" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                              <option value="">{{ $order->status }}</option>
+                              <option selected value="{{ $order->status }}">{{ $order->status }}</option>
                           </select>
                         </div>
                     </div>
@@ -162,7 +163,7 @@
                         </div>
                     </dl>
                     <div class="border-t border-gray-200 py-6 px-4 sm:px-6">
-                        <button type="submit" disabled class="w-full bg-indigo-600 border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500">Update Order</button>
+                        <button type="submit" class="w-full bg-indigo-600 border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500">Update Order</button>
                     </div>
                 </div>
             </div>
