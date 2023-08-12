@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\Product;
 use App\Models\Category;
@@ -279,7 +280,16 @@ class AdminPanelController extends Controller
     public function users()
     {}
 
-    public function site()
-    {}
+    // ------------ Site Operations ------------
+    // ===============================================
+    public function site(Request $request)
+    {
+        $settings = json_decode(Storage::get('site-settings.json'), true) ?? [];
+
+        return View::make('admin-panel.site.index', $settings);
+        // countries of operation
+        // social auth tokens
+        // terms & privacy policy
+    }
 }
     
