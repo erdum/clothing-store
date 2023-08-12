@@ -164,6 +164,12 @@
     const methodETA = document.getElementById("shipping_method_eta");
     const template = document.getElementById("shipping_method_template");
 
+    if (
+      methodName.value === ""
+      || methodCharges.value === ""
+      || methodETA.value === ""
+    ) return;
+
     const methodNameElem = template.children[0].cloneNode(true);
     const methodChargesElem = template.children[1].cloneNode(true);
     const methodETAElem = template.children[2].cloneNode(true);
