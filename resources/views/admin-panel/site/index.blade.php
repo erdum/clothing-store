@@ -100,15 +100,15 @@
             </h4>
 
             <div class="col-span-6 sm:col-span-2">
-              <input type="text" value="" placeholder="Method Name" id="shipping_method_name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+              <input type="text" placeholder="Method Name (Standard)" id="shipping_method_name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
             </div>
 
             <div class="col-span-6 sm:col-span-2 flex items-end">
-              <input type="text" value="" placeholder="Charges" id="shipping_method_charges" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+              <input type="number" placeholder="Charges (300)" id="shipping_method_charges" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
             </div>
 
             <div class="col-span-6 sm:col-span-2 flex items-end">
-              <input type="text" value="" placeholder="ETA" id="shipping_method_eta" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+              <input type="text" placeholder="ETA (1-2 days)" id="shipping_method_eta" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
             </div>
 
             <div class="col-span-6 flex items-end justify-end">
