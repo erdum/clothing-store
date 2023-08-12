@@ -196,7 +196,7 @@
     methodETA.value = "";
   };
 
-  const removeProductSizeAndColor = (event) => {
+  const removeShippingMethod = (event) => {
     const btn = event.composedPath()[0];
 
     if (btn.tagName !== "BUTTON" || btn.getAttribute("name") !== "remove-btn") return;
@@ -208,7 +208,7 @@
   };
 
   document.getElementById("add_shipping_method_btn").addEventListener("click", addShippingMethod);
-  document.getElementById("add_shipping_method").addEventListener("click", removeProductSizeAndColor);
+  document.getElementById("add_shipping_method").addEventListener("click", removeShippingMethod);
 
 </script>
 
