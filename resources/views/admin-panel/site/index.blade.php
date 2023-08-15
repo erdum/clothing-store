@@ -62,26 +62,6 @@
               <input type="url" required value="" name="youtube" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('youtube') border border-red-500 @enderror">
             </div>
 
-            <div class="col-span-6 sm:col-span-3">
-              <label for="google-client-id" class="block text-sm font-medium text-gray-700">Google Client ID</label>
-              <input type="text" required value="" name="google-client-id" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('google-client-id') border border-red-500 @enderror">
-            </div>
-
-            <div class="col-span-6 sm:col-span-3">
-              <label for="google-client-secret" class="block text-sm font-medium text-gray-700">Google Client Secret</label>
-              <input type="text" required value="" name="google-client-secret" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('google-client-secret') border border-red-500 @enderror">
-            </div>
-
-            <div class="col-span-6 sm:col-span-3">
-              <label for="facebook-client-id" class="block text-sm font-medium text-gray-700">Facebook Client ID</label>
-              <input type="text" required value="" name="facebook-client-id" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('facebook-client-id') border border-red-500 @enderror">
-            </div>
-
-            <div class="col-span-6 sm:col-span-3">
-              <label for="facebook-client-secret" class="block text-sm font-medium text-gray-700">Facebook Client Secret</label>
-              <input type="text" required value="" name="facebook-client-secret" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('facebook-client-secret') border border-red-500 @enderror">
-            </div>
-
             <div class="col-span-6">
               <label for="about" class="block text-sm font-medium text-gray-700">Terms</label>
               <div class="mt-1">
@@ -120,9 +100,7 @@
             <div class="col-span-6 sm:col-span-3">
               <label for="country" class="block text-sm font-medium text-gray-700">Store Default Currency</label>
               <select id="country" name="country" autocomplete="country-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                <option selected value="USD">USD $</option>
-                <option value="EUR">EUR</option>
-                <option value="PKR">PKR Rs.</option>
+                <option selected value="USD">$ USD</option>
               </select>
             </div>
 
@@ -174,11 +152,6 @@
             </h4>
 
             <div class="col-span-6 sm:col-span-2">
-              <label for="stripe-secret-key" class="block text-sm font-medium text-gray-700">Stripe Secret Key</label>
-              <input type="text" required value="" name="stripe-secret-key" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('stripe-secret-key') border border-red-500 @enderror">
-            </div>
-
-            <div class="col-span-6 sm:col-span-2">
               <label for="stripe-client-id" class="block text-sm font-medium text-gray-700">Stripe Client ID</label>
               <input type="text" required value="" name="stripe-client-id" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('stripe-client-id') border border-red-500 @enderror">
             </div>
@@ -186,6 +159,11 @@
             <div class="col-span-6 sm:col-span-2">
               <label for="stripe-client-secret" class="block text-sm font-medium text-gray-700">Stripe Client Secret</label>
               <input type="text" required value="" name="stripe-client-secret" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('stripe-client-secret') border border-red-500 @enderror">
+            </div>
+
+            <div class="col-span-6 sm:col-span-2">
+              <label for="stripe-secret-key" class="block text-sm font-medium text-gray-700">Stripe Key</label>
+              <input type="text" required value="" name="stripe-secret-key" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('stripe-secret-key') border border-red-500 @enderror">
             </div>
 
           </div>
