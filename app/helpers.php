@@ -17,3 +17,14 @@ function save_base64_to_webp($images)
     }
     return $links;
 }
+
+function site_settings()
+{
+    $settings = json_decode(Storage::get('site-settings.json'), false) ?? new stdClass();
+
+    $settings->save = function () {
+        $payload = [];
+
+        $payload->name = $settings->name ?? '';
+    };
+}
