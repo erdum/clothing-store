@@ -10,14 +10,14 @@
       </div>
     </div>
     <div class="mt-5 md:mt-0 md:col-span-2">
-      <form id="add_shipping_method" action="{{ route('save-product') }}" method="POST">
+      <form id="add_shipping_method" action="{{ route('save-site-settings') }}" method="POST">
         @csrf
         <div class="shadow overflow-hidden sm:rounded-md">
           <div class="grid grid-cols-6 gap-6 px-4 py-5 bg-white sm:p-6">
 
             <div class="col-span-6 sm:col-span-3">
-              <label for="brand-name" class="block text-sm font-medium text-gray-700">Brand Name</label>
-              <input type="text" required value="" name="brand-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('brand-name') border border-red-500 @enderror">
+              <label for="name" class="block text-sm font-medium text-gray-700">Brand Name</label>
+              <input type="text" value="{{ $name }}" name="name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('name') border border-red-500 @enderror">
             </div>
 
             <div class="col-span-6">
@@ -33,47 +33,47 @@
             </div>
 
             <div class="col-span-6 sm:col-span-3">
-              <label for="phone" class="block text-sm font-medium text-gray-700">Contact Phone</label>
-              <input type="tel" required value="" name="phone" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('phone') border border-red-500 @enderror">
+              <label for="contact_phone" class="block text-sm font-medium text-gray-700">Contact Phone</label>
+              <input type="tel" value="" name="contact_phone" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('contact_phone') border border-red-500 @enderror">
             </div>
 
             <div class="col-span-6 sm:col-span-3">
-              <label for="email" class="block text-sm font-medium text-gray-700">Contact Email</label>
-              <input type="email" required value="" name="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('email') border border-red-500 @enderror">
+              <label for="contact_email" class="block text-sm font-medium text-gray-700">Contact Email</label>
+              <input type="contact_email" value="" name="contact_email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('contact_email') border border-red-500 @enderror">
             </div>
 
             <div class="col-span-6 sm:col-span-3">
               <label for="facebook" class="block text-sm font-medium text-gray-700">Facebook Link</label>
-              <input type="url" required value="" name="facebook" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('facebook') border border-red-500 @enderror">
+              <input type="url" value="" name="facebook" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('facebook') border border-red-500 @enderror">
             </div>
 
             <div class="col-span-6 sm:col-span-3">
               <label for="instagram" class="block text-sm font-medium text-gray-700">Instagram Link</label>
-              <input type="url" required value="" name="instagram" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('instagram') border border-red-500 @enderror">
+              <input type="url" value="" name="instagram" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('instagram') border border-red-500 @enderror">
             </div>
 
             <div class="col-span-6 sm:col-span-3">
               <label for="twitter" class="block text-sm font-medium text-gray-700">Twitter Link</label>
-              <input type="url" required value="" name="twitter" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('twitter') border border-red-500 @enderror">
+              <input type="url" value="" name="twitter" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('twitter') border border-red-500 @enderror">
             </div>
 
             <div class="col-span-6 sm:col-span-3">
               <label For="youtube" Class="block Text-sm Font-medium Text-gray-700">Youtube Link</label>
-              <input type="url" required value="" name="youtube" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('youtube') border border-red-500 @enderror">
+              <input type="url" value="" name="youtube" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('youtube') border border-red-500 @enderror">
             </div>
 
             <div class="col-span-6">
-              <label for="about" class="block text-sm font-medium text-gray-700">Terms</label>
+              <label for="terms" class="block text-sm font-medium text-gray-700">Terms</label>
               <div class="mt-1">
-                <textarea id="about" name="about" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"></textarea>
+                <textarea id="terms" name="terms" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"></textarea>
               </div>
               <p class="mt-2 text-sm text-gray-500">Write terms of service for your site.</p>
             </div>
 
             <div class="col-span-6">
-              <label for="about" class="block text-sm font-medium text-gray-700">Privacy Policy</label>
+              <label for="privacy_policy" class="block text-sm font-medium text-gray-700">Privacy Policy</label>
               <div class="mt-1">
-                <textarea id="about" name="about" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"></textarea>
+                <textarea id="privacy_policy" name="privacy_policy" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"></textarea>
               </div>
               <p class="mt-2 text-sm text-gray-500">Write privacy policy for your site.</p>
             </div>
@@ -83,30 +83,30 @@
             </h4>
 
             <div class="col-span-6 sm:col-span-3">
-              <label for="discount-text" class="block text-sm font-medium text-gray-700">Allover Store Discount Text</label>
-              <input type="text" required value="" name="discount-text" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('discount-text') border border-red-500 @enderror">
+              <label for="discount_text" class="block text-sm font-medium text-gray-700">Allover Store Discount Text</label>
+              <input type="text" value="" name="discount_text" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('discount_text') border border-red-500 @enderror">
             </div>
 
             <div class="col-span-6 sm:col-span-3">
-              <label for="discount-percentage" class="block text-sm font-medium text-gray-700">Allover Store Discount Percentage</label>
-              <input type="number" required value="" name="discount-percentage" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('discount-percentage') border border-red-500 @enderror">
+              <label for="discount_percentage" class="block text-sm font-medium text-gray-700">Allover Store Discount Percentage</label>
+              <input type="number" value="" name="discount_percentage" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('discount_percentage') border border-red-500 @enderror">
             </div>
 
             <div class="col-span-6 sm:col-span-3">
               <label For="tax" Class="block text-sm Font-medium Text-gray-700">Tax</label>
-              <input type="number" required value="" name="tax" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('tax') border border-red-500 @enderror">
+              <input type="number" value="" name="tax" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('tax') border border-red-500 @enderror">
             </div>
 
             <div class="col-span-6 sm:col-span-3">
-              <label for="country" class="block text-sm font-medium text-gray-700">Store Default Currency</label>
-              <select id="country" name="country" autocomplete="country-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                <option selected value="USD">$ USD</option>
+              <label for="currency" class="block text-sm font-medium text-gray-700">Store Default Currency</label>
+              <select id="currency" name="currency" autocomplete="currency" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <option selected value="$">$ USD</option>
               </select>
             </div>
 
             <div class="col-span-6 sm:col-span-3">
               <label For="iban" Class="block text-sm Font-medium Text-gray-700">IBAN for receiving payments</label>
-              <input type="text" required value="" name="iban" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('iban') border border-red-500 @enderror">
+              <input type="text" value="" name="iban" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('iban') border border-red-500 @enderror">
             </div>
 
             <h4 class="col-span-6 mt-8 text-center text-gray-400 font-medium text-lg">
@@ -151,19 +151,14 @@
               Stripe Details
             </h4>
 
-            <div class="col-span-6 sm:col-span-2">
-              <label for="stripe-client-id" class="block text-sm font-medium text-gray-700">Stripe Client ID</label>
-              <input type="text" required value="" name="stripe-client-id" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('stripe-client-id') border border-red-500 @enderror">
+            <div class="col-span-6 sm:col-span-3">
+              <label for="stripe_secret" class="block text-sm font-medium text-gray-700">Stripe Client Secret</label>
+              <input type="text" value="" name="stripe_secret" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('stripe_secret') border border-red-500 @enderror">
             </div>
 
-            <div class="col-span-6 sm:col-span-2">
-              <label for="stripe-client-secret" class="block text-sm font-medium text-gray-700">Stripe Client Secret</label>
-              <input type="text" required value="" name="stripe-client-secret" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('stripe-client-secret') border border-red-500 @enderror">
-            </div>
-
-            <div class="col-span-6 sm:col-span-2">
-              <label for="stripe-secret-key" class="block text-sm font-medium text-gray-700">Stripe Key</label>
-              <input type="text" required value="" name="stripe-secret-key" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('stripe-secret-key') border border-red-500 @enderror">
+            <div class="col-span-6 sm:col-span-3">
+              <label for="stripe_key" class="block text-sm font-medium text-gray-700">Stripe Key</label>
+              <input type="text" value="" name="stripe_key" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('stripe_key') border border-red-500 @enderror">
             </div>
 
           </div>
