@@ -48,7 +48,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/admin/save/order', [AdminPanelController::class, 'save_order'])->name('save-order');
 
     Route::get('/admin/users', [AdminPanelController::class, 'users'])->name('admin-users');
+    
     Route::get('/admin/site', [AdminPanelController::class, 'site'])->name('admin-site');
+    Route::post('/admin/save/site', [AdminPanelController::class, 'save_site_settings'])->name('save-site-settings');
 
     Route::post('/admin/upload-product-images', [AdminPanelController::class, 'upload_product_images'])->name('upload-product-images');
 
