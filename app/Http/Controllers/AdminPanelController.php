@@ -12,6 +12,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\Order;
+use App\Models\SiteSetting;
 
 class AdminPanelController extends Controller
 {
@@ -282,14 +283,17 @@ class AdminPanelController extends Controller
 
     // ------------ Site Operations ------------
     // ===============================================
-    public function site(Request $request)
+    public function site()
     {
-        $settings = json_decode(Storage::get('site-settings.json'), true) ?? [];
+        return View::make('admin-panel.site.index', SiteSetting::first() ?? []);
+    }
 
-        return View::make('admin-panel.site.index', $settings);
-        // countries of operation
-        // social auth tokens
-        // terms & privacy policy
+    public function save_site_settings(Request $request)
+    {
+
+        $settings = SiteSetting::updateOrCreate(['id' => 1], $request->all());
+
+        return View::make('admin-panel.site.index', $settings ?? []);
     }
 }
     
