@@ -32,6 +32,7 @@ return new class extends Migration
             $table->string('iban')->nullable();
             $table->string('stripe_secret')->nullable();
             $table->string('stripe_key')->nullable();
+            $table->json('shipping_methods')->nullable();
             $table->timestamps();
         });
     }

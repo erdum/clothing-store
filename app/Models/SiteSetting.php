@@ -27,6 +27,7 @@ class SiteSetting extends Model
         'currency',
         'iban',
         'stripe_secret',
-        'stripe_key'
+        'stripe_key',
+        'shipping_methods'
     ];
 }
