@@ -290,8 +290,19 @@ class AdminPanelController extends Controller
 
     public function save_site_settings(Request $request)
     {
+        $methods = [];
 
-        $settings = SiteSetting::updateOrCreate(['id' => 1], $request->all());
+        if (isset($request->shipping_method_name)) {
+
+            foreach ($request->shipping_method_name as $index => $value) {
+                array_push($methods, [
+                    'name' => $value,
+                    'charges' => $request->shipping_method_charges[$index],
+                    'eta' => $request->shipping_method_eta[$index]
+                ]);
+            }
+        }
+        $settings = SiteSetting::updateOrCreate(['id' => 1], array_merge($request->all(), ['shipping_methods' => $methods]));
 
         return View::make('admin-panel.site.index', $settings ?? []);
     }
