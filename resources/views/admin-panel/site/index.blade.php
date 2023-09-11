@@ -39,7 +39,7 @@
 
             <div class="col-span-6 sm:col-span-3">
               <label for="contact_email" class="block text-sm font-medium text-gray-700">Contact Email</label>
-              <input type="contact_email" value="{{ $contact_email ?? '' }}" name="contact_email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('contact_email') border border-red-500 @enderror">
+              <input type="email" value="{{ $contact_email ?? '' }}" name="contact_email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('contact_email') border border-red-500 @enderror">
             </div>
 
             <div class="col-span-6 sm:col-span-3">
@@ -146,6 +146,24 @@
                 <button type="button" class="text-indigo-600 hover:text-indigo-500" name="remove-btn">Remove</button>
               </div>
             </div>
+
+            @foreach (json_decode($shipping_methods) as $shipping)
+              <div class="col-span-6 sm:col-span-2 flex items-end" name="{{ $shipping->name }}">
+                <input readonly name="shipping_method_name[]" value="{{ $shipping->name }}" type="text" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+              </div>
+
+              <div class="col-span-6 sm:col-span-2" name="{{ $shipping->name }}">
+                <input readonly name="shipping_method_charges[]" value="{{ $shipping->charges }}" type="text" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+              </div>
+
+              <div class="col-span-6 sm:col-span-2" name="{{ $shipping->name }}">
+                <input readonly name="shipping_method_eta[]" value="{{ $shipping->eta }}" type="text" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+              </div>
+
+              <div class="col-span-6 flex items-center justify-start px-2" name="{{ $shipping->name }}">
+                <button type="button" class="text-indigo-600 hover:text-indigo-500" name="remove-btn">Remove</button>
+              </div>
+            @endforeach
 
             <h4 class="col-span-6 mt-8 text-center text-gray-400 font-medium text-lg">
               Stripe Details
