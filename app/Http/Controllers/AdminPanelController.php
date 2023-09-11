@@ -302,7 +302,7 @@ class AdminPanelController extends Controller
                 ]);
             }
         }
-        $settings = SiteSetting::updateOrCreate(['id' => 1], array_merge($request->all(), ['shipping_methods' => $methods]));
+        $settings = SiteSetting::updateOrCreate(['id' => 1], array_merge($request->all(), ['shipping_methods' => json_encode($methods)]));
 
         return View::make('admin-panel.site.index', $settings ?? []);
     }
