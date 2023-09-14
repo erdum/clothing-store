@@ -30,4 +30,9 @@ class SiteSetting extends Model
         'stripe_key',
         'shipping_methods'
     ];
+
+    public function shipping_methods()
+    {
+        return json_decode($this->shipping_methods, false);
+    }
 }

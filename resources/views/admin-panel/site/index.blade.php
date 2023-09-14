@@ -83,18 +83,18 @@
             </h4>
 
             <div class="col-span-6 sm:col-span-3">
-              <label for="discount_text" class="block text-sm font-medium text-gray-700">Allover Store Discount Text</label>
+              <label for="discount_text" class="block text-sm font-medium text-gray-700">All-over Store Discount Text</label>
               <input type="text" value="{{ $discount_text ?? '' }}" name="discount_text" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('discount_text') border border-red-500 @enderror">
             </div>
 
             <div class="col-span-6 sm:col-span-3">
-              <label for="discount_percentage" class="block text-sm font-medium text-gray-700">Allover Store Discount Percentage</label>
-              <input type="number" value="{{ $discount_percentage ?? 0 }}" name="discount_percentage" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('discount_percentage') border border-red-500 @enderror">
+              <label for="discount_percentage" class="block text-sm font-medium text-gray-700">All-over Store Discount %</label>
+              <input type="number" min="0" max="100" value="{{ $discount_percentage ?? 0 }}" name="discount_percentage" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('discount_percentage') border border-red-500 @enderror">
             </div>
 
             <div class="col-span-6 sm:col-span-3">
-              <label For="tax" Class="block text-sm Font-medium Text-gray-700">Tax</label>
-              <input type="number" value="{{ $tax ?? 0 }}" name="tax" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('tax') border border-red-500 @enderror">
+              <label For="tax" Class="block text-sm Font-medium Text-gray-700">Tax %</label>
+              <input type="number" min="0" max="100" value="{{ $tax ?? 0 }}" name="tax" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('tax') border border-red-500 @enderror">
             </div>
 
             <div class="col-span-6 sm:col-span-3">
@@ -102,6 +102,16 @@
               <select id="currency" name="currency" autocomplete="currency" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                 <option selected value="$">$ USD</option>
               </select>
+            </div>
+
+            <div class="col-span-6 sm:col-span-3">
+              <label for="stripe_secret" class="block text-sm font-medium text-gray-700">Stripe Secret</label>
+              <input type="text" value="{{ $stripe_secret ?? '' }}" name="stripe_secret" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('stripe_secret') border border-red-500 @enderror">
+            </div>
+
+            <div class="col-span-6 sm:col-span-3">
+              <label for="stripe_key" class="block text-sm font-medium text-gray-700">Stripe Key</label>
+              <input type="text" value="{{ $stripe_key ?? '' }}" name="stripe_key" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('stripe_key') border border-red-500 @enderror">
             </div>
 
             <div class="col-span-6 sm:col-span-3">
@@ -164,20 +174,6 @@
                 <button type="button" class="text-indigo-600 hover:text-indigo-500" name="remove-btn">Remove</button>
               </div>
             @endforeach
-
-            <h4 class="col-span-6 mt-8 text-center text-gray-400 font-medium text-lg">
-              Stripe Details
-            </h4>
-
-            <div class="col-span-6 sm:col-span-3">
-              <label for="stripe_secret" class="block text-sm font-medium text-gray-700">Stripe Secret</label>
-              <input type="text" value="{{ $stripe_secret ?? '' }}" name="stripe_secret" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('stripe_secret') border border-red-500 @enderror">
-            </div>
-
-            <div class="col-span-6 sm:col-span-3">
-              <label for="stripe_key" class="block text-sm font-medium text-gray-700">Stripe Key</label>
-              <input type="text" value="{{ $stripe_key ?? '' }}" name="stripe_key" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('stripe_key') border border-red-500 @enderror">
-            </div>
 
           </div>
           <div class="px-4 py-3 bg-gray-50 sm:px-6 flex justify-between">
