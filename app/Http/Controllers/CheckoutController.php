@@ -15,13 +15,13 @@ use Tco\TwocheckoutFacade;
 
 class CheckoutController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $cart = Auth::user()->in_cart_items;
         $site = SiteSetting::first();
 
         $sub_total = $cart->sum(function($item) {
-            return ($item->quantity * $item->product->unit_price) - ($item->quantity * $item->product->unit_price) * ($item->product->discount / 100);
+            return ($item->quantity * $item->product->unit_price) - (($item->quantity * $item->product->unit_price) * ($item->product->discount / 100));
         });
 
         $countries_of_opreations = [
@@ -29,26 +29,25 @@ class CheckoutController extends Controller
             'UAE'
         ];
 
-        $currencies = [
-            'Pakistan' => 'Rs.',
-            'UAE' => 'AED.'
-        ];
+        $selected_shipping = $request->session()->get('selected_shipping_method') ?? 0;
+        $shipping_charges = $site->shipping_methods()[$selected_shipping]->charges;
 
-        $delivery_charges = $site?->delivery_charges;
-        $taxes = $site?->tax_charges;
-        $discount = $site?->discount;
-        $discount_text = $site?->discount_text;
-        $total = ($sub_total - (($discount / 100) * $sub_total)) + $delivery_charges + $taxes;
+        $total = $sub_total + (($site->tax / 100) * $sub_total);
+        $total -= ($total * ($site->discount_percentage / 100));
+        $total += $shipping_charges;
 
         return View::make('checkout.index', [
             'user' => Auth::user(),
             'cart' => $cart,
+            'currency' => $site->currency,
+            'shipping_charges' => $shipping_charges,
+            'selected_shipping' => $selected_shipping,
+            'shipping_methods' => $site->shipping_methods(),
+            'tax' => $site->tax,
+            'discount' => $site->discount_percentage,
+            'discount_text' => $site->discount_text,
             'countries_of_opreations' => $countries_of_opreations,
-            'delivery_charges' => $delivery_charges,
-            'taxes' => $taxes,
-            'discount' => $discount,
-            'discount_text' => $discount_text,
-            'iban' => $site?->iban,
+            'iban' => $site->iban,
             'sub_total' => $sub_total,
             'total' => $total
         ]);
@@ -75,14 +74,17 @@ class CheckoutController extends Controller
         $user = Auth::user();
         $site = SiteSetting::first();
         $cart = $user->in_cart_items;
+
         $sub_total = $cart->sum(function($item) {
             return ($item->quantity * $item->product->unit_price) - ($item->quantity * $item->product->unit_price) * ($item->product->discount / 100);
         });
-        $delivery_charges = $site->delivery_charges ?? 0;
-        $taxes = $site->tax_charges ?? 0;
-        $discount = $site->discount ?? 0;
-        $discount_text = $site->discount_text ?? '';
-        $total = ($sub_total - (($discount / 100) * $sub_total)) + $delivery_charges + $taxes;
+
+        $selected_shipping = $request->session()->get('selected_shipping_method') ?? 0;
+        $shipping_charges = $site->shipping_methods()[$selected_shipping]->charges;
+
+        $total = $sub_total + (($site->tax / 100) * $sub_total);
+        $total -= ($total * ($site->discount_percentage / 100));
+        $total += $shipping_charges;
 
         $user
         ->shipping_address()
@@ -109,14 +111,14 @@ class CheckoutController extends Controller
             'shipping_address_id' => $user->shipping_address->id,
             'sub_total' => $sub_total,
             'total' => $total,
-            'discount' => $discount,
-            'discount_text' => $discount_text,
-            'tax' => $taxes,
-            'delivery_charges' => $delivery_charges,
+            'discount' => $site->discount_percentage,
+            'discount_text' => $site->discount_text,
+            'tax' => $site->tax,
+            'delivery_charges' => $shipping_charges,
             'payment_method' => $request->payment_method,
             'payment_id' => $request?->tid ?? "N/A",
-            'shipping_method' => $request->shipping_method,
-            'shipping_eta' => "1-4 days",
+            'shipping_method' => $site->shipping_methods()[$selected_shipping]->name,
+            'shipping_eta' => $site->shipping_methods()[$selected_shipping]->eta,
             'tracking_id' => "N/A"
         ]);
 

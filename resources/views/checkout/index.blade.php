@@ -35,11 +35,12 @@
                             <div class="mt-1">
                                 <select id="country" required name="country" autocomplete="country-name" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                     @foreach ($countries_of_opreations as $country)
-                                    @if ($user->shipping_address?->country == $country)
-                                    <option selected value="{{ $country }}" >{{ $country }}</option>
-                                    @else
-                                    <option value="{{ $country }}" >{{ $country }}</option>
-                                    @endif
+                                        
+                                        @if ($user->shipping_address?->country == $country)
+                                            <option selected value="{{ $country }}" >{{ $country }}</option>
+                                        @else
+                                            <option value="{{ $country }}" >{{ $country }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>
@@ -68,47 +69,31 @@
                     <fieldset>
                         <legend class="text-lg font-medium text-gray-900">Delivery method</legend>
                         <div class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
-                            <label class="relative bg-white border rounded-lg shadow-sm p-4 flex cursor-pointer focus:outline-none">
+                            @foreach ($shipping_methods as $index => $shipping)
+
+                            @if ($index == $selected_shipping)
+                                <label class="relative bg-white ring-2 ring-indigo-500 rounded-lg shadow-sm p-4 flex cursor-pointer focus:outline-none">
+                            @else
+                                <label class="relative bg-white border border-gray-300 rounded-lg shadow-sm p-4 flex cursor-pointer focus:outline-none">
+                            @endif
                                 <input checked type="radio" name="shipping_method" value="Standard" class="sr-only" aria-labelledby="delivery_method_0_label" aria-describedby="delivery-method-0-description-0 delivery-method-0-description-1">
                                 <div class="flex-1 flex">
                                     <div class="flex flex-col">
-                                        <span id="delivery_method_0_label" class="block text-sm font-medium text-gray-900"> Standard </span>
-                                        <span id="delivery-method-0-description-0" class="mt-1 flex items-center text-sm text-gray-500"> 1-4 business days </span>
-                                        <span id="delivery-method-0-description-1" class="mt-6 text-sm font-medium text-gray-900"> {{ $currency ?? 'Rs.' }}{{ number_format($delivery_charges ?? 0) }} </span>
+                                        <span id="delivery_method_0_label" class="block text-sm font-medium text-gray-900">{{ $shipping->name }}</span>
+                                        <span id="delivery-method-0-description-0" class="mt-1 flex items-center text-sm text-gray-500">{{ $shipping->eta }}</span>
+                                        <span id="delivery-method-0-description-1" class="mt-6 text-sm font-medium text-gray-900"> {{ $currency }}{{ number_format($shipping->charges) }} </span>
                                     </div>
                                 </div>
-                                <svg class="h-5 w-5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                </svg>
-                                <div class="absolute -inset-px rounded-lg border-2 pointer-events-none" aria-hidden="true"></div>
-                            </label>
-                            <!--
-                Checked: "border-transparent", Not Checked: "border-gray-300"
-                Active: "ring-2 ring-indigo-500"
-              -->
-                            <!-- <label class="relative bg-white border rounded-lg shadow-sm p-4 flex cursor-pointer focus:outline-none">
-                                <input type="radio" name="delivery-method" value="Express" class="sr-only" aria-labelledby="delivery-method-1-label" aria-describedby="delivery-method-1-description-0 delivery-method-1-description-1">
-                                <div class="flex-1 flex">
-                                    <div class="flex flex-col">
-                                        <span id="delivery-method-1-label" class="block text-sm font-medium text-gray-900"> Express </span>
-                                        <span id="delivery-method-1-description-0" class="mt-1 flex items-center text-sm text-gray-500"> 2–5 business days </span>
-                                        <span id="delivery-method-1-description-1" class="mt-6 text-sm font-medium text-gray-900"> $16.00 </span>
-                                    </div>
-                                </div> -->
-                                <!--
-                  Not Checked: "hidden"
+                                
+                                @if ($index == $selected_shipping)
+                                    <svg class="h-5 w-5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                @endif
 
-                  Heroicon name: solid/check-circle
-                -->
-                                <!-- <svg class="h-5 w-5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                </svg> -->
-                                <!--
-                  Active: "border", Not Active: "border-2"
-                  Checked: "border-indigo-500", Not Checked: "border-transparent"
-                -->
-                                <!-- <div class="absolute -inset-px rounded-lg border-2 pointer-events-none" aria-hidden="true"></div> -->
-                            <!-- </label> -->
+                                <div class="absolute -inset-px rounded-lg pointer-events-none" aria-hidden="true"></div>
+                            </label>
+                            @endforeach
                         </div>
                     </fieldset>
                 </div>
@@ -119,27 +104,20 @@
                         <legend class="sr-only">Payment type</legend>
                         <div id="payment-method-wrapper" class="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
                             <div class="flex items-center cursor-pointer">
-                                <input checked value="Cash on delivery" id="cod" name="payment_method" type="radio" class="focus:ring-indigo-500 cursor-pointer h-4 w-4 text-indigo-600 border-gray-300">
-                                <label for="credit-card" class="ml-3 block text-sm font-medium text-gray-700"> Cash On Delivery </label>
-                            </div>
-                            <div class="flex items-center cursor-pointer">
-                                <input value="Credit card" id="credit-card" name="payment_method" type="radio" class="focus:ring-indigo-500 cursor-pointer h-4 w-4 text-indigo-600 border-gray-300">
+                                <input checked value="Credit card" id="credit-card" name="payment_method" type="radio" class="focus:ring-indigo-500 cursor-pointer h-4 w-4 text-indigo-600 border-gray-300">
                                 <label for="credit-card" class="ml-3 block text-sm font-medium text-gray-700"> Credit card </label>
                             </div>
                             <div class="flex items-center">
                                 <input value="Bank transfer" id="bank-transfer" name="payment_method" type="radio" class="focus:ring-indigo-500 cursor-pointer h-4 w-4 text-indigo-600 border-gray-300">
                                 <label for="etransfer" class="ml-3 block text-sm font-medium text-gray-700"> Bank Transfer </label>
                             </div>
+                            <div class="flex items-center cursor-pointer">
+                                <input value="Cash on delivery" id="cod" name="payment_method" type="radio" class="focus:ring-indigo-500 cursor-pointer h-4 w-4 text-indigo-600 border-gray-300">
+                                <label for="credit-card" class="ml-3 block text-sm font-medium text-gray-700"> Cash On Delivery </label>
+                            </div>
                         </div>
                     </fieldset>
-                    <div id="cod-wrapper" class="mt-6 grid grid-cols-4 gap-y-6 gap-x-4">
-                        <div class="col-span-4">
-                            <p class="text-gray-700 mt-6">
-                                With our COD method, you can place your order online and have your items delivered to your doorstep, with payment made in full upon delivery.
-                            </p>
-                        </div>
-                    </div>
-                    <div id="credit-card-wrapper" class="hidden mt-6 grid grid-cols-4 gap-y-6 gap-x-4">
+                    <div id="credit-card-wrapper" class="mt-6 grid grid-cols-4 gap-y-6 gap-x-4">
                         <div class="col-span-4">
                             <label for="card_number" class="block text-sm font-medium text-gray-700">Card number *</label>
                             <div class="mt-1">
@@ -168,7 +146,7 @@
                     <div id="bank-transfer-wrapper" class="hidden mt-6 grid grid-cols-4 gap-y-6 gap-x-4">
                         <div class="col-span-4">
                             <span class="mt-4 px-4 py-2 rounded-md text-gray-700 bg-gray-200">
-                                {{ App\Models\SiteSetting::first()->iban ?? '--------------------------------' }}
+                                {{ $iban ?? '--------------------------------' }}
                             </span>
                             <p class="text-gray-700 mt-6">
                                 Transfer the total amount to the above IBAN number and attach the Transaction ID below and confirm the order.
@@ -179,6 +157,13 @@
                             <div class="mt-1">
                                 <input type="text" id="tid" name="tid" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
+                        </div>
+                    </div>
+                    <div id="cod-wrapper" class="hidden mt-6 grid grid-cols-4 gap-y-6 gap-x-4">
+                        <div class="col-span-4">
+                            <p class="text-gray-700 mt-6">
+                                With our COD method, you can place your order online and have your items delivered to your doorstep, with payment made in full upon delivery.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -214,7 +199,7 @@
                                     </div>
                                 </div>
                                 <div class="flex-1 pt-2 flex items-end justify-between">
-                                    <p class="mt-1 text-sm font-medium text-gray-900">{{ $currency ?? 'Rs.' }}{{ number_format(($item->quantity * $item->product->unit_price) - ($item->product->discount / 100)) }} @if ($item->product->discount > 0) <span class="text-gray-500 text-sm">( -{{ $item->product->discount }}% )</span> @endif</p>
+                                    <p class="mt-1 text-sm font-medium text-gray-900">{{ $currency }}{{ number_format(($item->quantity * $item->product->unit_price) - ($item->product->discount / 100)) }} @if ($item->product->discount > 0) <span class="text-gray-500 text-sm">( -{{ $item->product->discount }}% )</span> @endif</p>
                                     <div class="ml-4">
                                         <label for="quantity" class="sr-only">Quantity</label>
                                         <select onchange="handleQuantityChange(event)" data-item-id="{{ $item->id }}" name="quantity" title="Select Quantity" class="cursor-pointer rounded-md border border-gray-300 text-base font-medium text-gray-700 text-left shadow-sm focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -231,32 +216,36 @@
                             </div>
                         </li>
                         @endforeach
-                        <!-- More products... -->
                     </ul>
                     <dl class="border-t border-gray-200 py-6 px-4 space-y-6 sm:px-6">
                         <div class="flex items-center justify-between">
                             <dt class="text-sm">Subtotal</dt>
-                            <dd id="sub-total" class="text-sm font-medium text-gray-900">{{ $currency ?? 'Rs.' }}{{ number_format($sub_total) }}</dd>
+                            <dd id="sub-total" class="text-sm font-medium text-gray-900">{{ $currency }}{{ number_format($sub_total) }}</dd>
                         </div>
+                        @if ($discount > 0)
+                            <div class="flex items-center justify-between">
+                                <dt class="text-sm">Discount
+                                    @if (!empty($discount_text))
+                                        <span class="rounded-full bg-gray-200 text-xs text-gray-600 py-1 px-2 ml-2">{{ $discount_text }}</span>
+                                    @endif
+                                </dt>
+                                <dd id="sub-total" class="text-sm font-medium text-gray-900">{{ $discount }}% ( -{{ $currency }}{{ number_format((($discount) / 100) * $sub_total) }} )</dd>
+                            </div>
+                        @endif
+
+                        @if ($tax > 0)
+                            <div class="flex items-center justify-between">
+                                <dt class="text-sm">Tax</dt>
+                                <dd id="taxes" class="text-sm font-medium text-gray-900">{{ $tax }}% ( +{{ $currency }}{{ number_format((($tax) / 100) * $sub_total) }} )</dd>
+                            </div>
+                        @endif
                         <div class="flex items-center justify-between">
                             <dt class="text-sm">Delivery Charges</dt>
-                            <dd id="delivery-charges" class="text-sm font-medium text-gray-900">{{ $currency ?? 'Rs.' }}{{ number_format($delivery_charges ?? 0) }}</dd>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <dt class="text-sm">Tax</dt>
-                            <dd id="taxes" class="text-sm font-medium text-gray-900">+{{ $currency ?? 'Rs.' }}{{ number_format((($taxes ?? 0) / 100) * $sub_total) }} ( {{ $taxes ?? 0 }}% )</dd>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <dt class="text-sm">Discount
-                                @if (!empty($discount_text))
-                                    <span class="rounded-full bg-gray-200 text-xs text-gray-600 py-0.5 px-2 ml-2">{{ $discount_text ?? '' }}</span>
-                                @endif
-                            </dt>
-                            <dd id="taxes" class="text-sm font-medium text-gray-900">-{{ $currency ?? 'Rs.' }}{{ number_format((($discount ?? 0) / 100) * $sub_total) }} ( {{ $discount ?? 0 }}% )</dd>
+                            <dd id="delivery-charges" class="text-sm font-medium text-gray-900">{{ $currency }}{{ number_format($shipping_charges) }}</dd>
                         </div>
                         <div class="flex items-center justify-between border-t border-gray-200 pt-6">
                             <dt class="text-base font-medium">Total</dt>
-                            <dd id="total" class="text-base font-medium text-gray-900">{{ $currency ?? 'Rs.' }}{{ number_format($total) }}</dd>
+                            <dd id="total" class="text-base font-medium text-gray-900">{{ $currency }}{{ number_format($total) }}</dd>
                         </div>
                     </dl>
                     <div class="border-t border-gray-200 py-6 px-4 sm:px-6">
@@ -292,6 +281,8 @@
 
         location.reload();
     };
+
+    const handleShippipngMethodChange = async () => {};
 
     document.getElementById("item-wrapper").addEventListener("click", (e) => {
         const path = e.composedPath();
