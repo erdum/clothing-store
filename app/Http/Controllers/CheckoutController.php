@@ -29,19 +29,13 @@ class CheckoutController extends Controller
             'UAE'
         ];
 
-        $selected_shipping = $request->session()->get('selected_shipping_method') ?? 0;
-        $shipping_charges = $site->shipping_methods()[$selected_shipping]->charges;
-
-        $total = $sub_total + (($site->tax / 100) * $sub_total);
-        $total -= ($total * ($site->discount_percentage / 100));
-        $total += $shipping_charges;
+        $discounted_total = $sub_total - ($sub_total * ($site->discount_percentage / 100));
+        $total = $discounted_total + ($discounted_total * ($site->tax / 100));
 
         return View::make('checkout.index', [
             'user' => Auth::user(),
             'cart' => $cart,
             'currency' => $site->currency,
-            'shipping_charges' => $shipping_charges,
-            'selected_shipping' => $selected_shipping,
             'shipping_methods' => $site->shipping_methods(),
             'tax' => $site->tax,
             'discount' => $site->discount_percentage,
@@ -49,6 +43,7 @@ class CheckoutController extends Controller
             'countries_of_opreations' => $countries_of_opreations,
             'iban' => $site->iban,
             'sub_total' => $sub_total,
+            'discounted_total' => $discounted_total,
             'total' => $total
         ]);
     }
@@ -64,6 +59,7 @@ class CheckoutController extends Controller
             'postal_code' => 'required|max:10',
             'phone_number' => 'required|max:20',
             'payment_method' => 'required',
+            'shipping_method' => 'required',
             'card_number' => 'max:30',
             'name_on_card' => 'max:30',
             'card_expiry' => 'max:30',
@@ -79,12 +75,18 @@ class CheckoutController extends Controller
             return ($item->quantity * $item->product->unit_price) - ($item->quantity * $item->product->unit_price) * ($item->product->discount / 100);
         });
 
-        $selected_shipping = $request->session()->get('selected_shipping_method') ?? 0;
-        $shipping_charges = $site->shipping_methods()[$selected_shipping]->charges;
+        $shipping = array_reduce($site->shipping_methods(), function ($carry, $item) use ($request) {
 
-        $total = $sub_total + (($site->tax / 100) * $sub_total);
-        $total -= ($total * ($site->discount_percentage / 100));
-        $total += $shipping_charges;
+            if (in_array($request->shipping_method, ((array) $item))) {
+                return $item;
+            } else {
+                return $carry;
+            }
+        });
+
+        $total = $sub_total - ($sub_total * ($site->discount_percentage / 100));
+        $total += ($total * ($site->tax / 100));
+        $total += $shipping->charges;
 
         $user
         ->shipping_address()
@@ -114,11 +116,11 @@ class CheckoutController extends Controller
             'discount' => $site->discount_percentage,
             'discount_text' => $site->discount_text,
             'tax' => $site->tax,
-            'delivery_charges' => $shipping_charges,
+            'delivery_charges' => $shipping->charges,
             'payment_method' => $request->payment_method,
             'payment_id' => $request?->tid ?? "N/A",
-            'shipping_method' => $site->shipping_methods()[$selected_shipping]->name,
-            'shipping_eta' => $site->shipping_methods()[$selected_shipping]->eta,
+            'shipping_method' => $shipping->name,
+            'shipping_eta' => $shipping->eta,
             'tracking_id' => "N/A"
         ]);
 
