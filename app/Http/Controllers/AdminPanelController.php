@@ -302,7 +302,20 @@ class AdminPanelController extends Controller
                 ]);
             }
         }
-        $settings = SiteSetting::updateOrCreate(['id' => 1], array_merge($request->all(), ['shipping_methods' => json_encode($methods)]));
+
+        if (!empty($request->file('site_logo'))) {
+            $logo_name = save_img_to_webp($request->file('site_logo'), $request->file('site_logo')->extension());
+        }
+        $settings = SiteSetting::updateOrCreate(
+            ['id' => 1],
+            array_merge(
+                $request->all(),
+                [
+                    'shipping_methods' => json_encode($methods),
+                    'logo' => $logo_name ?? SiteSetting::first()->logo
+                ]
+            )
+        );
 
         return View::make('admin-panel.site.index', $settings ?? []);
     }

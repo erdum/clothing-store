@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="mt-5 md:mt-0 md:col-span-2">
-      <form id="add_shipping_method" action="{{ route('save-site-settings') }}" method="POST">
+      <form id="add_shipping_method" action="{{ route('save-site-settings') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="shadow overflow-hidden sm:rounded-md">
           <div class="grid grid-cols-6 gap-6 px-4 py-5 bg-white sm:p-6">
@@ -23,12 +23,17 @@
             <div class="col-span-6">
               <label class="block text-sm font-medium text-gray-700">Brand Logo</label>
               <div class="mt-1 flex items-center">
-                <span class="inline-block h-12 w-24 rounded overflow-hidden bg-gray-100">
-                  <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 48 48">
-                    <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
+                <span id="site-logo-container" class="inline-block h-24 w-44 rounded overflow-hidden bg-gray-100">
+                  @if ($logo)
+                    <img src="{{ asset($logo) }}" class="object-cover">
+                  @else
+                    <svg class="mx-auto h-24 w-44 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 48 48">
+                      <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  @endif
                 </span>
-                <button type="button" class="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Change</button>
+                <button id="site-logo-btn" type="button" class="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Change</button>
+                <input type="file" name="site_logo" accept="image/*" class="hidden">
               </div>
             </div>
 
@@ -253,6 +258,23 @@
 
   document.getElementById("add_shipping_method_btn").addEventListener("click", addShippingMethod);
   document.getElementById("add_shipping_method").addEventListener("click", removeShippingMethod);
+
+  document.getElementById("site-logo-btn").addEventListener("click", () => {
+    const fileInput = document.querySelector("[name=site_logo]");
+    fileInput.addEventListener("change", ({ currentTarget: { files }}) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(files[0]);
+      fileReader.onload = () => {
+        const logoContainer = document.getElementById("site-logo-container");
+        const image = document.createElement("img");
+        image.setAttribute("src", fileReader.result);
+        image.classList.add("object-fit");
+        Array.from(logoContainer.children).forEach(item => item.remove());
+        logoContainer.appendChild(image);
+      }
+    });
+    fileInput.click();
+  });
 
 </script>
 
