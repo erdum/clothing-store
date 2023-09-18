@@ -39,7 +39,7 @@
               </div>
               <div class="pl-4 flex sm:pl-6">
                 <dt class="font-medium text-gray-900">Price</dt>
-                <dd class="ml-2 text-gray-700">{{ $currency ?? 'Rs.' }}{{ number_format($item->product->unit_price) }} @if ($item->product->discount > 0) <span class="text-gray-500 text-sm">( -{{ $item->product->discount }}% )</span> @endif</dd>
+                <dd class="ml-2 text-gray-700">{{ $currency }}{{ number_format($item->product->unit_price) }} @if ($item->product->discount > 0) <span class="text-gray-500 text-sm">( -{{ $item->product->discount }}% )</span> @endif</dd>
               </div>
             </dl>
           </div>
@@ -112,7 +112,7 @@
         <dl class="space-y-6 border-t border-gray-200 text-sm pt-10">
           <div class="flex justify-between">
             <dt class="font-medium text-gray-900">Subtotal</dt>
-            <dd class="text-gray-700">{{ $currency ?? 'Rs.' }}{{ number_format($order->sub_total) }}</dd>
+            <dd class="text-gray-700">{{ $currency }}{{ number_format($order->sub_total) }}</dd>
           </div>
           <div class="flex justify-between">
             <dt class="flex font-medium text-gray-900">
@@ -122,19 +122,19 @@
                 <span class="rounded-full bg-gray-200 text-xs text-gray-600 py-0.5 px-2 ml-2">{{ $order->discount_text }}</span>
               @endif
             </dt>
-            <dd class="text-gray-700">-{{ $currency ?? 'Rs.' }}{{ number_format(($order->discount / 100) * $order->sub_total) }} ( {{ $order->discount }}% )</dd>
+            <dd class="text-gray-700">-{{ $currency }}{{ number_format(($order->discount / 100) * $order->sub_total) }} ( {{ $order->discount }}% )</dd>
           </div>
           <div class="flex justify-between">
             <dt class="font-medium text-gray-900">Tax</dt>
-            <dd class="text-gray-700">+{{ $currency ?? 'Rs.' }}{{ number_format(($order->tax / 100) * $discounted_total) }} ( {{ $order->tax }}% )</dd>
+            <dd class="text-gray-700">+{{ $currency }}{{ number_format(($order->tax / 100) * $discounted_total) }} ( {{ $order->tax }}% )</dd>
           </div>
           <div class="flex justify-between">
             <dt class="font-medium text-gray-900">Shipping</dt>
-            <dd class="text-gray-700">{{ $currency ?? 'Rs.' }}{{ number_format($order->delivery_charges) }}</dd>
+            <dd class="text-gray-700">{{ $currency }}{{ number_format($order->delivery_charges) }}</dd>
           </div>
           <div class="flex justify-between">
             <dt class="font-medium text-gray-900">Total</dt>
-            <dd class="text-gray-900">{{ $currency ?? 'Rs.' }}{{ number_format($order->total) }}</dd>
+            <dd class="text-gray-900">{{ $currency }}{{ number_format($order->total) }}</dd>
           </div>
         </dl>
       </div>

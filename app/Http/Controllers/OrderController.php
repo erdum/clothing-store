@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 
+use App\Models\SiteSetting;
+
 class OrderController extends Controller
 {
     public function index(Request $request, $id = null)
@@ -17,7 +19,11 @@ class OrderController extends Controller
             $discounted_total = $order->sub_total - ($order->sub_total * ($order->discount / 100));
             $total = $discounted_total + ($discounted_total * ($order->tax / 100));
 
-            return View::make('order.order', ['order' => $order, 'discounted_total' => $discounted_total]);
+            return View::make('order.order', [
+                'order' => $order,
+                'discounted_total' => $discounted_total,
+                'currency' => SiteSetting::first()->currency
+            ]);
         }
 
         return View::make('order.index', ['orders' => $user->orders]);
