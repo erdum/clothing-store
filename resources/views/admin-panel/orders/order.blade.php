@@ -64,7 +64,9 @@
                         <div class="sm:col-span-2">
                           <label for="order_status" class="block text-sm font-medium text-gray-700">Order Status *</label>
                           <select id="order_status" name="order_status" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                              <option selected value="{{ $order->status }}">{{ $order->status }}</option>
+                            @foreach ($order_statuses as $status)
+                              <option @if ($order->status == $status) selected @endif value="{{ $status }}">{{ $status }}</option>
+                            @endforeach
                           </select>
                         </div>
                     </div>

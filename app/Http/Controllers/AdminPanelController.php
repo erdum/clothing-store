@@ -262,10 +262,19 @@ class AdminPanelController extends Controller
         $discounted_total = $order->sub_total - ($order->sub_total * ($order->discount / 100));
         $total = $discounted_total + ($discounted_total * ($order->tax / 100));
 
+        $order_statuses = [
+            'Canceled',
+            'Pending',
+            'Confirmed',
+            'Dispatched',
+            'Delivered'
+        ];
+
         return View::make('admin-panel.orders.order', [
             'order' => $order,
             'discounted_total' => $discounted_total,
-            'currency' => SiteSetting::first()->currency
+            'currency' => SiteSetting::first()->currency,
+            'order_statuses' => $order_statuses
         ]);
     }
 
