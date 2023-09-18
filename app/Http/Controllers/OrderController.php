@@ -12,7 +12,12 @@ class OrderController extends Controller
         $user = $request->user();
 
         if (!empty($id)) {
-            return View::make('order.order', ['order' => $user->orders->find($request->id)]);
+            $order = $user->orders->find($request->id);
+
+            $discounted_total = $order->sub_total - ($order->sub_total * ($order->discount / 100));
+            $total = $discounted_total + ($discounted_total * ($order->tax / 100));
+
+            return View::make('order.order', ['order' => $order, 'discounted_total' => $discounted_total]);
         }
 
         return View::make('order.index', ['orders' => $user->orders]);
