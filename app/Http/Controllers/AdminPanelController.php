@@ -259,8 +259,14 @@ class AdminPanelController extends Controller
         if (empty($order)) {
             return response()->json(['message' => 'the requested item for update not found.'], 400);
         }
+        $discounted_total = $order->sub_total - ($order->sub_total * ($order->discount / 100));
+        $total = $discounted_total + ($discounted_total * ($order->tax / 100));
 
-        return View::make('admin-panel.orders.order', ['order' => $order]);
+        return View::make('admin-panel.orders.order', [
+            'order' => $order,
+            'discounted_total' => $discounted_total,
+            'currency' => SiteSetting::first()->currency
+        ]);
     }
 
     public function save_order(Request $request)
