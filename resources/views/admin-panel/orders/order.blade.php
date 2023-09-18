@@ -63,7 +63,7 @@
                         </div>
                         <div class="sm:col-span-2">
                           <label for="order_status" class="block text-sm font-medium text-gray-700">Order Status *</label>
-                          <select required id="order_status" name="order_status" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                          <select id="order_status" name="order_status" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                               <option selected value="{{ $order->status }}">{{ $order->status }}</option>
                           </select>
                         </div>
@@ -83,7 +83,7 @@
                         <div class="col-span-4">
                             <label for="tracking_id" class="block text-sm font-medium text-gray-700">Tracking ID *</label>
                             <div class="mt-1">
-                                <input required type="text" id="tracking_id" name="tracking_id" value="{{ $order->tracking_id }}" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <input type="text" id="tracking_id" name="tracking_id" value="{{ $order->tracking_id }}" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
                         </div>
                     </div>
