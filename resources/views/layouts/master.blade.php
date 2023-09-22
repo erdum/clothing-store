@@ -102,13 +102,13 @@
                                 @endguest
                             </div>
                         </div>
-                        <div class="border-t border-gray-200 py-6 px-4">
+                        <!-- <div class="border-t border-gray-200 py-6 px-4">
                             <a class="-m-2 flex items-center p-2">
                                 <img src="{{ asset('assets/images/pakistan.png') }}" alt="Pakistan Flag" class="block h-auto w-8 flex-shrink-0">
                                 <span class="ml-3 block text-base font-medium text-gray-900">PKR</span>
                                 <span class="sr-only">, change currency</span>
                             </a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -194,13 +194,13 @@
                                     @endguest
                                     <span class="h-6 w-px bg-gray-200 block" aria-hidden="true"></span>
                                 </div>
-                                <div class="hidden lg:ml-6 lg:flex">
+                                <!-- <div class="hidden lg:ml-6 lg:flex">
                                     <a title="Selected Currency" class="flex items-center text-gray-700 hover:text-gray-800">
                                         <img src="{{ asset('assets/images/pakistan.png') }}" alt="Pakistan Flag" class="block h-auto w-8 flex-shrink-0">
                                         <span class="ml-3 block text-sm font-medium">PKR</span>
                                         <span class="sr-only">, change currency</span>
                                     </a>
-                                </div>
+                                </div> -->
                                 <!-- Search -->
                                 <!-- <div class="flex lg:ml-6">
                                 <a href="#" class="p-2 text-gray-400 hover:text-gray-500">
@@ -235,7 +235,7 @@
                                         @guest
                                         <span class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
                                         @endguest
-                                        <span class="sr-only">items in cart, view bag</span>
+                                        <span class="sr-only">items in cart, view cart</span>
                                     </a>
                                 </div>
                             </div>
@@ -279,7 +279,7 @@
                                                                 <h3>
                                                                     <a href="{{ route('product', ['id' => $item->product->id]) }}">{{ $item->product->name }}</a>
                                                                 </h3>
-                                                                <p class="ml-4">{{ $currency ?? 'Rs.' }}{{ number_format($item->product->unit_price) }}</p>
+                                                                <p class="ml-4">{{ App\Models\SiteSetting::first()->currency }}{{ number_format($item->product->unit_price) }}</p>
                                                             </div>
                                                             <p class="mt-1 text-sm text-gray-500">{{ $item->product->colors[0]->name }}</p>
                                                         </div>
@@ -303,7 +303,7 @@
                                     <div class="flex justify-between text-base font-medium text-gray-900">
                                         <p>Subtotal</p>
                                         @auth
-                                        <p>{{ $currency ?? 'Rs.' }}
+                                        <p>{{ App\Models\SiteSetting::first()->currency }}
                                             {{
                                                 number_format(Auth::user()
                                                     ->in_cart_items
@@ -314,7 +314,7 @@
                                         </p>
                                         @endauth
                                         @guest
-                                        <p>{{ $currency ?? 'Rs.' }}0</p>
+                                        <p>{{ App\Models\SiteSetting::first()->currency }}0</p>
                                         @endguest
                                     </div>
                                     <p class="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
@@ -342,7 +342,7 @@
             </div>
         </div>
 
-        @if (Request::is('/'))
+        @if (!Cookie::has('_session'))
         <div id="banner" class="z-10 fixed bottom-0 inset-x-0 pb-2 sm:pb-5">
           <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
             <div class="p-2 rounded-lg bg-indigo-600 shadow-lg sm:p-3">
