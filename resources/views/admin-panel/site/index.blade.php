@@ -22,8 +22,9 @@
 
             <div class="col-span-6">
               <label class="block text-sm font-medium text-gray-700">Brand Logo</label>
+              <span class="text-gray-500 text-sm">image ratio from 2:1 to 4:1</span>
               <div class="mt-1 flex items-center">
-                <span id="site-logo-container" class="inline-block h-24 w-44 rounded overflow-hidden bg-gray-100">
+                <span id="site-logo-container" class="inline-block h-24 w-44 rounded overflow-hidden bg-gray-100 flex items-center">
                   @if ($logo)
                     <img src="{{ asset($logo) }}" class="object-cover">
                   @else
