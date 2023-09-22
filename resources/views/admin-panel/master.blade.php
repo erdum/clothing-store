@@ -56,7 +56,7 @@
                             <i class="fa-solid fa-sitemap text-gray-500 text-lg mr-4 ml-1"></i>
                             Sub Categories
                         </a>
-                        <a href="{{ route('admin-orders') }}" class="@if (in_array(Route::currentRouteName(), ['admin-orders', 'edit-sub-category'])) bg-gray-100 text-gray-900 @else text-gray-600 hover:bg-gray-50 hover:text-gray-900 @endif group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                        <a href="{{ route('admin-orders') }}" class="@if (in_array(Route::currentRouteName(), ['admin-orders', 'edit-orders'])) bg-gray-100 text-gray-900 @else text-gray-600 hover:bg-gray-50 hover:text-gray-900 @endif group flex items-center px-2 py-2 text-sm font-medium rounded-md">
                             <i class="fa-solid fa-cart-shopping text-gray-500 text-lg mr-4 ml-1"></i>
                             Orders
                         </a>
@@ -95,7 +95,7 @@
                             <i class="fa-solid fa-sitemap text-gray-500 text-lg mr-4 ml-1"></i>
                             Sub Categories
                         </a>
-                        <a href="{{ route('admin-orders') }}" class="@if (in_array(Route::currentRouteName(), ['admin-orders', 'edit-sub-category'])) bg-gray-100 text-gray-900 @else text-gray-600 hover:bg-gray-50 hover:text-gray-900 @endif group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                        <a href="{{ route('admin-orders') }}" class="@if (in_array(Route::currentRouteName(), ['admin-orders', 'edit-orders'])) bg-gray-100 text-gray-900 @else text-gray-600 hover:bg-gray-50 hover:text-gray-900 @endif group flex items-center px-2 py-2 text-sm font-medium rounded-md">
                             <i class="fa-solid fa-cart-shopping text-gray-500 text-lg mr-4 ml-1"></i>
                             Orders
                         </a>
