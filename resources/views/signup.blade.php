@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- FavIcon Link -->
     <link rel="shortcut icon" href="{{ asset('assets/site/images/favicon/favicon-32x32.png') }}" type="image/x-icon">
-    <title>Signup | Apparel UB365Inn</title>
+    <title>Signup | {{ App\Models\SiteSetting::first()->name }}</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
 </head>
   <body class="h-full">

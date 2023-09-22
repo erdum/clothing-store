@@ -35,7 +35,7 @@
     <div class="relative px-4 sm:px-6 lg:px-8">
         <div class="text-lg max-w-prose mx-auto">
             <h1>
-                <span class="block text-base text-center text-indigo-600 font-semibold tracking-wide uppercase">UbInn 365 Apparel</span>
+                <span class="block text-base text-center text-indigo-600 font-semibold tracking-wide uppercase">{{ App\Models\SiteSetting::first()->name }}</span>
                 <span class="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">PRIVACY POLICY</span>
             </h1>
         </div>
@@ -47,7 +47,7 @@
                 </p>
                 <li class="mt-8 text-gray-600">Use of Personal Information:</li>
                 <p class="my-1">
-                    We use your personal information to process your orders, communicate with you about your purchases, and send you marketing materials. You may opt-out of marketing materials at any time.
+                    We use your personal information to process your orders, communicate with you about your purchases.
                 </p>
                 <li class="mt-8 text-gray-600">Security of Personal Information:</li>
                 <p class="my-1">

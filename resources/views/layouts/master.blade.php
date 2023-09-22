@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- FavIcon Link -->
     <link rel="shortcut icon" href="{{ asset('assets/site/images/favicon/favicon-32x32.png') }}" type="image/x-icon">
-    <title>@yield('title', 'Clothing Store') | Apparel Ub365Inn</title>
+    <title>@yield('title', 'Clothing Store') | {{ App\Models\SiteSetting::first()->name }}</title>
     <script src="https://cdn.tailwindcss.com?plugins=aspect-ratio,forms,typography"></script>
     <style type="text/css">
     .flyout-btn:hover .flyout {
@@ -127,7 +127,7 @@
                             <!-- Logo -->
                             <div class="ml-4 flex lg:ml-0">
                                 <a href="{{ route('home') }}">
-                                    <span class="sr-only">Your Company</span>
+                                    <span class="sr-only">{{ App\Models\SiteSetting::first()->name }}</span>
                                     <img class="h-16 w-auto object-cover" src="{{ asset(App\Models\SiteSetting::first()->logo) }}" alt="Logo">
                                 </a>
                             </div>
@@ -360,7 +360,7 @@
                   </p>
                 </div>
                 <div class="order-3 mt-2 flex-shrink-0 w-full sm:order-2 sm:mt-0 sm:w-auto">
-                  <a href="#" class="flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-indigo-600 bg-white hover:bg-indigo-50"> Learn more </a>
+                  <a href="{{ route('policy') }}" class="flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-indigo-600 bg-white hover:bg-indigo-50"> Learn more </a>
                 </div>
                 <div class="order-2 flex-shrink-0 sm:order-3 sm:ml-2">
                   <button id="banner-close" type="button" class="-mr-1 flex p-2 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-white">
@@ -408,7 +408,7 @@
 
             </div>
             <div class="mt-8 md:mt-0 md:order-1">
-              <p class="text-center text-base text-gray-400">&copy; 2023 {{ App\Models\SiteSetting::first()->name }}. All rights reserved.</p>
+              <p class="text-center text-base text-gray-400">&copy; {{ date('Y') }} {{ App\Models\SiteSetting::first()->name }}. All rights reserved.</p>
             </div>
           </div>
         </footer>
