@@ -347,7 +347,7 @@ class AdminPanelController extends Controller
 
         $query = new UserQuery();
         $query->name = $request->name;
-        $query->email = $request
+        $query->email = $request;
     }
 }
     
