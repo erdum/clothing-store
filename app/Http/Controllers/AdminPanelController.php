@@ -13,6 +13,7 @@ use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\Order;
 use App\Models\SiteSetting;
+use App\Models\UserQuery;
 
 class AdminPanelController extends Controller
 {
@@ -333,6 +334,20 @@ class AdminPanelController extends Controller
         );
 
         return View::make('admin-panel.site.index', $settings ?? []);
+    }
+
+    public function save_customer_query(Request $request)
+    {
+        $validated = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'message' => 'required'
+        ]);
+
+        $query = new UserQuery();
+        $query->name = $request->name;
+        $query->email = $request
     }
 }
     
