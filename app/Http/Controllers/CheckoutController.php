@@ -29,19 +29,19 @@ class CheckoutController extends Controller
             'UAE'
         ];
 
-        $discounted_total = $sub_total - ($sub_total * ($site->discount_percentage / 100));
-        $total = $discounted_total + ($discounted_total * ($site->tax / 100));
+        $discounted_total = $sub_total - ($sub_total * ($site->discount_percentage ?? 0 / 100));
+        $total = $discounted_total + ($discounted_total * ($site->tax ?? 0 / 100));
 
         return View::make('checkout.index', [
             'user' => Auth::user(),
             'cart' => $cart,
-            'currency' => $site->currency,
-            'shipping_methods' => $site->shipping_methods(),
-            'tax' => $site->tax,
-            'discount' => $site->discount_percentage,
-            'discount_text' => $site->discount_text,
+            'currency' => $site->currency ?? '$',
+            'shipping_methods' => $site?->shipping_methods() ?? [],
+            'tax' => $site->tax ?? 0,
+            'discount' => $site->discount_percentage ?? '',
+            'discount_text' => $site->discount_text ?? '',
             'countries_of_opreations' => $countries_of_opreations,
-            'iban' => $site->iban,
+            'iban' => $site->iban ?? '',
             'sub_total' => $sub_total,
             'discounted_total' => $discounted_total,
             'total' => $total

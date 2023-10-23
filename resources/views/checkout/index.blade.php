@@ -6,7 +6,7 @@
 <div class="bg-gray-50">
     <div class="max-w-2xl mx-auto pt-16 pb-24 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 class="sr-only">Checkout</h2>
-        <form x-data="{ shippingMethod: '{{ $shipping_methods[0]->name }}' }" action="{{ route('post_checkout') }}" method="POST" class="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
+        <form x-data="{ shippingMethod: '{{ $shipping_methods[0]->name ?? '' }}' }" action="{{ route('post_checkout') }}" method="POST" class="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
             @csrf
             <div>
                 <div>
