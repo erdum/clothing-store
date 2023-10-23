@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- FavIcon Link -->
     <link rel="shortcut icon" href="{{ asset('assets/site/images/favicon/favicon-32x32.png') }}" type="image/x-icon">
-    <title>@yield('title', 'Admin') | {{ App\Models\SiteSetting::first()->name }}</title>
+    <title>@yield('title', 'Admin') | {{ App\Models\SiteSetting::first()->name ?? 'Store Name' }}</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
@@ -38,7 +38,7 @@
                 </div>
                 <div class="flex-shrink-0 flex items-center px-4">
                     <a href="{{ route('home') }}">
-                        <img class="h-16 w-auto" src="{{ asset(App\Models\SiteSetting::first()->logo) }}" alt="Logo">
+                        <img class="h-16 w-auto" src="{{ App\Models\SiteSetting::first()?->logo ? asset(App\Models\SiteSetting::first()->logo) : 'https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600' }}" alt="Logo">
                     </a>
                 </div>
                 <div class="mt-5 flex-1 h-0 overflow-y-auto">
@@ -77,7 +77,7 @@
             <div class="flex flex-col flex-grow border-r border-gray-200 pt-5 bg-white overflow-y-auto">
                 <div class="flex items-center flex-shrink-0 px-4">
                     <a href="{{ route('home') }}">
-                        <img class="h-16 w-auto" src="{{ asset(App\Models\SiteSetting::first()->logo) }}" alt="Logo">
+                        <img class="h-16 w-auto" src="{{ App\Models\SiteSetting::first()?->logo ? asset(App\Models\SiteSetting::first()->logo) : 'https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600' }}" alt="Logo">
                     </a>
                 </div>
                 <div class="mt-5 flex-grow flex flex-col">

@@ -25,7 +25,7 @@
               <span class="text-gray-500 text-sm">image ratio from 2:1 to 4:1</span>
               <div class="mt-1 flex items-center">
                 <span id="site-logo-container" class="inline-block h-24 w-44 rounded overflow-hidden bg-gray-100 flex items-center">
-                  @if ($logo)
+                  @if ($logo ?? false)
                     <img src="{{ asset($logo) }}" class="object-cover">
                   @else
                     <svg class="mx-auto h-24 w-44 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 48 48">
@@ -163,7 +163,7 @@
               </div>
             </div>
 
-            @foreach (json_decode($shipping_methods) as $shipping)
+            @foreach (json_decode($shipping_methods ?? '') ?? [] as $shipping)
               <div class="col-span-6 sm:col-span-2 flex items-end" name="{{ $shipping->name }}">
                 <input readonly name="shipping_method_name[]" value="{{ $shipping->name }}" type="text" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
               </div>

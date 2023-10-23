@@ -328,7 +328,7 @@ class AdminPanelController extends Controller
                 $request->all(),
                 [
                     'shipping_methods' => json_encode($methods),
-                    'logo' => $logo_name ?? SiteSetting::first()->logo
+                    'logo' => $logo_name ?? SiteSetting::first()->logo ?? ''
                 ]
             )
         );
