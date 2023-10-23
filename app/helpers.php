@@ -12,6 +12,7 @@ function save_base64_to_webp($images)
         if (!file_exists(storage_path('app/products-images'))) {
             mkdir(storage_path('app/products-images'));
         }
+        imagepalettetotruecolor($decoded_image);
         imagewebp($decoded_image, storage_path('app/' . $link), 75);
         array_push($links, $link);
     }
