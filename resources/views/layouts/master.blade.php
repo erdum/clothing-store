@@ -47,10 +47,11 @@
                         </div>
                         <!-- 'Women' tab panel, show/hide based on tab state. -->
                         @foreach (App\Models\Category::all() as $key => $category)
-                        @if ($key == 0 || request()->is($category->name . '/*'))
-                        <div class="space-y-10 px-4 pt-10 pb-8 mobile-sidebar-panel tab-{{ $category->name }}" aria-labelledby="tabs-1-tab-1" role="tabpanel" tabindex="0">
-                            @else
-                            <div class="space-y-10 px-4 pt-10 pb-8 mobile-sidebar-panel tab-{{ $category->name }} hidden" aria-labelledby="tabs-1-tab-1" role="tabpanel" tabindex="0">
+                            @if ($category->sub[0]->products[0] ?? false)
+                                @if ($key == 0 || request()->is($category->name . '/*'))
+                                    <div class="space-y-10 px-4 pt-10 pb-8 mobile-sidebar-panel tab-{{ $category->name }}" aria-labelledby="tabs-1-tab-1" role="tabpanel" tabindex="0">
+                                @else
+                                    <div class="space-y-10 px-4 pt-10 pb-8 mobile-sidebar-panel tab-{{ $category->name }} hidden" aria-labelledby="tabs-1-tab-1" role="tabpanel" tabindex="0">
                                 @endif
                                 <div class="grid grid-cols-2 gap-x-4">
                                     <div class="group relative text-sm">
@@ -77,7 +78,8 @@
                                     @endforeach
                                 </div>
                             </div>
-                            @endforeach
+                            @endif
+                        @endforeach
                         </div>
                         <div class="space-y-6 border-t border-gray-200 py-6 px-4">
                             <div class="flow-root">
@@ -135,51 +137,53 @@
                             <div class="hidden lg:ml-8 lg:block lg:self-stretch">
                                 <div class="flex h-full space-x-8">
                                     @foreach (App\Models\Category::all() as $category)
-                                    <div class="flex flyout-btn z-40">
-                                        <div class="relative flex">
-                                            @if (request()->is($category->name . '/*'))
-                                            <button type="button" class="border-indigo-600 text-indigo-600 relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out" aria-expanded="false">{{ $category->name }}</button>
-                                            @else
-                                            <button type="button" class="border-transparent text-gray-700 hover:text-gray-800 relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out" aria-expanded="false">{{ $category->name }}</button>
-                                            @endif
-                                        </div>
-                                        <div class="absolute inset-x-0 top-full text-sm text-gray-500 transition-all hidden flyout">
-                                            <!-- Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow -->
-                                            <div class="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true"></div>
-                                            <div class="relative bg-white">
-                                                <div class="mx-auto max-w-7xl px-8">
-                                                    <div class="grid grid-cols-2 gap-y-10 gap-x-8 py-16">
-                                                        <div class="col-start-2 grid grid-cols-2 gap-x-8">
-                                                            <div class="group relative text-base sm:text-sm">
-                                                                <div class="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
-                                                                    <img src="{{ asset($category->sub[0]->products[0]->images[0]->url) ?? 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg' }}" alt="{{ $category->name }}" class="object-cover object-center">
+                                        @if ($category->sub[0]->products[0] ?? false)
+                                            <div class="flex flyout-btn z-40">
+                                                <div class="relative flex">
+                                                    @if (request()->is($category->name . '/*'))
+                                                    <button type="button" class="border-indigo-600 text-indigo-600 relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out" aria-expanded="false">{{ $category->name }}</button>
+                                                    @else
+                                                    <button type="button" class="border-transparent text-gray-700 hover:text-gray-800 relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out" aria-expanded="false">{{ $category->name }}</button>
+                                                    @endif
+                                                </div>
+                                                <div class="absolute inset-x-0 top-full text-sm text-gray-500 transition-all hidden flyout">
+                                                    <!-- Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow -->
+                                                    <div class="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true"></div>
+                                                    <div class="relative bg-white">
+                                                        <div class="mx-auto max-w-7xl px-8">
+                                                            <div class="grid grid-cols-2 gap-y-10 gap-x-8 py-16">
+                                                                <div class="col-start-2 grid grid-cols-2 gap-x-8">
+                                                                    <div class="group relative text-base sm:text-sm">
+                                                                        <div class="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
+                                                                            <img src="{{ asset($category->sub[0]->products[0]->images[0]->url) ?? 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg' }}" alt="{{ $category->name }}" class="object-cover object-center">
+                                                                        </div>
+                                                                        <a href="{{ route('home', ['category' => $category->name]) }}" class="mt-6 block font-medium text-gray-900">
+                                                                            <span class="absolute inset-0 z-10" aria-hidden="true"></span>
+                                                                            New Arrivals
+                                                                        </a>
+                                                                        <p aria-hidden="true" class="mt-1">Shop now</p>
+                                                                    </div>
                                                                 </div>
-                                                                <a href="{{ route('home', ['category' => $category->name]) }}" class="mt-6 block font-medium text-gray-900">
-                                                                    <span class="absolute inset-0 z-10" aria-hidden="true"></span>
-                                                                    New Arrivals
-                                                                </a>
-                                                                <p aria-hidden="true" class="mt-1">Shop now</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row-start-1 grid grid-cols-3 gap-y-10 gap-x-8 text-sm">
-                                                            @foreach ($category->sub->all() as $sub)
-                                                            <div>
-                                                                <p id="Clothing-heading" class="font-medium text-gray-900">{{ $sub->name }}</p>
-                                                                <ul role="list" aria-labelledby="Clothing-heading" class="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
-                                                                    @foreach ($sub->products->all() as $product)
-                                                                    <li class="flex">
-                                                                        <a href="{{ route('product', ['id' => $product->id]) }}" class="hover:text-gray-800">{{ $product->name }}</a>
-                                                                    </li>
+                                                                <div class="row-start-1 grid grid-cols-3 gap-y-10 gap-x-8 text-sm">
+                                                                    @foreach ($category->sub->all() as $sub)
+                                                                    <div>
+                                                                        <p id="Clothing-heading" class="font-medium text-gray-900">{{ $sub->name }}</p>
+                                                                        <ul role="list" aria-labelledby="Clothing-heading" class="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
+                                                                            @foreach ($sub->products->all() as $product)
+                                                                            <li class="flex">
+                                                                                <a href="{{ route('product', ['id' => $product->id]) }}" class="hover:text-gray-800">{{ $product->name }}</a>
+                                                                            </li>
+                                                                            @endforeach
+                                                                        </ul>
+                                                                    </div>
                                                                     @endforeach
-                                                                </ul>
+                                                                </div>
                                                             </div>
-                                                            @endforeach
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
+                                        @endif
                                     @endforeach
                                     <a href="{{ route('contact-us') }}" class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Contact Us</a>
                                 </div>

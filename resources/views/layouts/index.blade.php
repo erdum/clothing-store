@@ -41,64 +41,67 @@
         <div class="max-w-md mx-auto grid grid-cols-1 gap-y-6 px-4 sm:max-w-7xl sm:px-6 sm:grid-cols-3 sm:gap-y-0 sm:gap-x-6 lg:px-8 lg:gap-x-8">
           
           @foreach ($categories as $category)
-            <div class="group relative h-96 bg-white rounded-lg shadow-xl sm:h-auto sm:aspect-w-4 sm:aspect-h-5">
-              <div>
-                <div aria-hidden="true" class="absolute inset-0 rounded-lg overflow-hidden">
-                  <div class="absolute inset-0 overflow-hidden group-hover:opacity-75">
-                    <img src="{{ asset($category->sub[0]->products[0]->images[0]->url) }}" alt="{{ $category->name }}" class="w-full h-full object-center object-cover">
+            @if ($category->sub[0]->products[0] ?? false)
+              <div class="group relative h-96 bg-white rounded-lg shadow-xl sm:h-auto sm:aspect-w-4 sm:aspect-h-5">
+                <div>
+                  <div aria-hidden="true" class="absolute inset-0 rounded-lg overflow-hidden">
+                    <div class="absolute inset-0 overflow-hidden group-hover:opacity-75">
+                      <img src="{{ asset($category->sub[0]->products[0]->images[0]->url) }}" alt="{{ $category->name }}" class="w-full h-full object-center object-cover">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-50"></div>
                   </div>
-                  <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-50"></div>
-                </div>
-                <div class="absolute inset-0 rounded-lg p-6 flex items-end">
-                  <div>
-                    <p aria-hidden="true" class="text-sm text-white">Shop the collection</p>
-                    <h3 class="mt-1 font-semibold text-white">
-                      <a href="{{ route('home', ['category' => $category->name]) }}">
-                        <span class="absolute inset-0"></span>
-                        {{ $category->name }}
-                      </a>
-                    </h3>
+                  <div class="absolute inset-0 rounded-lg p-6 flex items-end">
+                    <div>
+                      <p aria-hidden="true" class="text-sm text-white">Shop the collection</p>
+                      <h3 class="mt-1 font-semibold text-white">
+                        <a href="{{ route('home', ['category' => $category->name]) }}">
+                          <span class="absolute inset-0"></span>
+                          {{ $category->name }}
+                        </a>
+                      </h3>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            @endif
           @endforeach
         </div>
       </section>
     </div>
 
     @foreach ($categories as $category)
-    <section aria-labelledby="trending-heading">
-      <div class="max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
-        <div class="md:flex md:items-center md:justify-between">
-          <h2 id="favorites-heading" class="text-2xl font-extrabold tracking-tight text-gray-900">{{ $category->sub[0]->name }}</h2>
-          <a href="{{ route('home', ['category' => $category->name, 'sub_category' => $category->sub[0]->name]) }}" class="hidden text-sm font-medium text-indigo-600 hover:text-indigo-500 md:block">Shop the collection<span aria-hidden="true"> &rarr;</span></a>
-        </div>
-
-        <div class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
-          @foreach ($category->sub[0]->products->take(4)->all() as $product)
-          <div class="group relative">
-            <div class="w-full h-56 rounded-md overflow-hidden group-hover:opacity-75 lg:h-72 xl:h-80">
-              <img src="{{ $product->images[0]->url ?? 'https://tailwindui.com/img/ecommerce-images/home-page-04-trending-product-02.jpg' }}" alt="{{ $product->name }}" class="w-full h-full object-center object-cover">
+      @if ($category->sub[0]->products[0] ?? false)
+        <section aria-labelledby="trending-heading">
+          <div class="max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
+            <div class="md:flex md:items-center md:justify-between">
+              <h2 id="favorites-heading" class="text-2xl font-extrabold tracking-tight text-gray-900">{{ $category->sub[0]->name ?? '' }}</h2>
+              <a href="{{ route('home', ['category' => $category->name, 'sub_category' => $category->sub[0]->name ?? '']) }}" class="hidden text-sm font-medium text-indigo-600 hover:text-indigo-500 md:block">Shop the collection<span aria-hidden="true"> &rarr;</span></a>
             </div>
-            <h3 class="mt-4 text-sm text-gray-700">
-              <a href="{{ route('product', ['id' => $product->id]) }}">
-                <span class="absolute inset-0"></span>
-                {{ $product->name }}
-              </a>
-            </h3>
-            <p class="mt-1 text-sm text-gray-500">{{ $product->colors[0]->name }}</p>
-            <p class="mt-1 text-sm font-medium text-gray-900">{{ $currency ?? 'Rs.' }}{{ number_format($product->unit_price) }}</p>
+
+            <div class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
+                @foreach ($category->sub[0]->products->take(4)->all() as $product)
+                <div class="group relative">
+                  <div class="w-full h-56 rounded-md overflow-hidden group-hover:opacity-75 lg:h-72 xl:h-80">
+                    <img src="{{ $product->images[0]->url ?? 'https://tailwindui.com/img/ecommerce-images/home-page-04-trending-product-02.jpg' }}" alt="{{ $product->name }}" class="w-full h-full object-center object-cover">
+                  </div>
+                  <h3 class="mt-4 text-sm text-gray-700">
+                    <a href="{{ route('product', ['id' => $product->id]) }}">
+                      <span class="absolute inset-0"></span>
+                      {{ $product->name }}
+                    </a>
+                  </h3>
+                  <p class="mt-1 text-sm text-gray-500">{{ $product->colors[0]->name }}</p>
+                  <p class="mt-1 text-sm font-medium text-gray-900">{{ $currency ?? 'Rs.' }}{{ number_format($product->unit_price) }}</p>
+                </div>
+                @endforeach
+            </div>
+
+            <div class="mt-8 text-sm md:hidden">
+              <a href="{{ route('home', ['category' => $category->name, 'sub_category' => $category->sub[0]->name]) }}" class="font-medium text-indigo-600 hover:text-indigo-500">Shop the collection<span aria-hidden="true"> &rarr;</span></a>
+            </div>
           </div>
-          @endforeach
-
-        </div>
-
-        <div class="mt-8 text-sm md:hidden">
-          <a href="{{ route('home', ['category' => $category->name, 'sub_category' => $category->sub[0]->name]) }}" class="font-medium text-indigo-600 hover:text-indigo-500">Shop the collection<span aria-hidden="true"> &rarr;</span></a>
-        </div>
-      </div>
-    </section>
+        </section>
+      @endif
     @endforeach
 
     <section aria-labelledby="perks-heading" class="bg-gray-50 border-t border-gray-200">
